@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-80 -80 160 160" width="1024" height="1024">
+  <!-- Outer ring -->
+  <circle cx="0" cy="0" r="72" fill="none" stroke="#0c2c16" stroke-width="2.5"/>
+  <!-- Three inner overlapping circles -->
+  <circle cx="0"     cy="-24" r="36" fill="none" stroke="#0c2c16" stroke-width="2.5"/>
+  <circle cx="31.2"  cy="12"  r="36" fill="none" stroke="#0c2c16" stroke-width="2.5"/>
+  <circle cx="-31.2" cy="12"  r="36" fill="none" stroke="#0c2c16" stroke-width="2.5"/>
+</svg>

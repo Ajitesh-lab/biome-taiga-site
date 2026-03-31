@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html class="light scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>macOS Security Note | Biome</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      background-color: #f9faf6;
+      color: #1a1c1a;
+      -webkit-font-smoothing: antialiased;
+      font-family: "Helvetica", "Arial", sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-[#f9faf6] text-[#1a1c1a] min-h-screen pt-16 md:pt-24 pb-32">
+  <div class="max-w-2xl mx-auto px-6">
+    <a href="/" class="text-[#566342] hover:text-[#0c2c16] mb-12 inline-flex items-center gap-2 font-black uppercase text-[10px] tracking-[0.2em] transition-colors border border-[#e2e3df] px-4 py-2 hover:border-[#0c2c16]">
+      <span class="material-symbols-outlined text-[14px]">arrow_back</span> Back to Biome
+    </a>
+    
+    <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-[#0c2c16] mb-8">Why does macOS block Biome?</h1>
+    
+    <div class="text-[#424842] leading-relaxed space-y-6 text-lg">
+      <p>When you attempt to open Biome for the first time, you will likely see a message stating that Apple cannot verify the app is free of malware. This is a standard macOS feature called Gatekeeper.</p>
+      
+      <p>Apple requires all developers to pay a <strong>$99/year subscription fee</strong> to the Apple Developer Program to digitally "notarize" their applications. Apps that skip this fee are automatically flagged by macOS with a severe-sounding warning, regardless of the app's actual safety.</p>
+
+      <div class="bg-[#f3f4f0] p-6 border-l-4 border-[#0c2c16] my-10">
+        <p class="font-bold text-[#0c2c16] mb-2 uppercase tracking-widest text-xs">Our Stance</p>
+        <p class="text-base">Biome is an independent, free, and open-source personal AI project. We believe that developers shouldn't have to pay annual extortion fees just to share free software with the Mac community. Because of this, we have chosen to distribute Biome without the paid Apple Developer enterprise certificate.</p>
+      </div>
+
+      <h2 class="text-2xl font-black text-[#0c2c16] mt-12 mb-6">How to open Biome safely:</h2>
+      
+      <ol class="list-decimal pl-5 space-y-4 mb-8 text-base">
+        <li>Double-click the downloaded Biome <code class="bg-[#e2e3df] px-1.5 py-0.5 text-sm font-mono text-[#0c2c16]">.dmg</code> file to open the installer.</li>
+        <li>Drag the Biome icon into your <strong>Applications</strong> folder.</li>
+        <li>Open your <strong>System Settings</strong> app on your Mac.</li>
+        <li>Navigate to the <strong>Privacy & Security</strong> tab on the left sidebar.</li>
+        <li>Scroll down until you see a message saying <em>"Biome" was blocked from use...</em></li>
+        <li>Click the <strong>Open Anyway</strong> button next to the message.</li>
+        <li>Provide your Mac password or TouchID when prompted to authorize the action.</li>
+      </ol>
+
+      <p class="text-base font-bold text-[#0c2c16] bg-[#dae8be]/30 py-4 px-5 border border-[#dae8be]">
+        You only need to do this once. After this initial confirmation, Biome will open normally every time without prompting.
+      </p>
+
+      <hr class="border-[#e2e3df] my-12">
+      
+      <p class="text-sm text-[#727971]">For full transparency, the underlying source code that runs Biome's local servers and integrations is completely open. If you have any further security questions, feel free to contact us at <a href="mailto:openclaw.solutions@gmail.com" class="text-[#0c2c16] underline">openclaw.solutions@gmail.com</a>.</p>
+    </div>
+  </div>
+</body>
+</html>

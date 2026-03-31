@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Documentation | Biome</title>
+  <meta name="description" content="Biome documentation — get started, configure your agent, and explore integrations."/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #f9faf6; color: #1a1c1a; font-family: "Helvetica", "Arial", sans-serif; -webkit-font-smoothing: antialiased; }
+    h2 { font-size: 1.25rem; font-weight: 800; color: #0c2c16; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    h3 { font-size: 1rem; font-weight: 700; color: #0c2c16; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+    p, li { color: #424842; line-height: 1.75; font-size: 0.9375rem; }
+    ul { list-style: disc; padding-left: 1.5rem; margin-top: 0.5rem; }
+    li { margin-bottom: 0.35rem; }
+    a { color: #0c2c16; text-decoration: underline; }
+    code { background: #edeeea; padding: 0.15rem 0.4rem; font-family: ui-monospace, monospace; font-size: 0.85em; color: #0c2c16; }
+    .card { border: 1px solid rgba(114,121,113,0.2); padding: 1.5rem; margin-top: 1rem; background: white; }
+    .step-num { font-size: 2rem; font-weight: 900; color: rgba(12,44,22,0.15); line-height: 1; margin-bottom: 0.5rem; }
+  </style>
+</head>
+<body>
+  <nav style="background:#f9faf6;border-bottom:1px solid rgba(114,121,113,0.12);" class="fixed top-0 w-full z-50">
+    <div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-5xl mx-auto">
+      <a href="/" class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="-28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+        </svg>
+        <span style="font-size:1.1rem;font-weight:900;letter-spacing:0.15em;color:#0c2c16;text-transform:uppercase;">Biome</span>
+      </a>
+      <a href="/" style="font-size:0.8rem;font-weight:700;color:#424842;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;">← Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+    <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.3em;color:#566342;text-transform:uppercase;">Docs</span>
+    <h1 style="font-size:3rem;font-weight:900;letter-spacing:-0.04em;color:#0c2c16;line-height:1;margin-top:0.5rem;margin-bottom:2rem;">Documentation</h1>
+    <p style="font-size:1.1rem;color:#424842;line-height:1.7;border-bottom:1px solid rgba(114,121,113,0.2);padding-bottom:1.5rem;">Everything you need to get Biome up and running in minutes.</p>
+
+    <h2>Getting Started</h2>
+    <div style="display:grid;gap:1rem;margin-top:1rem;">
+      <div class="card">
+        <div class="step-num">01</div>
+        <h3 style="margin-top:0;">Download &amp; Install</h3>
+        <p>Download the Biome macOS app from the <a href="/#download">downloads section</a>. Open the DMG, drag Biome to your Applications folder, and launch it. macOS may ask you to confirm opening the app — click Open.</p>
+        <p style="margin-top:0.5rem;"><strong>Requirements:</strong> macOS 13 Ventura or later · Apple Silicon or Intel · ~100MB disk space</p>
+      </div>
+      <div class="card">
+        <div class="step-num">02</div>
+        <h3 style="margin-top:0;">Create an Account</h3>
+        <p>Click <strong>"Get Started"</strong> on the home page and create a free account with your email. You'll receive a confirmation email — click the link inside to verify your address. Then sign in from the app or website.</p>
+      </div>
+      <div class="card">
+        <div class="step-num">03</div>
+        <h3 style="margin-top:0;">Configure Your Agent</h3>
+        <p>On first launch, the setup wizard guides you through naming your agent, connecting your first data source, and enabling skills. The whole process takes under 5 minutes.</p>
+      </div>
+    </div>
+
+    <h2>Core Features</h2>
+
+    <h3>Chat</h3>
+    <p>The Chat panel lets you converse with your AI agent. Your agent has access to all enabled skills and data sources. Conversations are stored in session history — use the History panel to browse past chats.</p>
+
+    <h3>Mindmap</h3>
+    <p>The Mindmap visualises your agent's skill graph. Pan and zoom to explore. Click a category node to expand it and see individual skills. Click a skill node to enable or configure it inline.</p>
+
+    <h3>Skills</h3>
+    <p>Skills are capabilities your agent can use — web search, calendar access, code execution, and more. Enable skills from the Skills panel or from within the Mindmap. Some skills require an API key from a third-party provider.</p>
+
+    <h3>Data Sources</h3>
+    <p>Add URLs, documents, or service connections as data sources. Your agent reads and indexes them so it can reference your content in conversations. Data sources are private and never shared.</p>
+
+    <h2>Keyboard Shortcuts</h2>
+    <div class="card" style="margin-top:0.5rem;">
+      <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+        <tr style="border-bottom:1px solid rgba(114,121,113,0.15);"><td style="padding:0.5rem 0;color:#0c2c16;font-weight:700;width:50%;">⌘ + N</td><td style="color:#424842;">New chat session</td></tr>
+        <tr style="border-bottom:1px solid rgba(114,121,113,0.15);"><td style="padding:0.5rem 0;color:#0c2c16;font-weight:700;">⌘ + ,</td><td style="color:#424842;">Open settings</td></tr>
+        <tr style="border-bottom:1px solid rgba(114,121,113,0.15);"><td style="padding:0.5rem 0;color:#0c2c16;font-weight:700;">⌘ + K</td><td style="color:#424842;">Command palette / quick search</td></tr>
+        <tr><td style="padding:0.5rem 0;color:#0c2c16;font-weight:700;">⌘ + ⏎</td><td style="color:#424842;">Send message</td></tr>
+      </table>
+    </div>
+
+    <h2>Troubleshooting</h2>
+    <h3>App won't open after download</h3>
+    <p>Right-click the app in Applications and choose <strong>Open</strong>, then click Open in the dialog. This only needs to be done once.</p>
+
+    <h3>Confirmation email didn't arrive</h3>
+    <p>Check your spam/junk folder. If it's not there within 5 minutes, try signing up again or contact us at <a href="mailto:openclaw.solutions@gmail.com">openclaw.solutions@gmail.com</a>.</p>
+
+    <h3>Agent not responding</h3>
+    <p>Make sure your API key is entered in Settings → Skills → Gemini (or whichever model you have enabled). The app requires an active internet connection.</p>
+
+    <h2>Contact &amp; Support</h2>
+    <p>Can't find what you're looking for? Email us at <a href="mailto:openclaw.solutions@gmail.com">openclaw.solutions@gmail.com</a> — average response time is 2 hours.</p>
+  </main>
+
+  <footer style="background:#f9faf6;border-top:1px solid rgba(114,121,113,0.15);padding:2rem 1.5rem;text-align:center;">
+    <p style="font-size:0.7rem;color:#727971;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">© 2026 Biome Systems, Inc. &nbsp;·&nbsp; <a href="/terms.html" style="color:#0c2c16;text-decoration:none;">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html" style="color:#0c2c16;text-decoration:none;">Privacy</a> &nbsp;·&nbsp; <a href="/security.html" style="color:#0c2c16;text-decoration:none;">Security</a></p>
+  </footer>
+</body>
+</html>
