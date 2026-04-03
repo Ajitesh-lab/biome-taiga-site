@@ -331,16 +331,15 @@
       </div>
     </section>
 
-    <!-- ── Trusted By ── -->
+    <!-- ── Built For Bar ── -->
     <section class="bg-surface-container py-12 px-6 md:px-12">
-      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12">
-        <span class="text-[10px] uppercase tracking-[0.4em] font-black text-on-surface-variant/60 whitespace-nowrap">Built for teams like</span>
-        <div class="flex flex-wrap justify-center md:justify-between items-center w-full gap-6 md:gap-8 opacity-40 grayscale filter">
-          <span class="text-xl font-black tracking-tighter">Helio</span>
-          <span class="text-xl font-black tracking-tighter">Primer</span>
-          <span class="text-xl font-black tracking-tighter">Cascade</span>
-          <span class="text-xl font-black tracking-tighter">Tangent</span>
-          <span class="text-xl font-black tracking-tighter">Nomad Studios</span>
+      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 justify-center">
+        <span class="text-[10px] uppercase tracking-[0.4em] font-black text-on-surface-variant/60 text-center">Built for researchers, developers, founders &amp; everyday power users</span>
+        <div class="flex flex-wrap justify-center items-center gap-8 opacity-50">
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">school</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Researchers</span></div>
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">code</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Developers</span></div>
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">rocket_launch</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Founders</span></div>
+          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">person</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Everyone</span></div>
         </div>
       </div>
     </section>
@@ -820,10 +819,9 @@
           <a href="/docs.html" class="text-[#424842] hover:text-primary transition-colors">Documentation</a>
         </div>
         <div class="flex flex-col space-y-4">
-          <a href="https://twitter.com" target="_blank" rel="noopener" class="text-[#424842] hover:text-primary transition-colors">Twitter</a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-[#424842] hover:text-primary transition-colors">LinkedIn</a>
-          <a href="https://github.com" target="_blank" rel="noopener" class="text-[#424842] hover:text-primary transition-colors">GitHub</a>
-          <a href="https://discord.com" target="_blank" rel="noopener" class="text-[#424842] hover:text-primary transition-colors">Discord</a>
+          <a href="mailto:openclaw.solutions@gmail.com" class="text-[#424842] hover:text-primary transition-colors">Contact</a>
+          <a href="/docs.html" class="text-[#424842] hover:text-primary transition-colors">Docs</a>
+          <a href="/security.html" class="text-[#424842] hover:text-primary transition-colors">Security</a>
         </div>
       </div>
       <div class="md:text-right">
@@ -840,12 +838,9 @@
   <!-- ── JavaScript ── -->
   <script>
     // ────────────────────────────────────────────────────────
-    // BIOME AUTH CONFIG
-    // Set BACKEND_URL to your deployed biome-backend URL
-    // e.g. https://your-app.up.railway.app
+    // BIOME AUTH CONFIG — your deployed biome-backend URL
     // ────────────────────────────────────────────────────────
-    // TODO: Replace with your deployed biome-backend URL (e.g. https://your-app.up.railway.app)
-    const BACKEND_URL = '';
+    const BACKEND_URL = 'https://biome-backend-production.up.railway.app';
 
     // ── Session management (JWT in localStorage) ───────────
     const AUTH_KEY = 'biome_auth_token';
@@ -892,10 +887,7 @@
       if (!token) return;
       try {
         const res = await fetch(`${BACKEND_URL}/auth/me`, {
-          headers: { 
-            'Authorization': `Bearer ${token}`,
-            'ngrok-skip-browser-warning': 'true'
-          }
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
         if (data.ok) updateNavAuth(data.user);
@@ -977,10 +969,7 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/send-otp`, {
           method: 'POST', 
-          headers: { 
-            'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': 'true'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name })
         });
         const data = await res.json();
@@ -1006,10 +995,7 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/verify-otp`, {
           method: 'POST', 
-          headers: { 
-            'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': 'true'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, otp })
         });
         const data = await res.json();
@@ -1032,10 +1018,7 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/send-otp`, {
           method: 'POST', 
-          headers: { 
-            'Content-Type': 'application/json',
-            'ngrok-skip-browser-warning': 'true'
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name })
         });
         const data = await res.json();

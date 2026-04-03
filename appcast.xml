@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>Biome</title>
-    <link>https://polite-heliotrope-6ff593.netlify.app/appcast.xml</link>
+    <link>https://biome1.netlify.app/appcast.xml</link>
     <description>Biome update feed</description>
     <language>en</language>
 
     <item>
       <title>Version 1.1.0</title>
-      <link>https://polite-heliotrope-6ff593.netlify.app</link>
+      <link>https://biome1.netlify.app</link>
       <sparkle:version>2</sparkle:version>
       <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
       <description><![CDATA[
@@ -21,11 +21,11 @@
       ]]></description>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <enclosure
-        url="https://polite-heliotrope-6ff593.netlify.app/downloads/Biome-1.1.0.dmg"
+        url="https://biome1.netlify.app/downloads/Biome-1.1.0.dmg"
         sparkle:version="2"
         sparkle:shortVersionString="1.1.0"
         sparkle:edSignature="4fl9ZFmv1y+gYfJydXl7l8611BEm3Fs6Eg8LA0IQ751a4dzZSudvGDM8SfQPxvtMe0SDJYjdcZdGrRzlBDu1Aw=="
-        length="26479222"
+        length="53733461"
         type="application/octet-stream"
       />
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
