@@ -322,8 +322,8 @@
                 <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Skills</span>
               </div>
               <div class="flex flex-col items-center px-8 gap-1">
-                <span class="text-2xl font-black text-primary">100%</span>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">Local & Private</span>
+                <span class="text-2xl font-black text-primary">6+</span>
+                <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Providers</span>
               </div>
             </div>
           </div>
@@ -421,20 +421,23 @@
               <span class="material-symbols-outlined text-primary text-3xl">hub</span>
             </div>
             <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">20+ AI Skills</h3>
-            <p class="text-on-surface-variant leading-relaxed">Web search, code execution, file operations, and integrations with Notion, GitHub, Slack, and more — all via the OpenClaw skill system.</p>
+            <p class="text-on-surface-variant leading-relaxed">Web search, live code execution, file and image attachments, and browser automation — all built in. Attach PDFs, images, and code files directly to any message.</p>
           </div>
           <div class="group">
             <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
               <span class="material-symbols-outlined text-primary text-3xl">shield</span>
             </div>
             <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Private by Default</h3>
-            <p class="text-on-surface-variant leading-relaxed">Everything stays on your machine. Conversations, memory, and API keys are stored locally — never on our servers. Granular permission modes (Ask, Plan, Auto, Bypass) let you control exactly what the AI can touch.</p>
+            <p class="text-on-surface-variant leading-relaxed">Your conversations, memory, and API keys are stored locally on your device — never on our servers. API calls go directly from your Mac to your chosen AI provider, not through us. Granular permission modes let you control exactly what the AI can touch.</p>
           </div>
           <div class="group">
             <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
               <span class="material-symbols-outlined text-primary text-3xl">account_tree</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Visual Logic Builder</h3>
+            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight flex items-center gap-3">
+              Visual Logic Builder
+              <span class="bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest px-2 py-1">Beta</span>
+            </h3>
             <p class="text-on-surface-variant leading-relaxed">Build complex multi-step workflows without a single line of code. Branch logic, conditionals, and loops — all visual, all yours.</p>
           </div>
           <div class="group">
@@ -451,6 +454,27 @@
             <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Start for Free. Stay Free.</h3>
             <p class="text-on-surface-variant leading-relaxed">The free tier is permanent, not a trial. We make money when you scale, not when you're getting started.</p>
           </div>
+          <div class="group">
+            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-3xl">attach_file</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">File & Image Attachments</h3>
+            <p class="text-on-surface-variant leading-relaxed">Attach PDFs, images, code files, CSVs, and more to any message. The AI reads and reasons over your files directly — no upload to a third-party server.</p>
+          </div>
+          <div class="group">
+            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-3xl">history</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Full Conversation History</h3>
+            <p class="text-on-surface-variant leading-relaxed">Every session is saved locally and instantly searchable. Pick up any previous conversation exactly where you left off — no cloud sync required.</p>
+          </div>
+          <div class="group">
+            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-3xl">play_circle</span>
+            </div>
+            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Chat-Triggered Workflows</h3>
+            <p class="text-on-surface-variant leading-relaxed">Build and name your workflows once, then run them from anywhere — just type <span class="code-font bg-surface-container px-1 py-0.5 text-sm">run workflow My Pipeline</span> in chat and Biome executes it instantly.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -461,7 +485,10 @@
 
         <!-- Section header -->
         <div class="mb-16 md:mb-20 max-w-3xl">
-          <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Browser Control System</span>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Browser Control System</span>
+            <span class="bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest px-2 py-1">Beta</span>
+          </div>
           <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary mb-6">Your AI lives in your browser.</h2>
           <p class="text-on-surface-variant text-lg leading-relaxed">Biome ships with a background browser relay that gives the AI direct, real-time control over your Chrome browser — open tabs, navigate pages, click elements, read content, and automate anything you can do manually. No cloud infrastructure. No screen sharing. Completely local.</p>
         </div>
@@ -497,6 +524,13 @@
               </div>
             </div>
             <p class="text-xs text-on-surface-variant/60 leading-relaxed pt-1">Powered by a lightweight local relay server (port 9999) + a Chrome extension. Enable in Settings → General → Browser Control. The app starts the server automatically.</p>
+            <div class="pt-4">
+              <a href="https://chrome.google.com/webstore" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-primary border border-primary/20 hover:bg-primary/5 px-4 py-2 transition-colors">
+                <span class="material-symbols-outlined text-sm">extension</span>
+                Get the Chrome Extension
+              </a>
+              <p class="text-[10px] text-on-surface-variant/50 mt-2">Required for browser automation workflows.</p>
+            </div>
           </div>
 
           <!-- Visual -->
@@ -528,7 +562,7 @@
           <div class="mb-10 max-w-2xl">
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-3 block">Browser Control → AI Chat Piggyback</span>
             <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-primary mb-4">Use any AI chat in your browser — no extra API key.</h3>
-            <p class="text-on-surface-variant leading-relaxed">Because Biome already controls your browser, it can silently send queries to whichever AI chat you have open and relay the response back. Works with any AI chat interface in Chrome. Your own session, your own subscription.</p>
+            <p class="text-on-surface-variant leading-relaxed">Because Biome already controls your browser, it can automatically relay queries to whichever AI chat you have open and pipe the response back. Works with any AI chat interface in Chrome. Your own session, your own subscription.</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -713,7 +747,7 @@
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Yes — through OpenClaw, Biome's AI skill system, which supports 50+ skills including web search, code execution, file operations, and integrations with Notion, GitHub, Slack, and more. You can also add custom data source URLs in Settings that the AI will reference in every conversation. If you need a specific integration, email us — we prioritise community requests.</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Yes — through OpenClaw, Biome's AI skill system. Built-in skills include web search, live code execution, file and image attachments, browser automation, and multi-step workflow pipelines. You can also add custom data source URLs in Settings that the AI will reference in every conversation. If you need a specific integration, email us — we prioritise community requests.</p>
             </div>
           </div>
           <div class="faq-item border-b border-outline-variant/20">
@@ -783,7 +817,7 @@
               <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.0.0</span>
               <div>
                 <p class="text-xs font-bold text-primary mb-1">Foundation Release — Dec 2025</p>
-                <p class="text-xs text-on-surface-variant">Initial public launch. Visual logic builder, 30+ integrations, and one-click deployment.</p>
+                <p class="text-xs text-on-surface-variant">Initial public launch. Multi-model chat, long-term memory, browser control, and one-click deployment.</p>
               </div>
             </div>
           </div>
