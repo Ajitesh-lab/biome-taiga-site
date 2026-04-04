@@ -21,7 +21,7 @@
       ]]></description>
       <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
       <enclosure
-        url="https://biome1.netlify.app/downloads/Biome-1.1.0.dmg"
+        url="https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.1.0/Biome-1.1.0.dmg"
         sparkle:version="2"
         sparkle:shortVersionString="1.1.0"
         sparkle:edSignature="4fl9ZFmv1y+gYfJydXl7l8611BEm3Fs6Eg8LA0IQ751a4dzZSudvGDM8SfQPxvtMe0SDJYjdcZdGrRzlBDu1Aw=="
