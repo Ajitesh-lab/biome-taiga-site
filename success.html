@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Welcome to Biome Pro</title>
+  <meta name="description" content="Your Biome Pro subscription is active."/>
+  <meta name="robots" content="noindex"/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://biomeai.uk/success.html"/>
+  <meta property="og:title" content="Welcome to Biome Pro"/>
+  <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
+  <!-- Canonical -->
+  <link rel="canonical" href="https://biomeai.uk/success.html"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #f9faf6; color: #1a1c1a; font-family: "Helvetica", "Arial", sans-serif; -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center px-6">
+
+  <!-- Logo -->
+  <a href="/" class="mb-12">
+    <svg width="40" height="40" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="3"/>
+      <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="3"/>
+      <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="3"/>
+      <circle cx="-28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="3"/>
+    </svg>
+  </a>
+
+  <div class="w-full max-w-md text-center">
+    <!-- Check mark -->
+    <div class="w-16 h-16 bg-[#0c2c16] flex items-center justify-center mx-auto mb-8">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#f9faf6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+
+    <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#566342] mb-3">Payment confirmed</p>
+    <h1 class="text-4xl font-black tracking-tighter text-[#0c2c16] mb-4">You're on Biome Pro.</h1>
+    <p class="text-[#424842] text-sm leading-relaxed mb-10">
+      Your subscription is active. Download the app below and sign in with the same email to unlock your Pro features.
+    </p>
+
+    <!-- CTA -->
+    <a href="/#download" class="block w-full bg-[#0c2c16] text-white py-4 font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity mb-4">
+      Download Biome
+    </a>
+    <a href="/" class="block w-full border border-[#0c2c16]/30 text-[#0c2c16] py-4 font-bold text-sm uppercase tracking-widest hover:bg-[#f3f4f0] transition-colors">
+      Back to Home
+    </a>
+
+    <p class="text-[11px] text-[#727971] mt-8 leading-relaxed">
+      A receipt has been sent to your email by Stripe.<br/>
+      To manage your subscription, <button onclick="openPortal()" class="underline font-bold hover:text-[#0c2c16]">visit the billing portal</button>.
+    </p>
+  </div>
+
+  <script>
+    const BACKEND_URL = 'https://biome-backend-production.up.railway.app';
+    const AUTH_KEY = 'biome_auth_token';
+
+    function getToken() {
+      try { return JSON.parse(localStorage.getItem(AUTH_KEY))?.token || null; }
+      catch { return null; }
+    }
+
+    async function openPortal() {
+      const token = getToken();
+      if (!token) { alert('Please sign in to manage your subscription.'); return; }
+      try {
+        const res = await fetch(`${BACKEND_URL}/billing/portal`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        if (data.ok && data.url) window.location.href = data.url;
+        else alert('Could not open billing portal — please try again.');
+      } catch {
+        alert('Could not reach server — check your connection.');
+      }
+    }
+  </script>
+</body>
+</html>

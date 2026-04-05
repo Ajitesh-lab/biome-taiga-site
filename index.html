@@ -5,6 +5,45 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Biome | Your Personal AI Core</title>
   <meta name="description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://biomeai.uk/"/>
+  <meta property="og:title" content="Biome | Your Personal AI Core"/>
+  <meta property="og:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
+  <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Biome | Your Personal AI Core"/>
+  <meta name="twitter:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
+  <meta name="twitter:image" content="https://biomeai.uk/og-image.png"/>
+  <!-- Canonical -->
+  <link rel="canonical" href="https://biomeai.uk/"/>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Biome",
+    "url": "https://biomeai.uk",
+    "description": "Design, personalize, and deploy your own intelligent AI agent for free.",
+    "applicationCategory": "DesktopApplication",
+    "operatingSystem": "macOS",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Personal",
+        "price": "0",
+        "priceCurrency": "GBP"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "29",
+        "priceCurrency": "USD"
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -1036,9 +1075,28 @@
         if (!data.ok) throw new Error(data.error || 'Verification failed');
         saveSession(data.token, data.user);
         updateNavAuth(data.user);
-        const dl = pendingDownload; pendingDownload = null; closeModal();
-        if (dl) { setTimeout(() => triggerDownload(dl), 400); }
-        else { showToast(`Welcome to Biome, ${data.user.name || data.user.email.split('@')[0]}! \u2713`); }
+        if (currentModalMode === 'pro') {
+          cta.textContent = 'Redirecting to checkout\u2026';
+          closeModal();
+          try {
+            const checkoutRes = await fetch(`${BACKEND_URL}/billing/create-checkout-session`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${data.token}` }
+            });
+            const checkoutData = await checkoutRes.json();
+            if (checkoutData.ok && checkoutData.url) {
+              window.location.href = checkoutData.url;
+            } else {
+              showToast(checkoutData.error || 'Could not start checkout \u2014 please try again.');
+            }
+          } catch {
+            showToast('Could not reach payment server \u2014 check your connection.');
+          }
+        } else {
+          const dl = pendingDownload; pendingDownload = null; closeModal();
+          if (dl) { setTimeout(() => triggerDownload(dl), 400); }
+          else { showToast(`Welcome to Biome, ${data.user.name || data.user.email.split('@')[0]}! \u2713`); }
+        }
       } catch (err) {
         errorEl.textContent = err.message; errorEl.classList.remove('hidden');
         cta.disabled = false; cta.textContent = 'Verify Code';
