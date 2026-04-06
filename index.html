@@ -922,12 +922,39 @@
     const AUTH_KEY = 'biome_auth_token';
     const AUTH_USER_KEY = 'biome_auth_user';
 
-    function getToken() { return localStorage.getItem(AUTH_KEY); }
-    function getUser() {
-      try { return JSON.parse(localStorage.getItem(AUTH_USER_KEY)); } catch { return null; }
+    function getStoredSession() {
+      const storedToken = localStorage.getItem(AUTH_KEY);
+      const storedUser = localStorage.getItem(AUTH_USER_KEY);
+      let token = null;
+      let user = null;
+
+      if (storedToken) {
+        try {
+          const parsed = JSON.parse(storedToken);
+          if (typeof parsed === 'string') {
+            token = parsed;
+          } else if (parsed && typeof parsed === 'object') {
+            token = parsed.token || storedToken;
+            user = parsed.user || null;
+          } else {
+            token = storedToken;
+          }
+        } catch {
+          token = storedToken;
+        }
+      }
+
+      if (storedUser) {
+        try { user = JSON.parse(storedUser) || user; } catch {}
+      }
+
+      return { token, user };
     }
+
+    function getToken() { return getStoredSession().token; }
+    function getUser() { return getStoredSession().user; }
     function saveSession(token, user) {
-      localStorage.setItem(AUTH_KEY, token);
+      localStorage.setItem(AUTH_KEY, JSON.stringify({ token, user, saved_at: Date.now() }));
       localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
     }
     function clearSession() {
@@ -953,6 +980,7 @@
 
     function handleSignOut() {
       clearSession();
+      postAuthAction = null;
       updateNavAuth(null);
       showToast('Signed out successfully.');
     }
@@ -966,8 +994,13 @@
           headers: { 'Authorization': `Bearer ${token}` }
         });
         const data = await res.json();
-        if (data.ok) updateNavAuth(data.user);
-        else clearSession();
+        if (data.ok) {
+          saveSession(token, data.user);
+          updateNavAuth(data.user);
+        } else {
+          clearSession();
+          updateNavAuth(null);
+        }
       } catch {
         const cached = getUser();
         if (cached) updateNavAuth(cached);
@@ -984,27 +1017,48 @@
     };
 
     let pendingDownload = null;
-    let currentModalMode = 'personal';
+    let postAuthAction = null;
 
-    function openModal(plan) {
-      currentModalMode = plan;
+    function openModal(plan, preservePostAuth = false) {
+      if (plan === 'pro') {
+        postAuthAction = 'pro_checkout';
+        const token = getToken();
+        if (token) {
+          startProCheckout(token);
+          return;
+        }
+      } else if (!preservePostAuth) {
+        postAuthAction = null;
+      }
+
+      const cameFromProCheckout = postAuthAction === 'pro_checkout';
       const cfg = modalConfigs[plan] || modalConfigs.personal;
-      document.getElementById('modal-plan-label').textContent = cfg.label;
-      document.getElementById('modal-title').textContent = cfg.title;
-      document.getElementById('modal-desc').textContent = cfg.desc;
+      document.getElementById('modal-plan-label').textContent = cameFromProCheckout && plan === 'signin'
+        ? modalConfigs.pro.label
+        : cfg.label;
+      document.getElementById('modal-title').textContent = cameFromProCheckout && plan === 'signin'
+        ? 'Sign In to Continue'
+        : cfg.title;
+      document.getElementById('modal-desc').textContent = cameFromProCheckout && plan === 'signin'
+        ? 'Sign in or create your account, then we’ll take you straight to the Stripe checkout.'
+        : cfg.desc;
 
       const isSignIn = plan === 'signin';
       document.getElementById('modal-name-field').classList.toggle('hidden', isSignIn);
       document.getElementById('modal-name-input').required = !isSignIn;
       document.getElementById('modal-error').classList.add('hidden');
       document.getElementById('modal-cta').disabled = false;
-      document.getElementById('modal-cta').textContent = 'Send Verification Code';
+      document.getElementById('modal-cta').textContent = cameFromProCheckout ? 'Continue to Checkout' : 'Send Verification Code';
+      document.getElementById('modal-otp-cta').disabled = false;
+      document.getElementById('modal-otp-cta').textContent = cameFromProCheckout ? 'Verify & Continue to Checkout' : 'Verify Code';
 
       const footerText = document.getElementById('modal-footer-text');
       if (isSignIn) {
-        footerText.innerHTML = 'No account yet? <button type="button" onclick="openModal(\'personal\')" class="underline font-bold hover:text-primary">Sign up for free \u2192</button>';
+        footerText.innerHTML = cameFromProCheckout
+          ? 'Need an account first? <button type="button" onclick="openModal(\'pro\')" class="underline font-bold hover:text-primary">Create one and continue to checkout \u2192</button>'
+          : 'No account yet? <button type="button" onclick="openModal(\'personal\')" class="underline font-bold hover:text-primary">Sign up for free \u2192</button>';
       } else {
-        footerText.innerHTML = 'By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>. Already have an account? <button type="button" onclick="openModal(\'signin\')" class="underline font-bold hover:text-primary">Sign in \u2192</button>';
+        footerText.innerHTML = `By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>. Already have an account? <button type="button" onclick="openModal('signin', ${cameFromProCheckout})" class="underline font-bold hover:text-primary">Sign in \u2192</button>`;
       }
 
       document.getElementById('modal-form').reset();
@@ -1022,6 +1076,31 @@
       overlay.classList.remove('show');
       overlay.classList.add('hide');
       document.body.style.overflow = '';
+    }
+
+    async function startProCheckout(token) {
+      showToast('Redirecting to checkout…');
+      try {
+        const checkoutRes = await fetch(`${BACKEND_URL}/billing/create-checkout-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+        });
+        const checkoutData = await checkoutRes.json().catch(() => ({}));
+        if (checkoutRes.ok && checkoutData.ok && checkoutData.url) {
+          postAuthAction = null;
+          window.location.href = checkoutData.url;
+        } else if (checkoutRes.status === 401) {
+          clearSession();
+          updateNavAuth(null);
+          postAuthAction = 'pro_checkout';
+          showToast(checkoutData.error || 'Please sign in again to continue to checkout.');
+          openModal('signin', true);
+        } else {
+          showToast(checkoutData.error || 'Could not start checkout — please try again.');
+        }
+      } catch {
+        showToast('Could not reach payment server — check your connection.');
+      }
     }
 
     function backToStep1() {
@@ -1056,7 +1135,8 @@
         setTimeout(() => document.getElementById('modal-otp-input').focus(), 100);
       } catch (err) {
         errorEl.textContent = err.message; errorEl.classList.remove('hidden');
-        cta.disabled = false; cta.textContent = 'Send Verification Code';
+        cta.disabled = false;
+        cta.textContent = postAuthAction === 'pro_checkout' ? 'Continue to Checkout' : 'Send Verification Code';
       }
     }
 
@@ -1078,23 +1158,10 @@
         if (!data.ok) throw new Error(data.error || 'Verification failed');
         saveSession(data.token, data.user);
         updateNavAuth(data.user);
-        if (currentModalMode === 'pro') {
+        if (postAuthAction === 'pro_checkout') {
           cta.textContent = 'Redirecting to checkout\u2026';
           closeModal();
-          try {
-            const checkoutRes = await fetch(`${BACKEND_URL}/billing/create-checkout-session`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${data.token}` }
-            });
-            const checkoutData = await checkoutRes.json();
-            if (checkoutData.ok && checkoutData.url) {
-              window.location.href = checkoutData.url;
-            } else {
-              showToast(checkoutData.error || 'Could not start checkout \u2014 please try again.');
-            }
-          } catch {
-            showToast('Could not reach payment server \u2014 check your connection.');
-          }
+          startProCheckout(data.token);
         } else {
           const dl = pendingDownload; pendingDownload = null; closeModal();
           if (dl) { setTimeout(() => triggerDownload(dl), 400); }
@@ -1102,7 +1169,8 @@
         }
       } catch (err) {
         errorEl.textContent = err.message; errorEl.classList.remove('hidden');
-        cta.disabled = false; cta.textContent = 'Verify Code';
+        cta.disabled = false;
+        cta.textContent = postAuthAction === 'pro_checkout' ? 'Verify & Continue to Checkout' : 'Verify Code';
       }
     }
 

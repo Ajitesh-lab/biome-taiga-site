@@ -67,8 +67,14 @@
     const AUTH_KEY = 'biome_auth_token';
 
     function getToken() {
-      try { return JSON.parse(localStorage.getItem(AUTH_KEY))?.token || null; }
-      catch { return null; }
+      const stored = localStorage.getItem(AUTH_KEY);
+      if (!stored) return null;
+      try {
+        const parsed = JSON.parse(stored);
+        return typeof parsed === 'string' ? parsed : parsed?.token || stored;
+      } catch {
+        return stored;
+      }
     }
 
     async function openPortal() {
