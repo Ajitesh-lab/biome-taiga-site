@@ -334,7 +334,7 @@
     <section id="hero" class="relative min-h-[800px] flex items-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
       <div class="w-full items-center">
         <div class="z-10 py-24 text-center flex flex-col items-center">
-          <span class="text-[0.7rem] uppercase tracking-[0.3em] text-on-surface-variant font-bold mb-6 block">Foundation v1.1 — Now Available</span>
+          <span class="text-[0.7rem] uppercase tracking-[0.3em] text-on-surface-variant font-bold mb-6 block">v1.2 — Channels, Voice &amp; More Providers — Now Available</span>
           <h1 class="text-[4.5rem] md:text-[6rem] font-black leading-[0.85] tracking-tighter text-primary mb-8 mx-auto max-w-5xl">
             Your Personal AI Agent.<br>Zero Code Required.
           </h1>
@@ -364,7 +364,7 @@
                 <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Skills</span>
               </div>
               <div class="flex flex-col items-center px-8 gap-1">
-                <span class="text-2xl font-black text-primary">6+</span>
+                <span class="text-2xl font-black text-primary">11+</span>
                 <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Providers</span>
               </div>
             </div>
@@ -433,7 +433,7 @@
 <span class="terminal-line text-white opacity-0">
 <span class="text-green-400 font-bold">✓ Agent is live.</span>
 <span class="text-white/60">→</span> Running locally on your Mac</span></code></pre>
-              <div class="absolute bottom-4 right-6 text-[10px] font-bold text-white/20 uppercase tracking-widest">Biome v1.1.0</div>
+              <div class="absolute bottom-4 right-6 text-[10px] font-bold text-white/20 uppercase tracking-widest">Biome v1.2.0</div>
             </div>
           </div>
         </div>
@@ -722,7 +722,7 @@
             <span class="material-symbols-outlined">keyboard_command_key</span>
             <div class="text-left">
               <div class="leading-none mb-1">Download for MacOS</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.1.0 · 64MB · macOS 13+</div>
+              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.2.0 · 64MB · macOS 13+</div>
             </div>
           </button>
           <button onclick="handleDownload('Windows')" id="dl-win-btn" class="bg-primary-container text-on-primary/40 border border-outline-variant/20 px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center transition-colors gap-4 cursor-default relative">
@@ -820,10 +820,10 @@
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between text-[10px] font-bold uppercase tracking-widest text-on-surface-variant gap-4">
           <div class="flex items-center gap-4">
             <span class="bg-secondary text-on-secondary px-2 py-1">Latest</span>
-            <span>v1.1 — Visual Workflow Builder</span>
+            <span>v1.2 — Channels, Voice &amp; More Providers</span>
           </div>
           <div class="hidden md:block h-4 w-[1px] bg-outline-variant/30 mx-8"></div>
-          <div>v1.0.4 — Unlimited Data Sources</div>
+          <div>v1.1 — Visual Workflow Builder</div>
           <div class="hidden md:block h-4 w-[1px] bg-outline-variant/30 mx-8"></div>
           <button onclick="toggleChangelog(this)" class="hover:text-primary transition-colors flex items-center gap-1" id="changelog-btn">
             View Full Changelog
@@ -835,7 +835,14 @@
         <div id="changelog-full" class="">
           <div class="pt-8 pb-2 space-y-6">
             <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.1.0</span>
+              <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.2.0</span>
+              <div>
+                <p class="text-xs font-bold text-primary mb-1">Channels, Voice &amp; More — Apr 2026</p>
+                <p class="text-xs text-on-surface-variant">Messaging channels (WhatsApp, Telegram, Slack, Discord and 20+ more), voice input &amp; text-to-speech, scheduled tasks (cron), multi-agent management, and 5 new model providers: Groq, OpenRouter, Together AI, DeepSeek, and Ollama (local).</p>
+              </div>
+            </div>
+            <div class="flex gap-8 items-start">
+              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.1.0</span>
               <div>
                 <p class="text-xs font-bold text-primary mb-1">Workflow Builder — Mar 2026</p>
                 <p class="text-xs text-on-surface-variant">New visual logic builder with branching, conditionals, and filter steps. Build multi-step AI workflows entirely on your local machine.</p>
@@ -902,7 +909,7 @@
       </div>
       <div class="md:text-right">
         <p class="text-[#424842] text-[0.75rem] uppercase tracking-[0.05em]">
-          © 2026 Biome Systems, Inc.<br>All rights reserved.
+          © 2026 Biome<br>All rights reserved.
         </p>
         <a href="mailto:team@biomeai.uk" class="text-[#0c2c16] font-black mt-4 inline-block text-[0.75rem] uppercase tracking-[0.1em] border-b border-primary/20 pb-1 hover:border-primary transition-colors">
           team@biomeai.uk
@@ -1012,8 +1019,8 @@
       personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
       pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.' },
       signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: "Enter your email and we'll send you a one-time verification code." },
-      download_macos:   { label: 'Download for macOS — v1.1.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
-      download_windows: { label: 'Download for Windows — v1.1.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
+      download_macos:   { label: 'Download for macOS — v1.2.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
+      download_windows: { label: 'Download for Windows — v1.2.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
     };
 
     let pendingDownload = null;
@@ -1202,7 +1209,7 @@
 
     // ── Downloads ──────────────────────────────────────────
     const DOWNLOAD_URLS = {
-      macOS:   'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.1.0/Biome-1.1.0.dmg',
+      macOS:   'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.2.0/Biome-1.2.0.dmg',
       Windows: null // coming soon
     };
 
@@ -1218,7 +1225,7 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast(`Biome v1.1.0 for ${platform} — download starting.`);
+      showToast(`Biome v1.2.0 for ${platform} — download starting.`);
     }
 
     async function handleDownload(platform) {
