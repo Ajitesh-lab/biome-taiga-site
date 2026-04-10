@@ -27,8 +27,8 @@
         url="https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.2.0/Biome-1.2.0.dmg"
         sparkle:version="3"
         sparkle:shortVersionString="1.2.0"
-        sparkle:edSignature="PLACEHOLDER_UPDATE_AFTER_BUILD"
-        length="0"
+        sparkle:edSignature="qv8SLPJJfa7G7Gnp7/ikbNbxJSQflWKCk4+OAmC4FS1PZ+nQ4OK2sW1xtYFax93PtmiixaJ1VHNwLsWWHVV/Cg=="
+        length="73990683"
         type="application/octet-stream"
       />
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
