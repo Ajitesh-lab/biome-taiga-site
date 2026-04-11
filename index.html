@@ -243,6 +243,7 @@
           <div>
             <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email Address</label>
             <input id="modal-email-input" type="email" required placeholder="you@company.com" class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+            <p id="modal-email-app-notice" class="hidden text-[10px] mt-2 leading-relaxed px-1" style="color:#6b7280">Use the same email as your Biome app — your Pro plan activates automatically when you sign in to the app.</p>
           </div>
           <div id="modal-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
           <button type="submit" id="modal-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
@@ -687,6 +688,7 @@
             <button onclick="openModal('pro')" class="w-full py-4 bg-primary text-on-primary font-bold hover:opacity-90 transition-colors">
               Get Pro
             </button>
+            <p class="text-[10px] text-on-surface-variant/60 mt-4 leading-relaxed text-center">Use the same email address as your Biome app account to activate Pro instantly.</p>
           </div>
 
           <!-- Business -->
@@ -1054,6 +1056,9 @@
       document.getElementById('modal-name-field').classList.toggle('hidden', isSignIn);
       document.getElementById('modal-name-input').required = !isSignIn;
       document.getElementById('modal-error').classList.add('hidden');
+      // Show the app-email notice only when heading to Pro checkout
+      const isProFlow = plan === 'pro' || cameFromProCheckout;
+      document.getElementById('modal-email-app-notice').classList.toggle('hidden', !isProFlow);
       document.getElementById('modal-cta').disabled = false;
       document.getElementById('modal-cta').textContent = cameFromProCheckout ? 'Continue to Checkout' : 'Send Verification Code';
       document.getElementById('modal-otp-cta').disabled = false;
