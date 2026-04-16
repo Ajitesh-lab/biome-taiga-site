@@ -6,70 +6,425 @@
   <!-- Google Analytics 4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-9155G0775X"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9155G0775X');</script>
-  <title>macOS Security Note | Biome</title>
-  <meta name="description" content="Why macOS shows a security warning for Biome and how to safely open the app."/>
+  <title>Security | Biome</title>
+  <meta name="description" content="How Biome and OpenClaw protect your data, commands, and network requests — including our macOS security note."/>
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://biomeai.uk/security.html"/>
-  <meta property="og:title" content="macOS Security Note | Biome"/>
-  <meta property="og:description" content="Why macOS shows a security warning for Biome and how to safely open the app."/>
+  <meta property="og:title" content="Security | Biome"/>
+  <meta property="og:description" content="How Biome and OpenClaw protect your data, commands, and network requests."/>
   <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="macOS Security Note | Biome"/>
-  <meta name="twitter:description" content="Why macOS shows a security warning for Biome and how to safely open the app."/>
+  <meta name="twitter:title" content="Security | Biome"/>
+  <meta name="twitter:description" content="How Biome and OpenClaw protect your data, commands, and network requests."/>
   <meta name="twitter:image" content="https://biomeai.uk/og-image.png"/>
   <!-- Canonical -->
   <link rel="canonical" href="https://biomeai.uk/security.html"/>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#0c2c16",
+            "secondary": "#566342",
+            "surface": "#f9faf6",
+            "surface-container-low": "#f3f4f0",
+            "surface-container": "#edeeea",
+            "surface-container-high": "#e7e9e5",
+            "surface-container-lowest": "#ffffff",
+            "on-surface": "#1a1c1a",
+            "on-surface-variant": "#424842",
+            "outline-variant": "#c2c8bf",
+            "secondary-container": "#dae8be",
+            "on-secondary-container": "#5c6947",
+            "primary-container": "#23422a",
+            "on-primary-container": "#8cae8f",
+            "surface-variant": "#e2e3df",
+            "outline": "#727971",
+          },
+          fontFamily: {
+            "headline": ["Helvetica", "Arial", "sans-serif"],
+            "body": ["Helvetica", "Arial", "sans-serif"],
+          },
+          borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+        },
+      },
+    }
+  </script>
   <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
     body {
       background-color: #f9faf6;
       color: #1a1c1a;
       -webkit-font-smoothing: antialiased;
       font-family: "Helvetica", "Arial", sans-serif;
     }
+
+    /* Accordion */
+    .acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.25s ease;
+    }
+    .acc-body.open {
+      max-height: 400px;
+    }
+    .acc-chevron {
+      transition: transform 0.3s ease;
+    }
+    .acc-chevron.open {
+      transform: rotate(180deg);
+    }
   </style>
 </head>
-<body class="bg-[#f9faf6] text-[#1a1c1a] min-h-screen pt-16 md:pt-24 pb-32">
-  <div class="max-w-2xl mx-auto px-6">
-    <a href="/" class="text-[#566342] hover:text-[#0c2c16] mb-12 inline-flex items-center gap-2 font-black uppercase text-[10px] tracking-[0.2em] transition-colors border border-[#e2e3df] px-4 py-2 hover:border-[#0c2c16]">
-      <span class="material-symbols-outlined text-[14px]">arrow_back</span> Back to Biome
-    </a>
-    
-    <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-[#0c2c16] mb-8">Why does macOS block Biome?</h1>
-    
-    <div class="text-[#424842] leading-relaxed space-y-6 text-lg">
-      <p>When you attempt to open Biome for the first time, you will likely see a message stating that Apple cannot verify the app is free of malware. This is a standard macOS feature called Gatekeeper.</p>
-      
-      <p>Apple requires all developers to pay a <strong>$99/year subscription fee</strong> to the Apple Developer Program to digitally "notarize" their applications. Apps that skip this fee are automatically flagged by macOS with a severe-sounding warning, regardless of the app's actual safety.</p>
+<body class="selection:bg-[#dae8be] selection:text-[#0c2c16]">
 
-      <div class="bg-[#f3f4f0] p-6 border-l-4 border-[#0c2c16] my-10">
-        <p class="font-bold text-[#0c2c16] mb-2 uppercase tracking-widest text-xs">Our Stance</p>
-        <p class="text-base">Biome is an independent, free, and open-source personal AI project. We believe that developers shouldn't have to pay annual extortion fees just to share free software with the Mac community. Because of this, we have chosen to distribute Biome without the paid Apple Developer enterprise certificate.</p>
+  <!-- Nav -->
+  <nav class="fixed top-0 w-full z-50 bg-[#f9faf6]/80 backdrop-blur-xl border-b border-[#c2c8bf]/20">
+    <div class="flex justify-between items-center h-16 md:h-20 px-6 md:px-12 w-full max-w-[1440px] mx-auto">
+      <a href="/" class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="-28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+        </svg>
+        <span class="text-lg font-black tracking-[0.15em] text-[#0c2c16] uppercase">Biome</span>
+      </a>
+      <a href="/" class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#424842] hover:text-[#0c2c16] transition-colors border border-[#c2c8bf]/40 px-4 py-2 hover:border-[#0c2c16] flex items-center gap-1.5">
+        <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Biome
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-28 md:pt-36 pb-32">
+
+    <!-- ── Page Header ── -->
+    <div class="px-6 md:px-12 max-w-[1440px] mx-auto mb-16 md:mb-20">
+      <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#566342] mb-4 block">Security &amp; Safety</span>
+      <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-[#0c2c16] leading-[0.88] mb-6">
+        Built Private.<br>Hardened by Design.
+      </h1>
+      <p class="text-[#424842] text-lg md:text-xl leading-relaxed max-w-2xl">
+        Biome is local-first software. Your data, keys, and conversations never touch our servers. Below is an honest account of how we protect you — from the gateway layer down.
+      </p>
+    </div>
+
+    <!-- ── Quick Trust Metrics ── -->
+    <div class="px-6 md:px-12 max-w-[1440px] mx-auto mb-20">
+      <div class="grid grid-cols-2 md:grid-cols-4 border border-[#c2c8bf]/30 divide-x divide-y md:divide-y-0 divide-[#c2c8bf]/30">
+        <div class="p-8 flex flex-col gap-2">
+          <span class="material-symbols-outlined text-[#0c2c16] text-2xl" style="font-variation-settings:'FILL' 1">lock</span>
+          <span class="text-xl font-black text-[#0c2c16] tracking-tight">Local First</span>
+          <span class="text-xs text-[#424842] leading-relaxed">Keys and conversations live on your machine. Always.</span>
+        </div>
+        <div class="p-8 flex flex-col gap-2">
+          <span class="material-symbols-outlined text-[#0c2c16] text-2xl" style="font-variation-settings:'FILL' 1">verified_user</span>
+          <span class="text-xl font-black text-[#0c2c16] tracking-tight">SSRF Hardened</span>
+          <span class="text-xs text-[#424842] leading-relaxed">All outbound network requests are validated and host-allowlisted.</span>
+        </div>
+        <div class="p-8 flex flex-col gap-2">
+          <span class="material-symbols-outlined text-[#0c2c16] text-2xl" style="font-variation-settings:'FILL' 1">gpp_maybe</span>
+          <span class="text-xl font-black text-[#0c2c16] tracking-tight">Exec Approval</span>
+          <span class="text-xs text-[#424842] leading-relaxed">Commands require explicit approval. Timeouts block, not bypass.</span>
+        </div>
+        <div class="p-8 flex flex-col gap-2">
+          <span class="material-symbols-outlined text-[#0c2c16] text-2xl" style="font-variation-settings:'FILL' 1">policy</span>
+          <span class="text-xl font-black text-[#0c2c16] tracking-tight">Trust Isolation</span>
+          <span class="text-xs text-[#424842] leading-relaxed">External content is quarantined from trusted operator context.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── OpenClaw Security Section ── -->
+    <section class="px-6 md:px-12 max-w-[1440px] mx-auto mb-24">
+      <div class="border-t border-[#c2c8bf]/30 pt-12 mb-12">
+        <div class="flex items-start justify-between flex-col md:flex-row md:items-center gap-4 mb-4">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#566342] mb-3 block">OpenClaw Gateway — Updated Security Model</span>
+            <h2 class="text-3xl md:text-4xl font-black tracking-tighter text-[#0c2c16]">What changed in the new version.</h2>
+          </div>
+          <span class="bg-[#dae8be] text-[#0c2c16] text-[10px] font-black uppercase tracking-widest px-3 py-1.5 shrink-0">v2026.4+</span>
+        </div>
+        <p class="text-[#424842] leading-relaxed max-w-3xl">
+          The OpenClaw gateway that powers Biome's AI skill system received a significant security update. These changes address real attack surfaces — network request abuse, command execution edge cases, and untrusted input leakage — without breaking the features you rely on.
+        </p>
       </div>
 
-      <h2 class="text-2xl font-black text-[#0c2c16] mt-12 mb-6">How to open Biome safely:</h2>
-      
-      <ol class="list-decimal pl-5 space-y-4 mb-8 text-base">
-        <li>Double-click the downloaded Biome <code class="bg-[#e2e3df] px-1.5 py-0.5 text-sm font-mono text-[#0c2c16]">.dmg</code> file to open the installer.</li>
-        <li>Drag the Biome icon into your <strong>Applications</strong> folder.</li>
-        <li>Open your <strong>System Settings</strong> app on your Mac.</li>
-        <li>Navigate to the <strong>Privacy & Security</strong> tab on the left sidebar.</li>
-        <li>Scroll down until you see a message saying <em>"Biome" was blocked from use...</em></li>
-        <li>Click the <strong>Open Anyway</strong> button next to the message.</li>
-        <li>Provide your Mac password or TouchID when prompted to authorize the action.</li>
-      </ol>
+      <!-- Security measures accordion -->
+      <div class="space-y-0 border border-[#c2c8bf]/30">
 
-      <p class="text-base font-bold text-[#0c2c16] bg-[#dae8be]/30 py-4 px-5 border border-[#dae8be]">
-        You only need to do this once. After this initial confirmation, Biome will open normally every time without prompting.
-      </p>
+        <!-- 1. SSRF Protection -->
+        <div class="acc-item border-b border-[#c2c8bf]/30">
+          <button onclick="toggleAcc(this)" class="w-full flex items-center justify-between px-8 py-6 text-left gap-4 hover:bg-[#f3f4f0] transition-colors">
+            <div class="flex items-center gap-5">
+              <div class="w-10 h-10 bg-[#0c2c16] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[#dae8be] text-lg">security</span>
+              </div>
+              <div>
+                <h3 class="text-base font-black text-[#0c2c16] tracking-tight">SSRF Protection on Network Requests</h3>
+                <p class="text-[11px] text-[#566342] uppercase tracking-widest font-bold mt-0.5">Network Security</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined acc-chevron text-[#424842] flex-shrink-0">expand_more</span>
+          </button>
+          <div class="acc-body">
+            <div class="px-8 pb-8 pt-2 space-y-4 bg-[#f9faf6]">
+              <p class="text-[#424842] text-sm leading-relaxed">Server-Side Request Forgery (SSRF) is an attack where a server is tricked into making requests to internal or unintended hosts on your behalf. We've added strict controls to prevent this across all network-touching features.</p>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Attachment Uploads</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">All file-consent upload targets are validated against HTTPS-only, host allowlists, and private-IP DNS checks before any upload begins.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Web Fetch &amp; Search</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Outbound web requests use hardened DNS-pinning dispatchers. HTTP/2 upgrade is disabled on guarded fetches to prevent protocol-level bypasses.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Media &amp; External APIs</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Gateway-side attachment and media downloads are routed exclusively through vetted HTTPS endpoints. Arbitrary remote hosts cannot be followed.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <hr class="border-[#e2e3df] my-12">
-      
-      <p class="text-sm text-[#727971]">For full transparency, the underlying source code that runs Biome's local servers and integrations is completely open. If you have any further security questions, feel free to contact us at <a href="mailto:team@biomeai.uk" class="text-[#0c2c16] underline">team@biomeai.uk</a>.</p>
+        <!-- 2. Exec Approval Hardening -->
+        <div class="acc-item border-b border-[#c2c8bf]/30">
+          <button onclick="toggleAcc(this)" class="w-full flex items-center justify-between px-8 py-6 text-left gap-4 hover:bg-[#f3f4f0] transition-colors">
+            <div class="flex items-center gap-5">
+              <div class="w-10 h-10 bg-[#0c2c16] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[#dae8be] text-lg">terminal</span>
+              </div>
+              <div>
+                <h3 class="text-base font-black text-[#0c2c16] tracking-tight">Command Execution Approval Hardening</h3>
+                <p class="text-[11px] text-[#566342] uppercase tracking-widest font-bold mt-0.5">Exec Safety</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined acc-chevron text-[#424842] flex-shrink-0">expand_more</span>
+          </button>
+          <div class="acc-body">
+            <div class="px-8 pb-8 pt-2 space-y-4 bg-[#f9faf6]">
+              <p class="text-[#424842] text-sm leading-relaxed">When the AI requests to run a command, you must approve it. A previous edge case allowed approval timeouts to inadvertently unblock execution. This is now fixed — timeouts result in a hard block, not a silent pass-through.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Timeout = Blocked</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">If an approval prompt times out, the command is blocked on both the gateway and node exec hosts. The fallback path no longer silently executes timed-out commands.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Cross-Platform Approvals</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Mobile exec approvals (iOS, Apple Watch) now use hardened notification flows with proper recovery when devices are locked or backgrounded — no stale approval state.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Untrusted Input Isolation -->
+        <div class="acc-item border-b border-[#c2c8bf]/30">
+          <button onclick="toggleAcc(this)" class="w-full flex items-center justify-between px-8 py-6 text-left gap-4 hover:bg-[#f3f4f0] transition-colors">
+            <div class="flex items-center gap-5">
+              <div class="w-10 h-10 bg-[#0c2c16] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[#dae8be] text-lg">shield_with_heart</span>
+              </div>
+              <div>
+                <h3 class="text-base font-black text-[#0c2c16] tracking-tight">Untrusted Input Isolation</h3>
+                <p class="text-[11px] text-[#566342] uppercase tracking-widest font-bold mt-0.5">Trust Model</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined acc-chevron text-[#424842] flex-shrink-0">expand_more</span>
+          </button>
+          <div class="acc-body">
+            <div class="px-8 pb-8 pt-2 space-y-4 bg-[#f9faf6]">
+              <p class="text-[#424842] text-sm leading-relaxed">External content — from webhooks, wake events, runtime notifications, and background tasks — is now explicitly tagged as untrusted before it enters the AI's context. This prevents lower-trust content from masquerading as trusted operator input.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Runtime Events</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Background task completion notices and relay outputs are marked as untrusted system events. They cannot re-enter the main session as trusted operator text.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">External Hooks &amp; Wake Events</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Content delivered via external wake triggers is queued as untrusted. External sources cannot inject trusted instructions into a running session.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. History & Session Integrity -->
+        <div class="acc-item border-b border-[#c2c8bf]/30">
+          <button onclick="toggleAcc(this)" class="w-full flex items-center justify-between px-8 py-6 text-left gap-4 hover:bg-[#f3f4f0] transition-colors">
+            <div class="flex items-center gap-5">
+              <div class="w-10 h-10 bg-[#0c2c16] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[#dae8be] text-lg">history_toggle_off</span>
+              </div>
+              <div>
+                <h3 class="text-base font-black text-[#0c2c16] tracking-tight">Session History Integrity</h3>
+                <p class="text-[11px] text-[#566342] uppercase tracking-widest font-bold mt-0.5">Session Security</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined acc-chevron text-[#424842] flex-shrink-0">expand_more</span>
+          </button>
+          <div class="acc-body">
+            <div class="px-8 pb-8 pt-2 space-y-4 bg-[#f9faf6]">
+              <p class="text-[#424842] text-sm leading-relaxed">Internal tool call data and system metadata are kept separate from user-visible conversation history. Raw internal structures no longer leak into rendered views or subsequent turns of a conversation.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">No Internal Leakage</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Tool call XML blocks and internal commentary are sanitized out of all user-facing history views and follow-up replies. What you see is what the model intended to show.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Consistent History</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Session history sequence numbers stay monotonic. Streamed and reloaded views are consistent — no divergence between live and replayed conversation state.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Rate Limiting & Backend -->
+        <div class="acc-item">
+          <button onclick="toggleAcc(this)" class="w-full flex items-center justify-between px-8 py-6 text-left gap-4 hover:bg-[#f3f4f0] transition-colors">
+            <div class="flex items-center gap-5">
+              <div class="w-10 h-10 bg-[#0c2c16] flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[#dae8be] text-lg">speed</span>
+              </div>
+              <div>
+                <h3 class="text-base font-black text-[#0c2c16] tracking-tight">Rate Limiting &amp; Backend Controls</h3>
+                <p class="text-[11px] text-[#566342] uppercase tracking-widest font-bold mt-0.5">Infrastructure</p>
+              </div>
+            </div>
+            <span class="material-symbols-outlined acc-chevron text-[#424842] flex-shrink-0">expand_more</span>
+          </button>
+          <div class="acc-body">
+            <div class="px-8 pb-8 pt-2 space-y-4 bg-[#f9faf6]">
+              <p class="text-[#424842] text-sm leading-relaxed">The small amount of server-side infrastructure Biome uses (for onboarding and account management) is rate-limited and hardened. We minimise server-side exposure by design.</p>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">Server Rate Limits</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Our onboarding backend enforces per-IP rate limiting to prevent abuse. OTP codes expire in 10 minutes and cannot be reused.</p>
+                </div>
+                <div class="bg-[#f3f4f0] p-5 border border-[#c2c8bf]/30">
+                  <p class="text-[10px] font-black uppercase tracking-widest text-[#566342] mb-2">No Key Storage</p>
+                  <p class="text-xs text-[#424842] leading-relaxed">Your AI API keys are stored exclusively in your device's local storage. Our servers never see them. AI calls go directly from your machine to the provider.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── macOS Security Note ── -->
+    <section class="px-6 md:px-12 max-w-[1440px] mx-auto mb-24">
+      <div class="border-t border-[#c2c8bf]/30 pt-12 mb-10">
+        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#566342] mb-3 block">Platform Note</span>
+        <h2 class="text-3xl md:text-4xl font-black tracking-tighter text-[#0c2c16]">Why does macOS block Biome?</h2>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div class="text-[#424842] leading-relaxed space-y-5 text-base">
+          <p>When you open Biome for the first time, macOS may show a warning that the app cannot be verified. This is Gatekeeper — Apple's system for flagging apps without a paid Developer Certificate.</p>
+          <p>Apple charges developers <strong class="text-[#0c2c16]">$99/year</strong> for the certificate required to pass this check automatically. Biome is free, independent software. We distribute without the paid enterprise certificate.</p>
+          <div class="bg-[#f3f4f0] p-6 border-l-4 border-[#0c2c16]">
+            <p class="font-bold text-[#0c2c16] mb-2 uppercase tracking-widest text-xs">Our position</p>
+            <p class="text-sm leading-relaxed">Developers should not have to pay annual fees to share free software. The warning is cosmetic — it says nothing about what the app actually does. The source code behind Biome's local gateway is open for inspection.</p>
+          </div>
+        </div>
+        <div class="space-y-0">
+          <p class="text-[10px] font-black uppercase tracking-widest text-[#0c2c16] mb-5">How to open Biome on macOS</p>
+          <ol class="space-y-4">
+            <li class="flex gap-5 items-start">
+              <span class="text-2xl font-black text-[#0c2c16]/20 leading-none mt-0.5 w-8 shrink-0">01</span>
+              <p class="text-sm text-[#424842] leading-relaxed">Open the downloaded <code class="bg-[#e2e3df] px-1.5 py-0.5 font-mono text-[#0c2c16]">.dmg</code> file and drag Biome to your <strong class="text-[#0c2c16]">Applications</strong> folder.</p>
+            </li>
+            <li class="flex gap-5 items-start">
+              <span class="text-2xl font-black text-[#0c2c16]/20 leading-none mt-0.5 w-8 shrink-0">02</span>
+              <p class="text-sm text-[#424842] leading-relaxed">Open <strong class="text-[#0c2c16]">System Settings → Privacy &amp; Security</strong>.</p>
+            </li>
+            <li class="flex gap-5 items-start">
+              <span class="text-2xl font-black text-[#0c2c16]/20 leading-none mt-0.5 w-8 shrink-0">03</span>
+              <p class="text-sm text-[#424842] leading-relaxed">Scroll down to find the Biome blocked message and click <strong class="text-[#0c2c16]">Open Anyway</strong>. Confirm with your password or Touch ID.</p>
+            </li>
+            <li class="flex gap-5 items-start">
+              <span class="text-2xl font-black text-[#0c2c16]/20 leading-none mt-0.5 w-8 shrink-0">04</span>
+              <p class="text-sm text-[#424842] leading-relaxed">Done. Biome opens normally from this point on — you will never see this prompt again.</p>
+            </li>
+          </ol>
+          <div class="mt-8 p-5 bg-[#dae8be]/30 border border-[#dae8be]">
+            <p class="text-sm font-bold text-[#0c2c16]">On Windows: click More Info → Run Anyway in the SmartScreen prompt. Same one-time confirmation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Responsible Disclosure ── -->
+    <section class="px-6 md:px-12 max-w-[1440px] mx-auto">
+      <div class="bg-[#0c2c16] p-10 md:p-14 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div>
+          <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-[#8cae8f] mb-3 block">Responsible Disclosure</span>
+          <h2 class="text-2xl md:text-3xl font-black tracking-tighter text-white mb-3">Found a security issue?</h2>
+          <p class="text-[#8cae8f] text-sm leading-relaxed max-w-lg">We take every report seriously. Please disclose privately so we can fix it before it affects users. Include a description, reproduction steps, and the component affected.</p>
+        </div>
+        <a href="mailto:team@biomeai.uk?subject=Security%20Report" class="shrink-0 bg-[#dae8be] text-[#0c2c16] px-8 py-4 font-black text-xs uppercase tracking-widest hover:bg-white transition-colors flex items-center gap-3">
+          <span class="material-symbols-outlined text-base">mail</span>
+          Report Privately
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-[#ffffff] w-full py-16 px-6 md:px-12 mt-20 border-t border-[#e2e3df]">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-start gap-10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <svg width="28" height="28" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
+            <circle cx="0" cy="-29" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+            <circle cx="25.1" cy="14.5" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+            <circle cx="-25.1" cy="14.5" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          </svg>
+          <span class="text-lg font-black tracking-[0.15em] text-[#0c2c16] uppercase">Biome</span>
+        </div>
+        <p class="text-[#727971] text-xs">© 2026 Biome. All rights reserved.</p>
+      </div>
+      <div class="flex flex-wrap gap-8 text-[11px] font-bold uppercase tracking-[0.1em]">
+        <a href="/" class="text-[#424842] hover:text-[#0c2c16] transition-colors">Home</a>
+        <a href="/privacy.html" class="text-[#424842] hover:text-[#0c2c16] transition-colors">Privacy Policy</a>
+        <a href="/terms.html" class="text-[#424842] hover:text-[#0c2c16] transition-colors">Terms of Service</a>
+        <a href="/docs.html" class="text-[#424842] hover:text-[#0c2c16] transition-colors">Documentation</a>
+        <a href="mailto:team@biomeai.uk" class="text-[#424842] hover:text-[#0c2c16] transition-colors">Contact</a>
+      </div>
     </div>
-  </div>
+  </footer>
+
+  <script>
+    function toggleAcc(btn) {
+      const item = btn.parentElement;
+      const body = item.querySelector('.acc-body');
+      const chevron = btn.querySelector('.acc-chevron');
+      const isOpen = body.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.acc-body').forEach(b => b.classList.remove('open'));
+      document.querySelectorAll('.acc-chevron').forEach(c => c.classList.remove('open'));
+
+      if (!isOpen) {
+        body.classList.add('open');
+        chevron.classList.add('open');
+      }
+    }
+  </script>
+
 </body>
 </html>
