@@ -303,7 +303,7 @@
         <a class="nav-link nav-inactive transition-colors" href="#pricing" data-section="pricing">Pricing</a>
         <a class="nav-link nav-inactive transition-colors" href="#download" data-section="download">Download</a>
         <a class="nav-link nav-inactive transition-colors" href="#support" data-section="support">Support</a>
-        <a class="nav-inactive transition-colors" href="/security.html">Security</a>
+        <a class="nav-link nav-inactive transition-colors" href="#security" data-section="security">Security</a>
       </div>
 
       <div class="flex items-center gap-4">
@@ -325,7 +325,7 @@
         <a href="#pricing" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Pricing</a>
         <a href="#download" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Download</a>
         <a href="#support" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Support</a>
-        <a href="/security.html" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Security</a>
+        <a href="#security" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Security</a>
         <button onclick="closeMobileMenu(); openModal('signin')" class="text-left text-on-surface hover:text-primary transition-colors font-bold">Sign In</button>
       </div>
     </div>
@@ -740,6 +740,66 @@
         <div class="mt-10 md:mt-0 flex items-start gap-3 text-[11px] text-on-primary-container/50 max-w-xs leading-relaxed">
           <span class="material-symbols-outlined text-secondary-container/60 text-base mt-0.5 shrink-0">shield</span>
           <span><strong class="text-on-primary-container/80">Security Note</strong> &mdash; On macOS, if the app is blocked on first launch go to <strong class="text-on-primary-container/80">System Settings &gt; Privacy &amp; Security</strong> and click <strong class="text-on-primary-container/80">Open Anyway</strong>. On Windows, click <strong class="text-on-primary-container/80">More Info &rarr; Run Anyway</strong> in the SmartScreen prompt. Both are normal one-time confirmations for independently distributed software. <a href="/security.html" class="underline hover:text-white transition-colors">Learn more &rarr;</a></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Security ── -->
+    <section id="security" class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low">
+      <div class="max-w-[1440px] mx-auto">
+        <div class="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div class="max-w-2xl">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Security &amp; Privacy</span>
+            <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary leading-none">Built Private.<br>Hardened by Design.</h2>
+          </div>
+          <a href="/security.html" class="shrink-0 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 hover:bg-primary/5 px-5 py-3 transition-colors">
+            Full Security Details
+            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant/20">
+          <div class="p-8 border-b lg:border-b-0 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">lock</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Local First, Always</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Your conversations, memory, and API keys live on your machine — never on our servers. AI calls go directly from your device to your chosen provider. We only store your email address.</p>
+          </div>
+          <div class="p-8 border-b lg:border-b-0 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">verified_user</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">SSRF Hardened</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">All outbound network requests are validated against host allowlists and private-IP DNS checks. The gateway cannot be tricked into fetching from internal or unintended hosts.</p>
+          </div>
+          <div class="p-8 border-b md:border-b-0 md:border-r lg:border-r-0 border-outline-variant/20 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">gpp_maybe</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Exec Approval Required</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Every command the AI wants to run requires your explicit approval. Approval timeouts result in a hard block — there is no silent fallback execution path.</p>
+          </div>
+          <div class="p-8 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">policy</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Trust Isolation</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">External content — webhooks, wake events, runtime notifications — is quarantined as untrusted before entering the AI's context. Outside sources cannot inject trusted instructions.</p>
+          </div>
+          <div class="p-8 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">history_toggle_off</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Clean Session History</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Internal tool data and system metadata are stripped from all user-facing views. What you see in chat is exactly what the model intended — no raw internals leaking through.</p>
+          </div>
+          <div class="p-8 group hover:bg-surface transition-colors">
+            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">speed</span>
+            </div>
+            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Rate Limited Backend</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Our small server footprint (account &amp; onboarding only) enforces per-IP rate limits. OTP codes expire in 10 minutes and cannot be reused. Everything else runs entirely on your machine.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1301,7 +1361,7 @@
     }
 
     // ── Active Nav on Scroll ───────────────────────────────
-    const sections = ['hero', 'features', 'integrations', 'pricing', 'download', 'support'];
+    const sections = ['hero', 'features', 'integrations', 'pricing', 'download', 'security', 'support'];
     const navLinks = document.querySelectorAll('.nav-link');
 
     const observer = new IntersectionObserver((entries) => {
