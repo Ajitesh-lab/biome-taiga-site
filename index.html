@@ -1062,9 +1062,9 @@
   <!-- ── JavaScript ── -->
   <script>
     // ────────────────────────────────────────────────────────
-    // BIOME AUTH CONFIG — your deployed biome-backend URL
+    // BIOME AUTH CONFIG — override via: localStorage.setItem('biome_backend_url', 'https://...')
     // ────────────────────────────────────────────────────────
-    const BACKEND_URL = 'https://rosalia-multidentate-ruthann.ngrok-free.dev';
+    const BACKEND_URL = localStorage.getItem('biome_backend_url') || 'https://rosalia-multidentate-ruthann.ngrok-free.dev';
 
     // ── Session management (JWT in localStorage) ───────────
     const AUTH_KEY = 'biome_auth_token';
