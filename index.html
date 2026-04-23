@@ -223,40 +223,76 @@
     <span id="toast-msg" class="text-sm font-bold tracking-tight"></span>
   </div>
 
-  <!-- ── Auth Modal (2-step OTP) ── -->
+  <!-- ── Auth Modal ── -->
   <div id="modal-overlay" class="hide fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center px-6">
     <div id="modal-box" class="bg-surface-container-lowest w-full max-w-md p-10 shadow-2xl relative">
       <button onclick="closeModal()" class="absolute top-5 right-5 text-on-surface-variant hover:text-primary transition-colors">
         <span class="material-symbols-outlined">close</span>
       </button>
 
-      <!-- Step 1: Email entry -->
+      <!-- Step 1: Create Account / Sign In tabs -->
       <div id="modal-step-1">
         <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-4" id="modal-plan-label">Personal Plan</span>
         <h3 class="text-3xl font-black tracking-tighter text-primary mb-2" id="modal-title">Start for Free</h3>
-        <p class="text-on-surface-variant text-sm leading-relaxed mb-8" id="modal-desc">Create your account and deploy your first AI agent in under 60 seconds. No credit card required.</p>
-        <form id="modal-form" onsubmit="handleSendOTP(event)" class="space-y-4">
-          <div id="modal-name-field">
-            <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Full Name</label>
-            <input id="modal-name-input" type="text" placeholder="Alex Johnson" class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-          </div>
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email Address</label>
-            <input id="modal-email-input" type="email" required placeholder="you@company.com" class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-            <p id="modal-email-app-notice" class="hidden text-[10px] mt-2 leading-relaxed px-1" style="color:#6b7280">Use the same email as your Biome app — your Pro plan activates automatically when you sign in to the app.</p>
-          </div>
-          <div id="modal-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
-          <button type="submit" id="modal-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
-            Send Verification Code
-          </button>
-        </form>
-        <p id="modal-footer-text" class="text-[10px] text-on-surface-variant/60 mt-6 leading-relaxed">
-          By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>.
-          Already have an account? <button type="button" onclick="openModal('signin')" class="underline font-bold hover:text-primary">Sign in →</button>
-        </p>
+        <p class="text-on-surface-variant text-sm leading-relaxed mb-6" id="modal-desc">Create your account to get started.</p>
+
+        <!-- Tab bar -->
+        <div class="flex border border-outline-variant/40 mb-6 overflow-hidden" style="border-radius:4px">
+          <button id="modal-tab-create" onclick="switchModalTab('create')" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest bg-primary text-on-primary transition-colors">Create Account</button>
+          <button id="modal-tab-signin" onclick="switchModalTab('signin')" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest bg-surface-container-low text-on-surface-variant transition-colors">Sign In</button>
+        </div>
+
+        <!-- Create Account panel -->
+        <div id="modal-panel-create">
+          <form id="modal-form" onsubmit="handleRegister(event)" class="space-y-4">
+            <div>
+              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Username</label>
+              <input id="modal-username-input" type="text" required placeholder="yourname" maxlength="30" autocomplete="username" autocorrect="off" spellcheck="false"
+                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email Address</label>
+              <input id="modal-email-input" type="email" required placeholder="you@company.com" autocomplete="email"
+                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+              <p id="modal-email-app-notice" class="hidden text-[10px] mt-2 leading-relaxed px-1" style="color:#6b7280">Use the same email as your Biome app — your Pro plan activates automatically when you sign in to the app.</p>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Password</label>
+              <input id="modal-password-input" type="password" required placeholder="Min 8 characters" autocomplete="new-password"
+                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+            </div>
+            <div id="modal-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
+            <button type="submit" id="modal-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
+              Send Verification Code
+            </button>
+          </form>
+          <p id="modal-footer-text" class="text-[10px] text-on-surface-variant/60 mt-6 leading-relaxed">
+            By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>.
+          </p>
+        </div>
+
+        <!-- Sign In panel -->
+        <div id="modal-panel-signin" class="hidden">
+          <form id="modal-signin-form" onsubmit="handleSignIn(event)" class="space-y-4">
+            <div>
+              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email or Username</label>
+              <input id="modal-si-identifier" type="text" required placeholder="you@company.com" autocomplete="email"
+                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+            </div>
+            <div>
+              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Password</label>
+              <input id="modal-si-password" type="password" required placeholder="Your password" autocomplete="current-password"
+                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
+            </div>
+            <div id="modal-signin-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
+            <button type="submit" id="modal-signin-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+              Sign In
+            </button>
+          </form>
+        </div>
       </div>
 
-      <!-- Step 2: OTP entry -->
+      <!-- Step 2: OTP entry (registration) -->
       <div id="modal-step-2" class="hidden">
         <button onclick="backToStep1()" class="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors mb-6">
           <span class="material-symbols-outlined text-sm">arrow_back</span> Back
@@ -272,7 +308,7 @@
           </div>
           <div id="modal-otp-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
           <button type="submit" id="modal-otp-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-            Verify Code
+            Verify &amp; Create Account
           </button>
         </form>
         <p class="text-[10px] text-on-surface-variant/60 mt-6">
@@ -1121,19 +1157,19 @@
 
     // ── Modal configs ──────────────────────────────────────
     const modalConfigs = {
-      personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
-      pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.' },
-      signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: "Enter your email and we'll send you a one-time verification code." },
-      download_macos:   { label: 'Download for macOS — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
-      download_windows: { label: 'Download for Windows — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
+      personal:         { label: ‘Personal Plan — Free Forever’, title: ‘Start for Free’, desc: ‘Create your account and deploy your first AI agent in under 60 seconds. No credit card required.’ },
+      pro:              { label: ‘Professional Plan — $29/mo’, title: ‘Upgrade to Pro’, desc: ‘Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.’ },
+      signin:           { label: ‘Welcome Back’, title: ‘Sign In to Biome’, desc: ‘Sign in to your account.’ },
+      download_macos:   { label: ‘Download for macOS — v1.4.0’, title: ‘Create an Account First’, desc: ‘Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.’ },
+      download_windows: { label: ‘Download for Windows — v1.4.0’, title: ‘Create an Account First’, desc: ‘Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.’ }
     };
 
     let pendingDownload = null;
     let postAuthAction = null;
 
     function openModal(plan, preservePostAuth = false) {
-      if (plan === 'pro') {
-        postAuthAction = 'pro_checkout';
+      if (plan === ‘pro’) {
+        postAuthAction = ‘pro_checkout’;
         const token = getToken();
         if (token) {
           startProCheckout(token);
@@ -1143,47 +1179,42 @@
         postAuthAction = null;
       }
 
-      const cameFromProCheckout = postAuthAction === 'pro_checkout';
+      const cameFromProCheckout = postAuthAction === ‘pro_checkout’;
       const cfg = modalConfigs[plan] || modalConfigs.personal;
-      document.getElementById('modal-plan-label').textContent = cameFromProCheckout && plan === 'signin'
-        ? modalConfigs.pro.label
-        : cfg.label;
-      document.getElementById('modal-title').textContent = cameFromProCheckout && plan === 'signin'
-        ? 'Sign In to Continue'
-        : cfg.title;
-      document.getElementById('modal-desc').textContent = cameFromProCheckout && plan === 'signin'
-        ? 'Sign in or create your account, then we’ll take you straight to the Stripe checkout.'
+      document.getElementById(‘modal-plan-label’).textContent = cameFromProCheckout && plan === ‘signin’ ? modalConfigs.pro.label : cfg.label;
+      document.getElementById(‘modal-title’).textContent = cameFromProCheckout && plan === ‘signin’ ? ‘Sign In to Continue’ : cfg.title;
+      document.getElementById(‘modal-desc’).textContent = cameFromProCheckout && plan === ‘signin’
+        ? ‘Sign in or create your account, then we\u2019ll take you straight to checkout.’
         : cfg.desc;
 
-      const isSignIn = plan === 'signin';
-      document.getElementById('modal-name-field').classList.toggle('hidden', isSignIn);
-      document.getElementById('modal-name-input').required = !isSignIn;
-      document.getElementById('modal-error').classList.add('hidden');
-      // Show the app-email notice only when heading to Pro checkout
-      const isProFlow = plan === 'pro' || cameFromProCheckout;
-      document.getElementById('modal-email-app-notice').classList.toggle('hidden', !isProFlow);
-      document.getElementById('modal-cta').disabled = false;
-      document.getElementById('modal-cta').textContent = cameFromProCheckout ? 'Continue to Checkout' : 'Send Verification Code';
-      document.getElementById('modal-otp-cta').disabled = false;
-      document.getElementById('modal-otp-cta').textContent = cameFromProCheckout ? 'Verify & Continue to Checkout' : 'Verify Code';
+      // Show Pro app-email notice only when heading to Pro checkout
+      const isProFlow = plan === ‘pro’ || cameFromProCheckout;
+      document.getElementById(‘modal-email-app-notice’).classList.toggle(‘hidden’, !isProFlow);
 
-      const footerText = document.getElementById('modal-footer-text');
-      if (isSignIn) {
-        footerText.innerHTML = cameFromProCheckout
-          ? 'Need an account first? <button type="button" onclick="openModal(\'pro\')" class="underline font-bold hover:text-primary">Create one and continue to checkout \u2192</button>'
-          : 'No account yet? <button type="button" onclick="openModal(\'personal\')" class="underline font-bold hover:text-primary">Sign up for free \u2192</button>';
-      } else {
-        footerText.innerHTML = `By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>. Already have an account? <button type="button" onclick="openModal('signin', ${cameFromProCheckout})" class="underline font-bold hover:text-primary">Sign in \u2192</button>`;
-      }
+      document.getElementById(‘modal-cta’).disabled = false;
+      document.getElementById(‘modal-cta’).textContent = cameFromProCheckout ? ‘Continue to Checkout’ : ‘Send Verification Code’;
+      document.getElementById(‘modal-otp-cta’).disabled = false;
+      document.getElementById(‘modal-otp-cta’).textContent = cameFromProCheckout ? ‘Verify & Continue to Checkout’ : ‘Verify & Create Account’;
+      document.getElementById(‘modal-signin-cta’).disabled = false;
+      document.getElementById(‘modal-signin-cta’).textContent = ‘Sign In’;
 
-      document.getElementById('modal-form').reset();
-      document.getElementById('modal-step-1').classList.remove('hidden');
-      document.getElementById('modal-step-2').classList.add('hidden');
+      // Reset forms
+      document.getElementById(‘modal-form’)?.reset();
+      document.getElementById(‘modal-signin-form’)?.reset();
+      document.getElementById(‘modal-error’).classList.add(‘hidden’);
+      document.getElementById(‘modal-signin-error’).classList.add(‘hidden’);
+      document.getElementById(‘modal-step-1’).classList.remove(‘hidden’);
+      document.getElementById(‘modal-step-2’).classList.add(‘hidden’);
 
-      const overlay = document.getElementById('modal-overlay');
-      overlay.classList.remove('hide');
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
+      // Default tab: ‘signin’ if plan === ‘signin’, else ‘create’
+      const startTab = plan === ‘signin’ ? ‘signin’ : ‘create’;
+      _modalActiveTab = startTab;
+      switchModalTab(startTab);
+
+      const overlay = document.getElementById(‘modal-overlay’);
+      overlay.classList.remove(‘hide’);
+      overlay.classList.add(‘show’);
+      document.body.style.overflow = ‘hidden’;
     }
 
     function closeModal() {
@@ -1218,6 +1249,28 @@
       }
     }
 
+    let _modalActiveTab = 'create'; // 'create' or 'signin'
+    let _pendingRegEmail = '';
+
+    function switchModalTab(tab) {
+      _modalActiveTab = tab;
+      const isCreate = tab === 'create';
+      const tabCreate = document.getElementById('modal-tab-create');
+      const tabSignin = document.getElementById('modal-tab-signin');
+      const panelCreate = document.getElementById('modal-panel-create');
+      const panelSignin = document.getElementById('modal-panel-signin');
+      if (tabCreate) { tabCreate.classList.toggle('bg-primary', isCreate); tabCreate.classList.toggle('text-on-primary', isCreate); tabCreate.classList.toggle('bg-surface-container-low', !isCreate); tabCreate.classList.toggle('text-on-surface-variant', !isCreate); }
+      if (tabSignin) { tabSignin.classList.toggle('bg-primary', !isCreate); tabSignin.classList.toggle('text-on-primary', !isCreate); tabSignin.classList.toggle('bg-surface-container-low', isCreate); tabSignin.classList.toggle('text-on-surface-variant', isCreate); }
+      if (panelCreate) panelCreate.classList.toggle('hidden', !isCreate);
+      if (panelSignin) panelSignin.classList.toggle('hidden', isCreate);
+      document.getElementById('modal-error')?.classList.add('hidden');
+      document.getElementById('modal-signin-error')?.classList.add('hidden');
+      setTimeout(() => {
+        if (isCreate) document.getElementById('modal-username-input')?.focus();
+        else document.getElementById('modal-si-identifier')?.focus();
+      }, 50);
+    }
+
     function backToStep1() {
       document.getElementById('modal-step-1').classList.remove('hidden');
       document.getElementById('modal-step-2').classList.add('hidden');
@@ -1228,22 +1281,24 @@
     document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
 
-    // ── Step 1: Send OTP ───────────────────────────────────
-    async function handleSendOTP(e) {
+    // ── Register: send OTP ─────────────────────────────────
+    async function handleRegister(e) {
       e.preventDefault();
-      const email = document.getElementById('modal-email-input').value.trim();
-      const name  = document.getElementById('modal-name-input').value.trim();
-      const cta   = document.getElementById('modal-cta');
-      const errorEl = document.getElementById('modal-error');
+      const username = document.getElementById('modal-username-input').value.trim();
+      const email    = document.getElementById('modal-email-input').value.trim();
+      const password = document.getElementById('modal-password-input').value;
+      const cta      = document.getElementById('modal-cta');
+      const errorEl  = document.getElementById('modal-error');
       cta.disabled = true; cta.textContent = 'Sending code\u2026'; errorEl.classList.add('hidden');
       try {
-        const res = await fetch(`${BACKEND_URL}/auth/send-otp`, {
-          method: 'POST', 
+        const res = await fetch(`${BACKEND_URL}/auth/register`, {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name })
+          body: JSON.stringify({ username, email, password })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'Failed to send code');
+        _pendingRegEmail = email;
         document.getElementById('modal-otp-email-display').textContent = email;
         document.getElementById('modal-step-1').classList.add('hidden');
         document.getElementById('modal-step-2').classList.remove('hidden');
@@ -1255,19 +1310,18 @@
       }
     }
 
-    // ── Step 2: Verify OTP ─────────────────────────────────
+    // ── Step 2: Verify OTP → complete registration ─────────
     async function handleVerifyOTP(e) {
       e.preventDefault();
-      const email = document.getElementById('modal-email-input').value.trim();
-      const otp   = document.getElementById('modal-otp-input').value.trim();
-      const cta   = document.getElementById('modal-otp-cta');
+      const otp     = document.getElementById('modal-otp-input').value.trim();
+      const cta     = document.getElementById('modal-otp-cta');
       const errorEl = document.getElementById('modal-otp-error');
-      cta.disabled = true; cta.textContent = 'Verifying\u2026'; errorEl.classList.add('hidden');
+      cta.disabled = true; cta.textContent = 'Creating account\u2026'; errorEl.classList.add('hidden');
       try {
-        const res = await fetch(`${BACKEND_URL}/auth/verify-otp`, {
-          method: 'POST', 
+        const res = await fetch(`${BACKEND_URL}/auth/complete-registration`, {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, otp })
+          body: JSON.stringify({ email: _pendingRegEmail, otp })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'Verification failed');
@@ -1280,24 +1334,58 @@
         } else {
           const dl = pendingDownload; pendingDownload = null; closeModal();
           if (dl) { setTimeout(() => triggerDownload(dl), 400); }
-          else { showToast(`Welcome to Biome, ${data.user.name || data.user.email.split('@')[0]}! \u2713`); }
+          else { showToast(`Welcome to Biome, ${data.user.name || data.user.username || data.user.email.split('@')[0]}! \u2713`); }
         }
       } catch (err) {
         errorEl.textContent = err.message; errorEl.classList.remove('hidden');
         cta.disabled = false;
-        cta.textContent = postAuthAction === 'pro_checkout' ? 'Verify & Continue to Checkout' : 'Verify Code';
+        cta.textContent = postAuthAction === 'pro_checkout' ? 'Verify & Continue to Checkout' : 'Verify & Create Account';
+      }
+    }
+
+    // ── Sign In: password-based login ──────────────────────
+    async function handleSignIn(e) {
+      e.preventDefault();
+      const identifier = document.getElementById('modal-si-identifier').value.trim();
+      const password   = document.getElementById('modal-si-password').value;
+      const cta        = document.getElementById('modal-signin-cta');
+      const errorEl    = document.getElementById('modal-signin-error');
+      cta.disabled = true; cta.textContent = 'Signing in\u2026'; errorEl.classList.add('hidden');
+      try {
+        const res = await fetch(`${BACKEND_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ identifier, password })
+        });
+        const data = await res.json();
+        if (!data.ok) throw new Error(data.error || 'Sign in failed');
+        saveSession(data.token, data.user);
+        updateNavAuth(data.user);
+        if (postAuthAction === 'pro_checkout') {
+          closeModal();
+          startProCheckout(data.token);
+        } else {
+          const dl = pendingDownload; pendingDownload = null; closeModal();
+          if (dl) { setTimeout(() => triggerDownload(dl), 400); }
+          else { showToast(`Welcome back, ${data.user.name || data.user.username || data.user.email.split('@')[0]}! \u2713`); }
+        }
+      } catch (err) {
+        errorEl.textContent = err.message; errorEl.classList.remove('hidden');
+        cta.disabled = false;
+        cta.textContent = 'Sign In';
       }
     }
 
     // ── Resend OTP ─────────────────────────────────────────
     async function resendOTP() {
-      const email = document.getElementById('modal-email-input').value.trim();
-      const name  = document.getElementById('modal-name-input').value.trim();
+      const username = document.getElementById('modal-username-input')?.value.trim() || '';
+      const email    = _pendingRegEmail || document.getElementById('modal-email-input')?.value.trim();
+      const password = document.getElementById('modal-password-input')?.value || '';
       try {
-        const res = await fetch(`${BACKEND_URL}/auth/send-otp`, {
-          method: 'POST', 
+        const res = await fetch(`${BACKEND_URL}/auth/register`, {
+          method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name })
+          body: JSON.stringify({ username, email, password })
         });
         const data = await res.json();
         showToast(data.ok ? 'New code sent \u2014 check your inbox.' : 'Could not resend. Try again in a moment.');
