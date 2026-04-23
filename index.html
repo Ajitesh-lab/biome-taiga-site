@@ -1157,19 +1157,19 @@
 
     // ── Modal configs ──────────────────────────────────────
     const modalConfigs = {
-      personal:         { label: ‘Personal Plan — Free Forever’, title: ‘Start for Free’, desc: ‘Create your account and deploy your first AI agent in under 60 seconds. No credit card required.’ },
-      pro:              { label: ‘Professional Plan — $29/mo’, title: ‘Upgrade to Pro’, desc: ‘Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.’ },
-      signin:           { label: ‘Welcome Back’, title: ‘Sign In to Biome’, desc: ‘Sign in to your account.’ },
-      download_macos:   { label: ‘Download for macOS — v1.4.0’, title: ‘Create an Account First’, desc: ‘Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.’ },
-      download_windows: { label: ‘Download for Windows — v1.4.0’, title: ‘Create an Account First’, desc: ‘Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.’ }
+      personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
+      pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.' },
+      signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
+      download_macos:   { label: 'Download for macOS — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
+      download_windows: { label: 'Download for Windows — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
     };
 
     let pendingDownload = null;
     let postAuthAction = null;
 
     function openModal(plan, preservePostAuth = false) {
-      if (plan === ‘pro’) {
-        postAuthAction = ‘pro_checkout’;
+      if (plan === 'pro') {
+        postAuthAction = 'pro_checkout';
         const token = getToken();
         if (token) {
           startProCheckout(token);
@@ -1179,42 +1179,42 @@
         postAuthAction = null;
       }
 
-      const cameFromProCheckout = postAuthAction === ‘pro_checkout’;
+      const cameFromProCheckout = postAuthAction === 'pro_checkout';
       const cfg = modalConfigs[plan] || modalConfigs.personal;
-      document.getElementById(‘modal-plan-label’).textContent = cameFromProCheckout && plan === ‘signin’ ? modalConfigs.pro.label : cfg.label;
-      document.getElementById(‘modal-title’).textContent = cameFromProCheckout && plan === ‘signin’ ? ‘Sign In to Continue’ : cfg.title;
-      document.getElementById(‘modal-desc’).textContent = cameFromProCheckout && plan === ‘signin’
-        ? ‘Sign in or create your account, then we\u2019ll take you straight to checkout.’
+      document.getElementById('modal-plan-label').textContent = cameFromProCheckout && plan === 'signin' ? modalConfigs.pro.label : cfg.label;
+      document.getElementById('modal-title').textContent = cameFromProCheckout && plan === 'signin' ? 'Sign In to Continue' : cfg.title;
+      document.getElementById('modal-desc').textContent = cameFromProCheckout && plan === 'signin'
+        ? 'Sign in or create your account, then we\u2019ll take you straight to checkout.'
         : cfg.desc;
 
       // Show Pro app-email notice only when heading to Pro checkout
-      const isProFlow = plan === ‘pro’ || cameFromProCheckout;
-      document.getElementById(‘modal-email-app-notice’).classList.toggle(‘hidden’, !isProFlow);
+      const isProFlow = plan === 'pro' || cameFromProCheckout;
+      document.getElementById('modal-email-app-notice').classList.toggle('hidden', !isProFlow);
 
-      document.getElementById(‘modal-cta’).disabled = false;
-      document.getElementById(‘modal-cta’).textContent = cameFromProCheckout ? ‘Continue to Checkout’ : ‘Send Verification Code’;
-      document.getElementById(‘modal-otp-cta’).disabled = false;
-      document.getElementById(‘modal-otp-cta’).textContent = cameFromProCheckout ? ‘Verify & Continue to Checkout’ : ‘Verify & Create Account’;
-      document.getElementById(‘modal-signin-cta’).disabled = false;
-      document.getElementById(‘modal-signin-cta’).textContent = ‘Sign In’;
+      document.getElementById('modal-cta').disabled = false;
+      document.getElementById('modal-cta').textContent = cameFromProCheckout ? 'Continue to Checkout' : 'Send Verification Code';
+      document.getElementById('modal-otp-cta').disabled = false;
+      document.getElementById('modal-otp-cta').textContent = cameFromProCheckout ? 'Verify & Continue to Checkout' : 'Verify & Create Account';
+      document.getElementById('modal-signin-cta').disabled = false;
+      document.getElementById('modal-signin-cta').textContent = 'Sign In';
 
       // Reset forms
-      document.getElementById(‘modal-form’)?.reset();
-      document.getElementById(‘modal-signin-form’)?.reset();
-      document.getElementById(‘modal-error’).classList.add(‘hidden’);
-      document.getElementById(‘modal-signin-error’).classList.add(‘hidden’);
-      document.getElementById(‘modal-step-1’).classList.remove(‘hidden’);
-      document.getElementById(‘modal-step-2’).classList.add(‘hidden’);
+      document.getElementById('modal-form')?.reset();
+      document.getElementById('modal-signin-form')?.reset();
+      document.getElementById('modal-error').classList.add('hidden');
+      document.getElementById('modal-signin-error').classList.add('hidden');
+      document.getElementById('modal-step-1').classList.remove('hidden');
+      document.getElementById('modal-step-2').classList.add('hidden');
 
-      // Default tab: ‘signin’ if plan === ‘signin’, else ‘create’
-      const startTab = plan === ‘signin’ ? ‘signin’ : ‘create’;
+      // Default tab: 'signin' if plan === 'signin', else 'create'
+      const startTab = plan === 'signin' ? 'signin' : 'create';
       _modalActiveTab = startTab;
       switchModalTab(startTab);
 
-      const overlay = document.getElementById(‘modal-overlay’);
-      overlay.classList.remove(‘hide’);
-      overlay.classList.add(‘show’);
-      document.body.style.overflow = ‘hidden’;
+      const overlay = document.getElementById('modal-overlay');
+      overlay.classList.remove('hide');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
