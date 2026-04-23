@@ -1,0 +1,12 @@
+.git
+.git/**
+.wrangler
+.wrangler/**
+node_modules
+node_modules/**
+.netlify
+.netlify/**
+.DS_Store
+wrangler.jsonc
+package.json
+package-lock.json
