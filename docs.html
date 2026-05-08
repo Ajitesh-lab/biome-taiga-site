@@ -91,6 +91,20 @@
     <h3>Data Sources</h3>
     <p>Add URLs, documents, or service connections as data sources. Your agent reads and indexes them so it can reference your content in conversations. Data sources are private and never shared.</p>
 
+    <h2>Connecting Your Google Account</h2>
+    <p>From v1.4.1, the agent can read and act on your Gmail, Calendar, and Drive directly — no <code>gcloud</code>, no Google Cloud project, and no Gmail API setup required. The flow takes about 30 seconds:</p>
+    <div class="card" style="margin-top:0.5rem;">
+      <ol style="list-style:decimal;padding-left:1.25rem;margin-top:0.25rem;">
+        <li style="margin-bottom:0.5rem;">Open <strong>Settings → Integrations → Connect Google</strong>.</li>
+        <li style="margin-bottom:0.5rem;">Your default browser opens a Google sign-in page. Pick the account you want to connect and click <strong>Allow</strong>.</li>
+        <li style="margin-bottom:0.5rem;">The browser tab confirms <em>"Google connected"</em> and closes itself. The agent is now able to read your mail, calendar, and Drive on demand.</li>
+      </ol>
+    </div>
+    <p>Once connected, ask the agent things like "<em>what's my latest email?</em>", "<em>what meetings do I have this week?</em>", or "<em>summarise the latest doc in my Drive</em>" — it'll fetch live data from Google and answer. To disconnect, return to <strong>Settings → Integrations</strong> and click <strong>Disconnect</strong>; Biome forgets your credentials and the agent loses access immediately.</p>
+
+    <h3>About the macOS Keychain prompt</h3>
+    <p>The first time you connect, macOS may briefly show a Keychain authorisation dialog so Biome can store your Google access token securely. This is expected — Keychain is the same secure store that protects your Wi-Fi passwords and Safari logins. Biome never sees your Google password; only a revocable access token.</p>
+
     <h2>Keyboard Shortcuts</h2>
     <div class="card" style="margin-top:0.5rem;">
       <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">

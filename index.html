@@ -467,7 +467,7 @@
               </div>
               <pre class="code-font text-[11px] leading-[1.6] overflow-x-auto"><code id="terminal-code"><span class="text-white/35">❯</span> <span class="text-green-300/80">biome</span> <span class="text-white/60">deploy --local</span>
 <span class="text-white/20">  ─────────────────────────────────────────────</span>
-<span class="terminal-line text-white/50 opacity-0">  <span class="text-green-400/70">biome</span> <span class="text-white/30">v1.4.0</span>  ·  AI Agent Platform</span>
+<span class="terminal-line text-white/50 opacity-0">  <span class="text-green-400/70">biome</span> <span class="text-white/30">v1.4.1</span>  ·  AI Agent Platform</span>
 <span class="terminal-line text-white/20 opacity-0">  ─────────────────────────────────────────────</span>
 <span class="terminal-line text-white/40 opacity-0">
 <span class="text-white/25">[1/5]</span> <span class="text-white/60">Checking environment</span></span>
@@ -789,14 +789,14 @@
             <span class="material-symbols-outlined">keyboard_command_key</span>
             <div class="text-left">
               <div class="leading-none mb-1">Download for MacOS</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.0 · 74MB · macOS 13+</div>
+              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.1 · 74MB · macOS 13+</div>
             </div>
           </button>
           <button onclick="handleDownload('Windows')" id="dl-win-btn" class="bg-white text-primary px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-secondary-container transition-colors gap-4">
             <span class="material-symbols-outlined">window</span>
             <div class="text-left">
               <div class="leading-none mb-1">Download for Windows</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.0 · Windows 10+</div>
+              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.1 · Windows 10+</div>
             </div>
           </button>
         </div>
@@ -962,7 +962,7 @@
         <div id="changelog-full" class="">
           <div class="pt-8 pb-2 space-y-6">
             <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.4.0</span>
+              <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.4.1</span>
               <div>
                 <p class="text-xs font-bold text-primary mb-1">Windows Support — Apr 2026</p>
                 <p class="text-xs text-on-surface-variant">Biome is now available on Windows 10+. Full feature parity with macOS — same UI, same skills, same Biome gateway. Built with Tauri for a lightweight native experience with WebView2.</p>
@@ -1033,7 +1033,7 @@
         <p class="text-[#424842] text-[0.75rem] leading-relaxed max-w-xs">
           Building personal intelligence cores for everyone. Start for free. Connect anything. Always on.
         </p>
-        <p class="text-[#727971] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.1.0</p>
+        <p class="text-[#727971] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.4.1</p>
       </div>
       <div class="grid grid-cols-2 gap-8 text-[0.75rem] uppercase tracking-[0.1em] font-bold">
         <div class="flex flex-col space-y-4">
@@ -1044,8 +1044,6 @@
         </div>
         <div class="flex flex-col space-y-4">
           <a href="mailto:team@biomeai.uk" class="text-[#424842] hover:text-primary transition-colors">Contact</a>
-          <a href="/docs.html" class="text-[#424842] hover:text-primary transition-colors">Docs</a>
-          <a href="/security.html" class="text-[#424842] hover:text-primary transition-colors">Security</a>
         </div>
       </div>
       <div class="md:text-right">
@@ -1160,8 +1158,8 @@
       personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
       pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.' },
       signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
-      download_macos:   { label: 'Download for macOS — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
-      download_windows: { label: 'Download for Windows — v1.4.0', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
+      download_macos:   { label: 'Download for macOS — v1.4.1', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
+      download_windows: { label: 'Download for Windows — v1.4.1', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
     };
 
     let pendingDownload = null;
@@ -1405,8 +1403,8 @@
 
     // ── Downloads ──────────────────────────────────────────
     const DOWNLOAD_URLS = {
-      macOS:   'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.0/Biome-1.4.0.dmg',
-      Windows: 'https://github.com/Ajitesh-lab/nordic-studio/releases/download/v1.4.0/Biome_1.4.0_x64-setup.exe'
+      macOS:   'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg',
+      Windows: 'https://github.com/Ajitesh-lab/nordic-studio/releases/download/v1.4.1/Biome_1.4.1_x64-setup.exe'
     };
 
     function triggerDownload(platform) {
@@ -1417,7 +1415,7 @@
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-      showToast(`Biome v1.4.0 for ${platform} — download starting.`);
+      showToast(`Biome v1.4.1 for ${platform} — download starting.`);
     }
 
     async function handleDownload(platform) {
