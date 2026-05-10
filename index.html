@@ -1418,12 +1418,28 @@
       macOS: 'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg'
     };
 
-    function triggerDownload(platform) {
+    async function trackDownload(platform, url) {
+      try {
+        await fetch(`${BACKEND_URL}/track`, {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'download',
+            platform,
+            file: url.split('/').pop()
+          })
+        });
+      } catch {}
+    }
+
+    async function triggerDownload(platform) {
       const url = DOWNLOAD_URLS[platform];
       if (!url) {
         showToast(`${platform} is not available in this release.`);
         return;
       }
+      await trackDownload(platform, url);
       const a = document.createElement('a');
       a.href = url;
       a.download = url.split('/').pop();
@@ -1435,7 +1451,7 @@
 
     async function handleDownload(platform) {
       if (getUser()) {
-        triggerDownload(platform);
+        await triggerDownload(platform);
       } else {
         pendingDownload = platform;
         openModal(platform === 'macOS' ? 'download_macos' : 'download_windows');
