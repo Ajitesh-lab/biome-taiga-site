@@ -3,6 +3,7 @@
   <url><loc>https://biomeai.uk/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://biomeai.uk/docs.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://biomeai.uk/privacy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://biomeai.uk/cookies.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://biomeai.uk/security.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://biomeai.uk/terms.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>

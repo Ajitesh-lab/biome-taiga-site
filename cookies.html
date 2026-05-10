@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Cookie Policy | Biome</title>
+  <meta name="description" content="Biome's Cookie Policy — essential cookies, analytics choices, and how to update consent."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://biomeai.uk/cookies.html"/>
+  <meta property="og:title" content="Cookie Policy | Biome"/>
+  <meta property="og:description" content="Biome's Cookie Policy — essential cookies, analytics choices, and how to update consent."/>
+  <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Cookie Policy | Biome"/>
+  <meta name="twitter:description" content="Biome's Cookie Policy — essential cookies, analytics choices, and how to update consent."/>
+  <meta name="twitter:image" content="https://biomeai.uk/og-image.png"/>
+  <link rel="canonical" href="https://biomeai.uk/cookies.html"/>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #f9faf6; color: #1a1c1a; font-family: "Helvetica", "Arial", sans-serif; -webkit-font-smoothing: antialiased; }
+    h2 { font-size: 1.25rem; font-weight: 800; color: #0c2c16; margin-top: 2.5rem; margin-bottom: 0.75rem; letter-spacing: -0.02em; }
+    p, li, td, th { color: #424842; line-height: 1.75; font-size: 0.9375rem; }
+    a { color: #0c2c16; text-decoration: underline; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: #fff; }
+    th, td { border: 1px solid rgba(114,121,113,0.22); padding: 0.85rem; text-align: left; vertical-align: top; }
+    th { color: #0c2c16; font-weight: 800; background: #edeeea; }
+    button { border: 1px solid #0c2c16; padding: 0.8rem 1rem; font-size: 0.8rem; font-weight: 800; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <nav style="background:#f9faf6;border-bottom:1px solid rgba(114,121,113,0.12);" class="fixed top-0 w-full z-50">
+    <div class="flex justify-between items-center h-16 px-6 md:px-12 max-w-5xl mx-auto">
+      <a href="/" class="flex items-center gap-3" style="text-decoration:none">
+        <svg width="28" height="28" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+          <circle cx="-28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+        </svg>
+        <span style="font-size:1.1rem;font-weight:900;letter-spacing:0.15em;color:#0c2c16;text-transform:uppercase;">Biome</span>
+      </a>
+      <a href="/" style="font-size:0.8rem;font-weight:700;color:#424842;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;">Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="pt-32 pb-24 px-6 max-w-3xl mx-auto">
+    <span style="font-size:0.65rem;font-weight:700;letter-spacing:0.3em;color:#566342;text-transform:uppercase;">Legal</span>
+    <h1 style="font-size:3rem;font-weight:900;letter-spacing:-0.04em;color:#0c2c16;line-height:1;margin-top:0.5rem;margin-bottom:2rem;">Cookie Policy</h1>
+    <p style="color:#727971;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid rgba(114,121,113,0.2);padding-bottom:1.5rem;margin-bottom:0;">Last updated: May 2026 &nbsp;·&nbsp; Biome</p>
+
+    <h2>Your Choice</h2>
+    <p>Biome uses essential cookies to keep the website secure, remember your cookie preference, and keep you signed in. Analytics cookies are optional and are only set after you accept analytics.</p>
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem">
+      <button type="button" onclick="BiomeCookies.rejectAnalytics()" style="background:#fff;color:#0c2c16">Reject analytics</button>
+      <button type="button" onclick="BiomeCookies.acceptAnalytics()" style="background:#0c2c16;color:#fff">Accept analytics</button>
+    </div>
+    <p id="cookie-status" style="font-size:0.85rem;margin-top:1rem;color:#566342;font-weight:700"></p>
+
+    <h2>Cookies We Use</h2>
+    <table>
+      <thead>
+        <tr><th>Cookie</th><th>Type</th><th>Purpose</th><th>Duration</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>__Host-biome_session</code></td><td>Essential</td><td>Keeps you signed in to your Biome website account. It is HttpOnly, Secure, and SameSite=Lax.</td><td>Up to 7 days</td></tr>
+        <tr><td><code>biome_cookie_consent</code></td><td>Essential</td><td>Stores whether you accepted or rejected analytics cookies.</td><td>Up to 180 days</td></tr>
+        <tr><td><code>_ga</code></td><td>Analytics</td><td>Google Analytics visitor measurement. Only set after you accept analytics.</td><td>Up to 2 years</td></tr>
+        <tr><td><code>_ga_*</code></td><td>Analytics</td><td>Google Analytics session measurement. Only set after you accept analytics.</td><td>Up to 2 years</td></tr>
+      </tbody>
+    </table>
+
+    <h2>More Information</h2>
+    <p>For broader privacy details, read the <a href="/privacy.html">Privacy Policy</a>. Questions can be sent to <a href="mailto:team@biomeai.uk">team@biomeai.uk</a>.</p>
+  </main>
+
+  <footer style="background:#f9faf6;border-top:1px solid rgba(114,121,113,0.15);padding:2rem 1.5rem;text-align:center;">
+    <p style="font-size:0.7rem;color:#727971;text-transform:uppercase;letter-spacing:0.1em;font-weight:700;">© 2026 Biome &nbsp;·&nbsp; <a href="/terms.html" style="color:#0c2c16;text-decoration:none;">Terms</a> &nbsp;·&nbsp; <a href="/privacy.html" style="color:#0c2c16;text-decoration:none;">Privacy</a> &nbsp;·&nbsp; <a href="/cookies.html" style="color:#0c2c16;text-decoration:none;">Cookies</a> &nbsp;·&nbsp; <a href="/security.html" style="color:#0c2c16;text-decoration:none;">Security</a></p>
+  </footer>
+  <script src="/cookie-consent.js"></script>
+  <script>
+    const status = document.getElementById('cookie-status');
+    function renderCookieStatus() {
+      const consent = window.BiomeCookies?.getConsent?.();
+      status.textContent = consent === 'analytics:accepted'
+        ? 'Analytics cookies are currently accepted.'
+        : consent === 'analytics:rejected'
+          ? 'Analytics cookies are currently rejected.'
+          : 'No analytics choice has been saved yet.';
+    }
+    setTimeout(renderCookieStatus, 0);
+    document.addEventListener('click', () => setTimeout(renderCookieStatus, 0));
+  </script>
+</body>
+</html>

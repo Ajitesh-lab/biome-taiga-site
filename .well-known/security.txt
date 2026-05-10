@@ -1,0 +1,4 @@
+Contact: mailto:team@biomeai.uk
+Preferred-Languages: en
+Canonical: https://biomeai.uk/.well-known/security.txt
+Policy: https://biomeai.uk/security.html

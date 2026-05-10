@@ -14,9 +14,11 @@
   <!-- Canonical -->
   <link rel="canonical" href="https://biomeai.uk/success.html"/>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9155G0775X"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9155G0775X');gtag('event','purchase',{currency:'USD',value:29});</script>
+  <script>
+    window.biomeAnalyticsEvents = [
+      { name: 'purchase', params: { currency: 'USD', value: 29 } }
+    ];
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #f9faf6; color: #1a1c1a; font-family: "Helvetica", "Arial", sans-serif; -webkit-font-smoothing: antialiased; }
@@ -63,34 +65,22 @@
   </div>
 
   <script>
-    const BACKEND_URL = 'https://rosalia-multidentate-ruthann.ngrok-free.dev';
-    const AUTH_KEY = 'biome_auth_token';
-
-    function getToken() {
-      const stored = localStorage.getItem(AUTH_KEY);
-      if (!stored) return null;
-      try {
-        const parsed = JSON.parse(stored);
-        return typeof parsed === 'string' ? parsed : parsed?.token || stored;
-      } catch {
-        return stored;
-      }
-    }
+    const BACKEND_URL = 'https://api.biomeai.uk';
 
     async function openPortal() {
-      const token = getToken();
-      if (!token) { alert('Please sign in to manage your subscription.'); return; }
       try {
         const res = await fetch(`${BACKEND_URL}/billing/portal`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+          credentials: 'include'
         });
         const data = await res.json();
         if (data.ok && data.url) window.location.href = data.url;
+        else if (res.status === 401) alert('Please sign in to manage your subscription.');
         else alert('Could not open billing portal — please try again.');
       } catch {
         alert('Could not reach server — check your connection.');
       }
     }
   </script>
+  <script src="/cookie-consent.js"></script>
 </body>
 </html>

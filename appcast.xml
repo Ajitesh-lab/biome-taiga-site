@@ -11,7 +11,7 @@
            1. Generate signature: sign_update Biome-1.4.1.dmg
            2. Get file size: stat -f%z Biome-1.4.1.dmg
            3. Upload DMG to GitHub release v1.4.1
-           4. Uncomment and fill in sparkle:edSignature + length below
+           4. Uncomment and fill in sparkle:edSignature below
          The DMG itself is already published at the URL below; only Sparkle
          auto-update is gated on this signature. New users who download
          from the website are unaffected.
@@ -34,7 +34,7 @@
         sparkle:version="5"
         sparkle:shortVersionString="1.4.1"
         sparkle:edSignature="FILL_IN_SIGNATURE_HERE"
-        length="FILL_IN_FILE_SIZE_HERE"
+        length="76811074"
         type="application/octet-stream"
       />
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>

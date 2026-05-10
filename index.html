@@ -3,9 +3,6 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <!-- Google Analytics 4 — replace G-9155G0775X with your Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9155G0775X"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-9155G0775X');</script>
   <title>Biome | Your Personal AI Core</title>
   <meta name="description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
   <!-- Open Graph -->
@@ -30,7 +27,7 @@
     "url": "https://biomeai.uk",
     "description": "Design, personalize, and deploy your own intelligent AI agent for free.",
     "applicationCategory": "DesktopApplication",
-    "operatingSystem": ["macOS", "Windows"],
+    "operatingSystem": ["macOS"],
     "offers": [
       {
         "@type": "Offer",
@@ -213,6 +210,30 @@
     #changelog-full.open {
       max-height: 600px;
     }
+    .text-primary\/20 {
+      color: rgba(12, 44, 22, 0.58) !important;
+    }
+    .text-white\/20 {
+      color: rgba(255, 255, 255, 0.76) !important;
+    }
+    .text-on-surface-variant\/80,
+    .text-on-surface-variant\/60,
+    .text-on-surface-variant\/50 {
+      color: #424842 !important;
+    }
+    #integrations .text-on-surface-variant\/60,
+    #integrations .text-on-surface-variant\/50,
+    #pricing .text-on-surface-variant\/50 {
+      color: #424842 !important;
+    }
+    #download .text-on-primary-container\/50,
+    #download .text-on-primary-container\/80 {
+      color: #accfaf !important;
+    }
+    #dl-mac-btn .opacity-60 {
+      color: #0c2c16;
+      opacity: 0.9;
+    }
   </style>
 </head>
 <body class="selection:bg-secondary-container selection:text-on-secondary-container">
@@ -373,7 +394,7 @@
     <section id="hero" class="relative min-h-[800px] flex items-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
       <div class="w-full items-center">
         <div class="z-10 py-24 text-center flex flex-col items-center">
-          <span class="text-[0.7rem] uppercase tracking-[0.3em] text-on-surface-variant font-bold mb-6 block">v1.4 — Windows Support — Now Available</span>
+          <span class="text-[0.7rem] uppercase tracking-[0.3em] text-on-surface-variant font-bold mb-6 block">v1.4.1 — macOS release now available</span>
           <h1 class="text-[4.5rem] md:text-[6rem] font-black leading-[0.85] tracking-tighter text-primary mb-8 mx-auto max-w-5xl">
             Your Personal AI Agent.<br>Zero Code Required.
           </h1>
@@ -416,7 +437,7 @@
     <section class="bg-surface-container py-12 px-6 md:px-12">
       <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 justify-center">
         <span class="text-[10px] uppercase tracking-[0.4em] font-black text-on-surface-variant/60 text-center">Built for researchers, developers, founders &amp; everyday power users</span>
-        <div class="flex flex-wrap justify-center items-center gap-8 opacity-50">
+        <div class="flex flex-wrap justify-center items-center gap-8">
           <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">school</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Researchers</span></div>
           <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">code</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Developers</span></div>
           <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">rocket_launch</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Founders</span></div>
@@ -792,17 +813,17 @@
               <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.1 · 74MB · macOS 13+</div>
             </div>
           </button>
-          <button onclick="handleDownload('Windows')" id="dl-win-btn" class="bg-white text-primary px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-secondary-container transition-colors gap-4">
+          <button type="button" id="dl-win-btn" aria-disabled="true" class="bg-white/50 text-primary/60 px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center cursor-not-allowed gap-4">
             <span class="material-symbols-outlined">window</span>
             <div class="text-left">
-              <div class="leading-none mb-1">Download for Windows</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.1 · Windows 10+</div>
+              <div class="leading-none mb-1">Windows coming soon</div>
+              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">Not in this release</div>
             </div>
           </button>
         </div>
         <div class="mt-10 md:mt-0 flex items-start gap-3 text-[11px] text-on-primary-container/50 max-w-xs leading-relaxed">
           <span class="material-symbols-outlined text-secondary-container/60 text-base mt-0.5 shrink-0">shield</span>
-          <span><strong class="text-on-primary-container/80">Security Note</strong> &mdash; On macOS, if the app is blocked on first launch go to <strong class="text-on-primary-container/80">System Settings &gt; Privacy &amp; Security</strong> and click <strong class="text-on-primary-container/80">Open Anyway</strong>. On Windows, click <strong class="text-on-primary-container/80">More Info &rarr; Run Anyway</strong> in the SmartScreen prompt. Both are normal one-time confirmations for independently distributed software. <a href="/security.html" class="underline hover:text-white transition-colors">Learn more &rarr;</a></span>
+          <span><strong class="text-on-primary-container/80">Security Note</strong> &mdash; On macOS, if the app is blocked on first launch go to <strong class="text-on-primary-container/80">System Settings &gt; Privacy &amp; Security</strong> and click <strong class="text-on-primary-container/80">Open Anyway</strong>. This is a normal one-time confirmation for independently distributed software. <a href="/security.html" class="underline hover:text-white transition-colors">Learn more &rarr;</a></span>
         </div>
       </div>
     </section>
@@ -885,7 +906,7 @@
           <!-- FAQ items -->
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">Do I need an API key to use Biome?</h4>
+              <h3 class="text-lg font-bold text-primary">Do I need an API key to use Biome?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
@@ -894,7 +915,7 @@
           </div>
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">What is Browser Control and do I need the Chrome extension?</h4>
+              <h3 class="text-lg font-bold text-primary">What is Browser Control and do I need the Chrome extension?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
@@ -903,7 +924,7 @@
           </div>
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">Which AI models does it support?</h4>
+              <h3 class="text-lg font-bold text-primary">Which AI models does it support?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
@@ -912,7 +933,7 @@
           </div>
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">Can I connect external services and data sources?</h4>
+              <h3 class="text-lg font-bold text-primary">Can I connect external services and data sources?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
@@ -921,20 +942,20 @@
           </div>
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">Is there a catch to the Free plan?</h4>
+              <h3 class="text-lg font-bold text-primary">Is there a catch to the Free plan?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">No. The free download gives you the full Biome app — chat, workflows, skills, browser control, all models — with 500 memory entries and community support. No trial clock, no feature gates, no upgrade nags. Pro adds extended memory, zero-knowledge privacy mode, and priority support for people who want more.</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">No. The free download gives you the core Biome app — chat, workflows, skills, local/API-key models, and optional browser control — with 500 memory entries and community support. Pro adds the managed model proxy, extended memory, and priority support.</p>
             </div>
           </div>
           <div class="faq-item border-b border-outline-variant/20">
             <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h4 class="text-lg font-bold text-primary">How is my data kept private?</h4>
+              <h3 class="text-lg font-bold text-primary">How is my data kept private?</h3>
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Almost everything stays on your machine. Conversations, memory, and settings are stored in localStorage — never on our servers. API calls go directly from your device to whichever AI provider you chose. We only see your email address (used for login). Pro users can enable Zero-Knowledge mode for full end-to-end privacy. We are GDPR and CCPA compliant.</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Almost everything stays on your machine. Conversations, memory, and settings are stored locally by the desktop app — never on our servers. Website sign-in uses a secure HttpOnly session cookie, and API calls go directly from your device to whichever AI provider you choose. We only keep account, billing, support, and consent records needed to run the service.</p>
             </div>
           </div>
         </div>
@@ -947,7 +968,7 @@
         <div class="flex flex-col md:flex-row items-start md:items-center justify-between text-[10px] font-bold uppercase tracking-widest text-on-surface-variant gap-4">
           <div class="flex items-center gap-4">
             <span class="bg-secondary text-on-secondary px-2 py-1">Latest</span>
-            <span>v1.4 — Windows Support</span>
+            <span>v1.4.1 — Google Connect</span>
           </div>
           <div class="hidden md:block h-4 w-[1px] bg-outline-variant/30 mx-8"></div>
           <div>v1.1 — Visual Workflow Builder</div>
@@ -964,8 +985,8 @@
             <div class="flex gap-8 items-start">
               <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.4.1</span>
               <div>
-                <p class="text-xs font-bold text-primary mb-1">Windows Support — Apr 2026</p>
-                <p class="text-xs text-on-surface-variant">Biome is now available on Windows 10+. Full feature parity with macOS — same UI, same skills, same Biome gateway. Built with Tauri for a lightweight native experience with WebView2.</p>
+                <p class="text-xs font-bold text-primary mb-1">Google Connect — May 2026</p>
+                <p class="text-xs text-on-surface-variant">Connect Google from the macOS app and let the agent work with Gmail, Calendar, and Drive through Biome's bundled helper.</p>
               </div>
             </div>
             <div class="flex gap-8 items-start">
@@ -1033,12 +1054,13 @@
         <p class="text-[#424842] text-[0.75rem] leading-relaxed max-w-xs">
           Building personal intelligence cores for everyone. Start for free. Connect anything. Always on.
         </p>
-        <p class="text-[#727971] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.4.1</p>
+        <p class="text-[#566342] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.4.1</p>
       </div>
       <div class="grid grid-cols-2 gap-8 text-[0.75rem] uppercase tracking-[0.1em] font-bold">
         <div class="flex flex-col space-y-4">
           <a href="/privacy.html" class="text-[#424842] hover:text-primary transition-colors">Privacy Policy</a>
           <a href="/terms.html" class="text-[#424842] hover:text-primary transition-colors">Terms of Service</a>
+          <a href="/cookies.html" class="text-[#424842] hover:text-primary transition-colors">Cookies</a>
           <a href="/security.html" class="text-[#424842] hover:text-primary transition-colors">Security</a>
           <a href="/docs.html" class="text-[#424842] hover:text-primary transition-colors">Documentation</a>
         </div>
@@ -1062,49 +1084,30 @@
     // ────────────────────────────────────────────────────────
     // BIOME AUTH CONFIG — override via: localStorage.setItem('biome_backend_url', 'https://...')
     // ────────────────────────────────────────────────────────
-    const BACKEND_URL = localStorage.getItem('biome_backend_url') || 'https://rosalia-multidentate-ruthann.ngrok-free.dev';
+    const BACKEND_URL = localStorage.getItem('biome_backend_url') || 'https://api.biomeai.uk';
 
-    // ── Session management (JWT in localStorage) ───────────
-    const AUTH_KEY = 'biome_auth_token';
+    // ── Session management (HttpOnly cookie + non-sensitive cached user) ─────
+    const LEGACY_AUTH_KEY = 'biome_auth_token';
     const AUTH_USER_KEY = 'biome_auth_user';
 
-    function getStoredSession() {
-      const storedToken = localStorage.getItem(AUTH_KEY);
+    function getStoredUser() {
       const storedUser = localStorage.getItem(AUTH_USER_KEY);
-      let token = null;
       let user = null;
-
-      if (storedToken) {
-        try {
-          const parsed = JSON.parse(storedToken);
-          if (typeof parsed === 'string') {
-            token = parsed;
-          } else if (parsed && typeof parsed === 'object') {
-            token = parsed.token || storedToken;
-            user = parsed.user || null;
-          } else {
-            token = storedToken;
-          }
-        } catch {
-          token = storedToken;
-        }
-      }
 
       if (storedUser) {
         try { user = JSON.parse(storedUser) || user; } catch {}
       }
 
-      return { token, user };
+      return user;
     }
 
-    function getToken() { return getStoredSession().token; }
-    function getUser() { return getStoredSession().user; }
-    function saveSession(token, user) {
-      localStorage.setItem(AUTH_KEY, JSON.stringify({ token, user, saved_at: Date.now() }));
-      localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
+    function getUser() { return getStoredUser(); }
+    function saveSession(user) {
+      localStorage.removeItem(LEGACY_AUTH_KEY);
+      if (user) localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
     }
     function clearSession() {
-      localStorage.removeItem(AUTH_KEY);
+      localStorage.removeItem(LEGACY_AUTH_KEY);
       localStorage.removeItem(AUTH_USER_KEY);
     }
 
@@ -1124,7 +1127,13 @@
       }
     }
 
-    function handleSignOut() {
+    async function handleSignOut() {
+      try {
+        await fetch(`${BACKEND_URL}/auth/logout`, {
+          method: 'POST',
+          credentials: 'include'
+        });
+      } catch {}
       clearSession();
       postAuthAction = null;
       updateNavAuth(null);
@@ -1133,22 +1142,21 @@
 
     // Check session on page load
     (async () => {
-      const token = getToken();
-      if (!token) return;
+      const cached = getUser();
+      if (cached) updateNavAuth(cached);
       try {
         const res = await fetch(`${BACKEND_URL}/auth/me`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+          credentials: 'include'
         });
         const data = await res.json();
         if (data.ok) {
-          saveSession(token, data.user);
+          saveSession(data.user);
           updateNavAuth(data.user);
         } else {
           clearSession();
           updateNavAuth(null);
         }
       } catch {
-        const cached = getUser();
         if (cached) updateNavAuth(cached);
       }
     })();
@@ -1156,10 +1164,10 @@
     // ── Modal configs ──────────────────────────────────────
     const modalConfigs = {
       personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
-      pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Extended memory, zero-knowledge privacy mode, and priority support. Cancel anytime.' },
+      pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Managed model proxy, extended memory, and priority support. Cancel anytime.' },
       signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
       download_macos:   { label: 'Download for macOS — v1.4.1', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
-      download_windows: { label: 'Download for Windows — v1.4.1', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' }
+      download_windows: { label: 'Windows coming soon', title: 'Windows Build Not Available', desc: 'The current public release is macOS-only. The Windows download will be enabled when a Biome Windows build is published from this workspace.' }
     };
 
     let pendingDownload = null;
@@ -1168,9 +1176,8 @@
     function openModal(plan, preservePostAuth = false) {
       if (plan === 'pro') {
         postAuthAction = 'pro_checkout';
-        const token = getToken();
-        if (token) {
-          startProCheckout(token);
+        if (getUser()) {
+          startProCheckout();
           return;
         }
       } else if (!preservePostAuth) {
@@ -1222,12 +1229,13 @@
       document.body.style.overflow = '';
     }
 
-    async function startProCheckout(token) {
+    async function startProCheckout() {
       showToast('Redirecting to checkout…');
       try {
         const checkoutRes = await fetch(`${BACKEND_URL}/billing/create-checkout-session`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' }
         });
         const checkoutData = await checkoutRes.json().catch(() => ({}));
         if (checkoutRes.ok && checkoutData.ok && checkoutData.url) {
@@ -1291,6 +1299,7 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/register`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, email, password })
         });
@@ -1318,17 +1327,18 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/complete-registration`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: _pendingRegEmail, otp })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'Verification failed');
-        saveSession(data.token, data.user);
+        saveSession(data.user);
         updateNavAuth(data.user);
         if (postAuthAction === 'pro_checkout') {
           cta.textContent = 'Redirecting to checkout\u2026';
           closeModal();
-          startProCheckout(data.token);
+          startProCheckout();
         } else {
           const dl = pendingDownload; pendingDownload = null; closeModal();
           if (dl) { setTimeout(() => triggerDownload(dl), 400); }
@@ -1352,16 +1362,17 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/login`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ identifier, password })
         });
         const data = await res.json();
         if (!data.ok) throw new Error(data.error || 'Sign in failed');
-        saveSession(data.token, data.user);
+        saveSession(data.user);
         updateNavAuth(data.user);
         if (postAuthAction === 'pro_checkout') {
           closeModal();
-          startProCheckout(data.token);
+          startProCheckout();
         } else {
           const dl = pendingDownload; pendingDownload = null; closeModal();
           if (dl) { setTimeout(() => triggerDownload(dl), 400); }
@@ -1382,6 +1393,7 @@
       try {
         const res = await fetch(`${BACKEND_URL}/auth/register`, {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ username, email, password })
         });
@@ -1403,12 +1415,15 @@
 
     // ── Downloads ──────────────────────────────────────────
     const DOWNLOAD_URLS = {
-      macOS:   'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg',
-      Windows: 'https://github.com/Ajitesh-lab/nordic-studio/releases/download/v1.4.1/Biome_1.4.1_x64-setup.exe'
+      macOS: 'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg'
     };
 
     function triggerDownload(platform) {
       const url = DOWNLOAD_URLS[platform];
+      if (!url) {
+        showToast(`${platform} is not available in this release.`);
+        return;
+      }
       const a = document.createElement('a');
       a.href = url;
       a.download = url.split('/').pop();
@@ -1419,8 +1434,7 @@
     }
 
     async function handleDownload(platform) {
-      const token = getToken();
-      if (token) {
+      if (getUser()) {
         triggerDownload(platform);
       } else {
         pendingDownload = platform;
@@ -1519,6 +1533,7 @@
     const terminal = document.getElementById('terminal-code');
     if (terminal) terminalObserver.observe(terminal);
   </script>
+  <script src="/cookie-consent.js"></script>
 
 </body>
 </html>
