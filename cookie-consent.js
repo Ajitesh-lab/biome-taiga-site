@@ -1,5 +1,7 @@
 (function () {
   const CONSENT_COOKIE = "biome_cookie_consent";
+  const CONSENT_ACCEPTED = "analytics:accepted";
+  const CONSENT_ESSENTIAL = "analytics:rejected";
   const GA_ID = "G-9155G0775X";
   const MAX_AGE = 60 * 60 * 24 * 180;
 
@@ -63,7 +65,7 @@
   }
 
   function applyConsent() {
-    if (getConsent() === "analytics:accepted") loadAnalytics();
+    if (getConsent() === CONSENT_ACCEPTED) loadAnalytics();
   }
 
   function removeBanner() {
@@ -73,8 +75,8 @@
   function setConsent(value) {
     writeConsent(value);
     removeBanner();
-    if (value === "analytics:rejected") clearAnalyticsCookies();
-    if (value === "analytics:accepted") loadAnalytics();
+    if (value !== CONSENT_ACCEPTED) clearAnalyticsCookies();
+    if (value === CONSENT_ACCEPTED) loadAnalytics();
   }
 
   function createBanner() {
@@ -83,34 +85,45 @@
     const banner = document.createElement("div");
     banner.id = "biome-cookie-banner";
     banner.setAttribute("role", "dialog");
-    banner.setAttribute("aria-label", "Cookie preferences");
+    banner.setAttribute("aria-modal", "true");
+    banner.setAttribute("aria-labelledby", "biome-cookie-title");
+    banner.setAttribute("aria-describedby", "biome-cookie-desc");
     banner.style.cssText = [
       "position:fixed",
-      "left:1rem",
-      "right:1rem",
-      "bottom:1rem",
+      "inset:0",
       "z-index:300",
-      "background:#ffffff",
-      "color:#1a1c1a",
-      "border:1px solid rgba(114,121,113,0.35)",
-      "box-shadow:0 20px 50px rgba(0,0,0,0.16)",
+      "display:flex",
+      "align-items:center",
+      "justify-content:center",
       "padding:1rem",
-      "max-width:680px",
-      "margin:0 auto",
+      "background:rgba(10,14,10,0.46)",
+      "backdrop-filter:blur(6px)",
+      "color:#1a1c1a",
       "font-family:Helvetica,Arial,sans-serif"
     ].join(";");
 
     banner.innerHTML = `
-      <div style="display:flex;gap:1rem;align-items:flex-start;justify-content:space-between;flex-wrap:wrap">
-        <div style="flex:1 1 280px">
-          <div style="font-size:0.75rem;font-weight:900;letter-spacing:0.16em;text-transform:uppercase;color:#0c2c16;margin-bottom:0.35rem">Cookies</div>
-          <p style="margin:0;color:#424842;font-size:0.875rem;line-height:1.55">Biome uses essential cookies for sign-in and security. We only use Google Analytics if you allow analytics cookies.</p>
-          <a href="/cookies.html" style="display:inline-block;margin-top:0.5rem;color:#0c2c16;font-size:0.8rem;font-weight:700;text-decoration:underline">Manage cookies</a>
+      <div style="width:min(100%,560px);background:#ffffff;border:1px solid rgba(114,121,113,0.28);box-shadow:0 24px 70px rgba(0,0,0,0.24);padding:clamp(1.25rem,4vw,2rem);border-radius:6px">
+        <div style="font-size:0.72rem;font-weight:900;letter-spacing:0.18em;text-transform:uppercase;color:#566342;margin-bottom:0.55rem">Cookie Preferences</div>
+        <h2 id="biome-cookie-title" style="margin:0 0 0.75rem;color:#0c2c16;font-size:1.55rem;line-height:1.12;letter-spacing:-0.03em">Choose your cookies</h2>
+        <p id="biome-cookie-desc" style="margin:0;color:#424842;font-size:0.94rem;line-height:1.62">Essential cookies keep sign-in, security, and your saved cookie choice working. With your permission, analytics cookies help us count visits and improve the website. We do not use advertising cookies.</p>
+
+        <div style="display:grid;gap:0.75rem;margin:1.25rem 0">
+          <div style="border:1px solid rgba(114,121,113,0.22);padding:0.85rem;background:#f9faf6;border-radius:4px">
+            <div style="color:#0c2c16;font-size:0.82rem;font-weight:900;margin-bottom:0.2rem">Essential cookies</div>
+            <p style="margin:0;color:#424842;font-size:0.82rem;line-height:1.5">Always on. Needed for sign-in, security, and remembering this choice.</p>
+          </div>
+          <div style="border:1px solid rgba(114,121,113,0.22);padding:0.85rem;background:#f9faf6;border-radius:4px">
+            <div style="color:#0c2c16;font-size:0.82rem;font-weight:900;margin-bottom:0.2rem">Analytics cookies</div>
+            <p style="margin:0;color:#424842;font-size:0.82rem;line-height:1.5">Optional. Helps us understand which pages people use so we can improve them.</p>
+          </div>
         </div>
-        <div style="display:flex;gap:0.5rem;flex-wrap:wrap">
-          <button type="button" data-biome-cookie="analytics:rejected" style="border:1px solid #0c2c16;background:#fff;color:#0c2c16;padding:0.75rem 1rem;font-weight:800;cursor:pointer">Reject analytics</button>
-          <button type="button" data-biome-cookie="analytics:accepted" style="border:1px solid #0c2c16;background:#0c2c16;color:#fff;padding:0.75rem 1rem;font-weight:800;cursor:pointer">Accept analytics</button>
+
+        <div style="display:flex;gap:0.65rem;flex-wrap:wrap;align-items:center">
+          <button type="button" data-biome-cookie="${CONSENT_ESSENTIAL}" style="flex:1 1 190px;border:1px solid #0c2c16;background:#fff;color:#0c2c16;padding:0.85rem 1rem;font-size:0.78rem;font-weight:900;cursor:pointer;border-radius:4px">Accept essential only</button>
+          <button type="button" data-biome-cookie="${CONSENT_ACCEPTED}" style="flex:1 1 190px;border:1px solid #0c2c16;background:#0c2c16;color:#fff;padding:0.85rem 1rem;font-size:0.78rem;font-weight:900;cursor:pointer;border-radius:4px">Accept all cookies</button>
         </div>
+        <a href="/cookies.html" style="display:inline-block;margin-top:0.95rem;color:#0c2c16;font-size:0.8rem;font-weight:800;text-decoration:underline">Cookie policy and settings</a>
       </div>
     `;
 

@@ -50,25 +50,28 @@
     <p style="color:#727971;font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid rgba(114,121,113,0.2);padding-bottom:1.5rem;margin-bottom:0;">Last updated: May 2026 &nbsp;·&nbsp; Biome</p>
 
     <h2>Your Choice</h2>
-    <p>Biome uses essential cookies to keep the website secure, remember your cookie preference, and keep you signed in. Analytics cookies are optional and are only set after you accept analytics.</p>
+    <p>Biome uses essential cookies to keep the website secure, remember your cookie preference, and keep you signed in. Analytics cookies are optional and are only set if you choose to accept all cookies.</p>
     <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem">
-      <button type="button" onclick="BiomeCookies.rejectAnalytics()" style="background:#fff;color:#0c2c16">Reject analytics</button>
-      <button type="button" onclick="BiomeCookies.acceptAnalytics()" style="background:#0c2c16;color:#fff">Accept analytics</button>
+      <button type="button" onclick="BiomeCookies.rejectAnalytics()" style="background:#fff;color:#0c2c16">Accept essential only</button>
+      <button type="button" onclick="BiomeCookies.acceptAnalytics()" style="background:#0c2c16;color:#fff">Accept all cookies</button>
     </div>
     <p id="cookie-status" style="font-size:0.85rem;margin-top:1rem;color:#566342;font-weight:700"></p>
 
     <h2>Cookies We Use</h2>
     <table>
       <thead>
-        <tr><th>Cookie</th><th>Type</th><th>Purpose</th><th>Duration</th></tr>
+        <tr><th>Cookie type</th><th>Used for</th><th>Your choice</th><th>Duration</th></tr>
       </thead>
       <tbody>
-        <tr><td><code>__Host-biome_session</code></td><td>Essential</td><td>Keeps you signed in to your Biome website account. It is HttpOnly, Secure, and SameSite=Lax.</td><td>Up to 7 days</td></tr>
-        <tr><td><code>biome_cookie_consent</code></td><td>Essential</td><td>Stores whether you accepted or rejected analytics cookies.</td><td>Up to 180 days</td></tr>
-        <tr><td><code>_ga</code></td><td>Analytics</td><td>Google Analytics visitor measurement. Only set after you accept analytics.</td><td>Up to 2 years</td></tr>
-        <tr><td><code>_ga_*</code></td><td>Analytics</td><td>Google Analytics session measurement. Only set after you accept analytics.</td><td>Up to 2 years</td></tr>
+        <tr><td>Sign-in cookies</td><td>Keep you signed in securely while you use your Biome website account.</td><td>Always on</td><td>Up to 7 days</td></tr>
+        <tr><td>Cookie choice</td><td>Remember whether you chose essential only or all cookies.</td><td>Always on</td><td>Up to 180 days</td></tr>
+        <tr><td>Website analytics</td><td>Count visits and understand which pages are useful so we can improve the website.</td><td>Optional</td><td>Up to 2 years</td></tr>
       </tbody>
     </table>
+    <details style="margin-top:1rem">
+      <summary style="cursor:pointer;color:#0c2c16;font-weight:800">Technical cookie names</summary>
+      <p style="margin-top:0.75rem">Essential cookies may include <code>__Host-biome_session</code> and <code>biome_cookie_consent</code>. Analytics cookies may include <code>_ga</code> and <code>_ga_*</code>.</p>
+    </details>
 
     <h2>More Information</h2>
     <p>For broader privacy details, read the <a href="/privacy.html">Privacy Policy</a>. Questions can be sent to <a href="mailto:team@biomeai.uk">team@biomeai.uk</a>.</p>
@@ -83,10 +86,10 @@
     function renderCookieStatus() {
       const consent = window.BiomeCookies?.getConsent?.();
       status.textContent = consent === 'analytics:accepted'
-        ? 'Analytics cookies are currently accepted.'
+        ? 'All cookies are currently accepted.'
         : consent === 'analytics:rejected'
-          ? 'Analytics cookies are currently rejected.'
-          : 'No analytics choice has been saved yet.';
+          ? 'Only essential cookies are currently accepted.'
+          : 'No cookie choice has been saved yet.';
     }
     setTimeout(renderCookieStatus, 0);
     document.addEventListener('click', () => setTimeout(renderCookieStatus, 0));
