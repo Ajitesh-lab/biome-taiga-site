@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Biome | Your Personal AI Core</title>
+  <title>Biome | Your Personal AI Agent</title>
   <meta name="description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://biomeai.uk/"/>
-  <meta property="og:title" content="Biome | Your Personal AI Core"/>
+  <meta property="og:title" content="Biome | Your Personal AI Agent"/>
   <meta property="og:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
   <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Biome | Your Personal AI Core"/>
+  <meta name="twitter:title" content="Biome | Your Personal AI Agent"/>
   <meta name="twitter:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
   <meta name="twitter:image" content="https://biomeai.uk/og-image.png"/>
   <!-- Canonical -->
@@ -46,7 +46,9 @@
   </script>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=DM+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0..1,0&display=swap" rel="stylesheet"/>
   <!-- Custom OTP Auth (no external SDK needed) -->
   <script id="tailwind-config">
     tailwind.config = {
@@ -103,9 +105,9 @@
             "primary-container": "#23422a"
           },
           fontFamily: {
-            "headline": ["Helvetica", "Arial", "sans-serif"],
-            "body": ["Helvetica", "Arial", "sans-serif"],
-            "label": ["Helvetica", "Arial", "sans-serif"]
+            "headline": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"],
+            "body": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"],
+            "label": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"]
           },
           borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
         },
@@ -116,14 +118,24 @@
     .material-symbols-outlined {
       font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
     }
+    :root {
+      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+    }
     body {
       background-color: #f9faf6;
       color: #1a1c1a;
       -webkit-font-smoothing: antialiased;
-      font-family: "Helvetica", "Arial", sans-serif;
+      font-family: "Space Grotesk", "Helvetica", "Arial", sans-serif;
     }
     .code-font {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
     }
 
     /* Toast */
@@ -165,15 +177,12 @@
 
     /* FAQ accordion */
     .faq-body {
-      max-height: 0;
+      height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.25s ease;
-    }
-    .faq-body.open {
-      max-height: 300px;
+      transition: height 0.35s var(--ease-expo);
     }
     .faq-chevron {
-      transition: transform 0.3s ease;
+      transition: transform 0.3s var(--ease-expo);
     }
     .faq-chevron.open {
       transform: rotate(180deg);
@@ -193,22 +202,29 @@
 
     /* Mobile menu */
     #mobile-menu {
-      max-height: 0;
+      height: 0;
       overflow: hidden;
-      transition: max-height 0.35s ease;
-    }
-    #mobile-menu.open {
-      max-height: 400px;
+      transition: height 0.35s var(--ease-expo);
     }
 
     /* Changelog expand */
     #changelog-full {
-      max-height: 0;
+      height: 0;
       overflow: hidden;
-      transition: max-height 0.4s ease;
+      transition: height 0.4s var(--ease-expo);
     }
-    #changelog-full.open {
-      max-height: 600px;
+
+    /* CTA press feedback */
+    .cta-press:active {
+      transform: scale(0.98);
+    }
+
+    /* Nav smooth transition between transparent/frosted states */
+    nav {
+      transition: background-color 0.4s ease, border-color 0.4s ease;
+    }
+    nav .nav-link {
+      transition: color 0.3s ease, border-color 0.2s ease, padding-bottom 0.2s ease;
     }
     .text-primary\/20 {
       color: rgba(12, 44, 22, 0.58) !important;
@@ -341,10 +357,10 @@
   </div>
 
   <!-- ── Top Nav ── -->
-  <nav class="fixed top-0 w-full z-50 bg-[#f9faf6]/80 backdrop-blur-xl border-b border-outline-variant/10">
+  <nav class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant/10">
     <div class="flex justify-between items-center h-20 px-6 md:px-12 w-full max-w-[1440px] mx-auto">
       <a href="#hero" class="flex items-center gap-3">
-        <svg width="32" height="32" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
+        <svg id="biome-logo-svg" width="32" height="32" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
           <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
           <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
           <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
@@ -391,45 +407,96 @@
   <main class="pt-20">
 
     <!-- ── Hero ── -->
-    <section id="hero" class="relative min-h-[800px] flex items-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
-      <div class="w-full items-center">
-        <div class="z-10 py-24 text-center flex flex-col items-center">
-          <span class="text-[0.7rem] uppercase tracking-[0.3em] text-on-surface-variant font-bold mb-6 block">v1.4.1 — macOS release now available</span>
-          <h1 class="text-[4.5rem] md:text-[6rem] font-black leading-[0.85] tracking-tighter text-primary mb-8 mx-auto max-w-5xl">
-            Your Personal AI Agent.<br>Zero Code Required.
+    <section id="hero" aria-labelledby="hero-heading" class="relative min-h-[800px] flex items-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
+      <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 lg:py-32">
+
+        <!-- Left: text -->
+        <div>
+          <span class="hero-eyebrow inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.25em] font-bold mb-6 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/8 text-primary">
+            <span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
+            v1.4.1 — macOS release now available
+          </span>
+          <h1 id="hero-heading" class="text-[4rem] md:text-[5.5rem] lg:text-[6rem] font-black leading-[0.88] tracking-tighter text-primary mb-8">
+            Your Personal<br>AI Agent.<br><span class="text-secondary">Zero Code.</span>
           </h1>
-          <p class="text-xl md:text-2xl text-on-surface-variant max-w-2xl leading-relaxed mb-10 mx-auto">
-            Design, personalize, and deploy your own intelligent core for
+          <p class="hero-subtitle text-xl text-on-surface-variant max-w-lg leading-relaxed mb-10">
+            Design, personalize, and deploy your own intelligent agent for
             <span class="text-primary font-bold underline decoration-secondary-container">free today</span>.
             Simple enough for anyone, powerful enough for everyone.
           </p>
-          <div class="flex flex-col gap-8 items-center">
-            <div class="flex flex-col sm:flex-row gap-4">
-              <button onclick="openModal('personal')" class="bg-primary text-on-primary px-10 py-5 text-lg font-bold hover:bg-primary-container transition-colors">
-                Get Started — It's Free
-              </button>
-              <a href="#how-it-works" class="border border-outline-variant/60 text-on-surface-variant px-10 py-5 text-lg font-bold hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
-                See How It Works
-                <span class="material-symbols-outlined text-xl">arrow_downward</span>
-              </a>
+          <div class="hero-ctas flex flex-col sm:flex-row gap-4 mb-12">
+            <button onclick="openModal('personal')" class="cta-press bg-primary text-on-primary px-10 py-5 text-base font-bold hover:bg-primary-container transition-colors">
+              Get Started — It's Free
+            </button>
+            <a href="#how-it-works" class="cta-press border border-outline-variant/60 text-on-surface-variant px-10 py-5 text-base font-bold hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
+              See How It Works
+              <span class="material-symbols-outlined text-xl">arrow_downward</span>
+            </a>
+          </div>
+          <!-- Metrics Bar -->
+          <dl class="hero-metrics flex flex-wrap border-t border-outline-variant/30 pt-8 divide-x divide-outline-variant/30">
+            <div class="flex flex-col pr-8 gap-1">
+              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">To Start</dt>
+              <dd id="metric-cost" class="text-2xl font-black text-primary order-1">$0</dd>
             </div>
-            <!-- Metrics Bar -->
-            <div class="flex flex-wrap border-t border-outline-variant/30 pt-8 mt-4 justify-center divide-x divide-outline-variant/30">
-              <div class="flex flex-col items-center px-8 gap-1">
-                <span class="text-2xl font-black text-primary">$0</span>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">To Start</span>
+            <div class="flex flex-col px-8 gap-1">
+              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">AI Skills</dt>
+              <dd id="metric-skills" class="text-2xl font-black text-primary order-1">20+</dd>
+            </div>
+            <div class="flex flex-col pl-8 gap-1">
+              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">AI Providers</dt>
+              <dd id="metric-providers" class="text-2xl font-black text-primary order-1">11+</dd>
+            </div>
+          </dl>
+        </div>
+
+        <!-- Right: chat mockup -->
+        <div class="hero-visual hidden lg:block relative">
+          <div class="bg-[#0b0f0d] shadow-2xl border border-white/5" style="border-radius:2px">
+            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
+              <span class="ml-auto text-[9px] text-white/20 tracking-widest uppercase font-bold">Biome — Personal Agent</span>
+            </div>
+            <div class="p-6 space-y-5 min-h-[360px]">
+              <div class="flex justify-end">
+                <div class="bg-primary/25 text-white/80 text-sm px-4 py-3 max-w-[82%] leading-relaxed" style="border-radius:2px">
+                  Research the top AI coding tools and write me a comparison table
+                </div>
               </div>
-              <div class="flex flex-col items-center px-8 gap-1">
-                <span class="text-2xl font-black text-primary">20+</span>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Skills</span>
+              <div class="space-y-2 pl-1">
+                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
+                  <span class="material-symbols-outlined" style="font-size:13px">search</span>
+                  Searching the web&hellip;
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
+                  <span class="material-symbols-outlined" style="font-size:13px">open_in_browser</span>
+                  Reading 6 sources in Chrome&hellip;
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
+                  <span class="material-symbols-outlined" style="font-size:13px">code</span>
+                  Executing code to format table&hellip;
+                </div>
               </div>
-              <div class="flex flex-col items-center px-8 gap-1">
-                <span class="text-2xl font-black text-primary">11+</span>
-                <span class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant">AI Providers</span>
+              <div class="bg-white/5 text-[12px] px-4 py-4 leading-relaxed" style="border-radius:2px">
+                <p class="font-semibold mb-3 text-sm text-white/90">Here's your comparison:</p>
+                <div class="code-font text-[11px] text-white/50 space-y-1.5">
+                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">GitHub Copilot</span><span>IDE autocomplete · $10/mo</span></div>
+                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Cursor</span><span>AI editor · $20/mo</span></div>
+                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Claude</span><span>Reasoning + code · API</span></div>
+                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Biome</span><span class="text-secondary-container/80">All of the above, local · free</span></div>
+                </div>
               </div>
+            </div>
+            <div class="border-t border-white/5 px-4 py-3 flex items-center gap-3">
+              <span class="text-white/20 text-xs flex-1 code-font">Ask Biome anything&hellip;</span>
+              <span class="material-symbols-outlined text-green-400/30" style="font-size:16px">send</span>
             </div>
           </div>
+          <div class="absolute -inset-4 bg-primary/5 blur-2xl -z-10 rounded-full"></div>
         </div>
+
       </div>
     </section>
 
@@ -447,8 +514,9 @@
     </section>
 
     <!-- ── How It Works ── -->
-    <section id="how-it-works" class="py-24 md:py-32 px-6 md:px-12 bg-surface">
-      <div class="max-w-[1440px] mx-auto">
+    <section id="how-it-works" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center;opacity:0.045;"></div>
+      <div class="relative max-w-[1440px] mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
           <div>
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">How It Works</span>
@@ -528,81 +596,103 @@
     </section>
 
     <!-- ── Features ── -->
-    <section id="features" class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low">
-      <div class="max-w-[1440px] mx-auto">
+    <section id="features" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface-container-low overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center;opacity:0.03;"></div>
+      <div class="relative max-w-[1440px] mx-auto">
         <div class="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div class="max-w-2xl">
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Key Features</span>
-            <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary leading-none">A Dedicated Intelligence Core.<br>Just for You.</h2>
+            <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary leading-none">A Dedicated AI Agent.<br>Just for You.</h2>
           </div>
           <div class="hidden md:block h-[1px] flex-grow mx-12 bg-outline-variant opacity-20"></div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">schedule</span>
-            </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Deep Context Awareness</h3>
-            <p class="text-on-surface-variant leading-relaxed">Biome remembers every conversation and builds persistent long-term memory. The more you use it, the smarter and more personal it becomes.</p>
+        <!-- Featured card: key differentiator -->
+        <div class="mb-10 bg-primary text-on-primary p-10 md:p-14 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 group">
+          <div class="w-20 h-20 bg-primary-container flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-secondary-container text-4xl" style="font-variation-settings:'FILL' 1">lock</span>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">hub</span>
-            </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">20+ AI Skills</h3>
-            <p class="text-on-surface-variant leading-relaxed">Web search, live code execution, file and image attachments, and browser automation — all built in. Attach PDFs, images, and code files directly to any message.</p>
+          <div class="flex-1">
+            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary-container/60 mb-3 block">Core Principle</span>
+            <h3 class="text-3xl md:text-4xl font-black tracking-tighter mb-4">Private by Default. Always.</h3>
+            <p class="text-on-primary-container text-lg leading-relaxed max-w-2xl">Your conversations, memory, and API keys are stored locally on your device — never on our servers. API calls go directly from your Mac to your chosen AI provider. Granular permission modes let you control exactly what the agent can touch.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">shield</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-outline-variant/20">
+          <div class="group p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">01</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Private by Default</h3>
-            <p class="text-on-surface-variant leading-relaxed">Your conversations, memory, and API keys are stored locally on your device — never on our servers. API calls go directly from your Mac to your chosen AI provider, not through us. Granular permission modes let you control exactly what the AI can touch.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Deep Context Awareness</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Biome remembers every conversation and builds persistent long-term memory. The more you use it, the smarter it becomes.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">account_tree</span>
+          <div class="group p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">02</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">hub</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight flex items-center gap-3">
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">20+ AI Skills</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Web search, live code execution, file and image attachments, and browser automation — all built in.</p>
+          </div>
+          <div class="group p-8 border-b md:border-b-0 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">03</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">account_tree</span>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight flex items-center gap-2">
               Visual Logic Builder
-              <span class="bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest px-2 py-1">Beta</span>
+              <span class="bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5">Beta</span>
             </h3>
-            <p class="text-on-surface-variant leading-relaxed">Build complex multi-step workflows without a single line of code. Branch logic, conditionals, and loops — all visual, all yours.</p>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Build complex multi-step workflows without a single line of code. Branch logic, conditionals, and loops — all visual.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">model_training</span>
+          <div class="group p-8 border-b md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">04</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">model_training</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Bring Your Own Model</h3>
-            <p class="text-on-surface-variant leading-relaxed">Use Claude, GPT-4, Gemini, or any OpenAI-compatible endpoint. Switch models per workflow step without rebuilding anything.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Bring Your Own Model</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Use Claude, GPT-4, Gemini, or any OpenAI-compatible endpoint. Switch models per workflow step without rebuilding anything.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+          <div class="group p-8 border-b md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">05</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">payments</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Start for Free. Stay Free.</h3>
-            <p class="text-on-surface-variant leading-relaxed">The free tier is permanent, not a trial. We make money when you scale, not when you're getting started.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Start Free. Stay Free.</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">The free tier is permanent, not a trial. We make money when you scale, not when you're getting started.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">attach_file</span>
+          <div class="group p-8 border-b hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">06</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">attach_file</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">File & Image Attachments</h3>
-            <p class="text-on-surface-variant leading-relaxed">Attach PDFs, images, code files, CSVs, and more to any message. The AI reads and reasons over your files directly — no upload to a third-party server.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">File & Image Attachments</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Attach PDFs, images, code files, CSVs, and more. The AI reads your files directly — no third-party upload.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">history</span>
+          <div class="group p-8 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">07</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">history</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Full Conversation History</h3>
-            <p class="text-on-surface-variant leading-relaxed">Every session is saved locally and instantly searchable. Pick up any previous conversation exactly where you left off — no cloud sync required.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Full Conversation History</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Every session is saved locally and instantly searchable. Pick up any conversation exactly where you left off.</p>
           </div>
-          <div class="group">
-            <div class="w-16 h-16 bg-surface-container-lowest flex items-center justify-center mb-8 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-3xl">play_circle</span>
+          <div class="group p-8 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">08</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">play_circle</span>
             </div>
-            <h3 class="text-2xl font-bold text-primary mb-4 tracking-tight">Chat-Triggered Workflows</h3>
-            <p class="text-on-surface-variant leading-relaxed">Build and name your workflows once, then run them from anywhere — just type <span class="code-font bg-surface-container px-1 py-0.5 text-sm">run workflow My Pipeline</span> in chat and Biome executes it instantly.</p>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Chat-Triggered Workflows</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Build workflows once, run them from anywhere — just type <span class="code-font bg-surface-container px-1 py-0.5 text-[11px]">run workflow My Pipeline</span> in chat.</p>
+          </div>
+          <div class="group p-8 hover:bg-surface transition-colors relative overflow-hidden">
+            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">09</span>
+            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
+              <span class="material-symbols-outlined text-primary text-2xl">record_voice_over</span>
+            </div>
+            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Voice & Channels</h3>
+            <p class="text-on-surface-variant text-sm leading-relaxed">Talk to your agent by voice, or connect it to WhatsApp, Telegram, Slack, Discord, and 20+ more messaging channels.</p>
           </div>
         </div>
       </div>
@@ -662,26 +752,61 @@
             </div>
           </div>
 
-          <!-- Visual -->
-          <div class="bg-surface-container-low border border-outline-variant/20 relative flex items-center justify-center overflow-hidden group p-10 min-h-[280px]">
-            <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, #0c2c16 1px, transparent 0); background-size: 32px 32px;"></div>
-            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 border border-primary/10 rounded-full"></div>
-            <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-primary/20 rounded-full"></div>
-            <div class="relative z-10 flex flex-col items-center gap-4">
-              <div class="bg-primary text-on-primary p-5 shadow-xl flex items-center justify-center">
-                <span class="material-symbols-outlined text-4xl" style="font-variation-settings:'FILL' 1">open_in_browser</span>
+          <!-- Visual: browser mockup -->
+          <div class="bg-[#0b0f0d] border border-white/5 shadow-2xl" style="border-radius:2px">
+            <!-- Browser chrome -->
+            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
+              <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
+              <!-- Fake URL bar -->
+              <div class="ml-3 flex-1 bg-white/5 px-3 py-1 flex items-center gap-2">
+                <span class="material-symbols-outlined text-green-400/50" style="font-size:11px">lock</span>
+                <span class="text-[10px] text-white/30 code-font">app.notion.so/workspace</span>
               </div>
-              <div class="flex gap-3">
-                <div class="bg-white border border-outline-variant/10 px-3 py-2 shadow-sm flex items-center gap-2 group-hover:-translate-y-1 transition-transform duration-500">
-                  <span class="material-symbols-outlined text-secondary text-base opacity-60">tab</span>
-                  <span class="text-xs font-semibold text-on-surface">Tab 1</span>
+            </div>
+            <!-- Tab bar -->
+            <div class="flex items-center gap-1 px-3 pt-2 border-b border-white/5 bg-black/20">
+              <div class="flex items-center gap-2 px-3 py-1.5 bg-white/8 border-t border-x border-white/10 text-[10px] text-white/50 font-medium">
+                <span class="material-symbols-outlined text-blue-400/60" style="font-size:11px">tab</span>
+                Notion
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 text-[10px] text-white/25 font-medium">
+                <span class="material-symbols-outlined text-white/20" style="font-size:11px">tab</span>
+                Gmail
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 text-[10px] text-white/25 font-medium">
+                <span class="material-symbols-outlined text-white/20" style="font-size:11px">tab</span>
+                Linear
+              </div>
+            </div>
+            <!-- Page content being automated -->
+            <div class="p-5 space-y-3">
+              <!-- Biome action overlay indicator -->
+              <div class="flex items-center gap-2 bg-primary/20 border border-primary/30 px-3 py-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
+                <span class="text-[10px] text-green-400/80 font-bold uppercase tracking-widest">Biome is controlling this tab</span>
+              </div>
+              <!-- Simulated page content -->
+              <div class="space-y-2 opacity-60">
+                <div class="h-2.5 bg-white/10 w-3/4"></div>
+                <div class="h-2.5 bg-white/10 w-1/2"></div>
+              </div>
+              <!-- Action log -->
+              <div class="space-y-1.5 pt-2 border-t border-white/5">
+                <div class="flex items-center gap-2 text-[11px] text-white/40">
+                  <span class="material-symbols-outlined text-green-400/60" style="font-size:12px">check_circle</span>
+                  Navigated to Notion workspace
                 </div>
-                <div class="bg-white border border-outline-variant/10 px-3 py-2 shadow-sm flex items-center gap-2 group-hover:translate-y-1 transition-transform duration-500">
-                  <span class="material-symbols-outlined text-secondary text-base opacity-60">tab</span>
-                  <span class="text-xs font-semibold text-on-surface">Tab 2</span>
+                <div class="flex items-center gap-2 text-[11px] text-white/40">
+                  <span class="material-symbols-outlined text-green-400/60" style="font-size:12px">check_circle</span>
+                  Clicked "New page"
+                </div>
+                <div class="flex items-center gap-2 text-[11px] text-white/60">
+                  <span class="material-symbols-outlined text-yellow-400/60" style="font-size:12px">pending</span>
+                  Typing meeting notes&hellip;
                 </div>
               </div>
-              <div class="text-[10px] font-bold uppercase tracking-widest text-primary/40">Live browser control</div>
             </div>
           </div>
         </div>
@@ -743,9 +868,9 @@
               <div class="text-sm font-bold text-secondary mb-8 uppercase tracking-widest">$0 USD — No card required</div>
               <ul class="space-y-4 mb-8">
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Full chat, workflows &amp; skills</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Browser Control system</li>
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>All AI models (bring your own key)</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>500 long-term memory entries</li>
+                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>File &amp; image attachments</li>
+                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Visual workflow builder</li>
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Community support</li>
               </ul>
             </div>
@@ -765,7 +890,8 @@
               <div class="text-sm font-bold text-secondary mb-8 uppercase tracking-widest">Billed Monthly · Cancel Anytime</div>
               <ul class="space-y-4 mb-8">
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Everything in Free</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Extended memory (2,500 entries)</li>
+                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Browser Control &amp; Chrome automation</li>
+                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>AI Chat Piggyback (no extra API key)</li>
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Zero-Knowledge privacy mode</li>
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Priority email support</li>
                 <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Early access to new features</li>
@@ -800,6 +926,7 @@
 
     <!-- ── Download ── -->
     <section id="download" class="bg-primary text-on-primary py-24 md:py-32 px-6 md:px-12 overflow-hidden relative">
+      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1511497584788-876760111969?w=1920&q=80&fit=crop&crop=center');background-size:cover;background-position:center;mix-blend-mode:overlay;opacity:0.22;"></div>
       <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 gap-12">
         <div class="max-w-xl">
           <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-6">Start Building.</h2>
@@ -829,8 +956,9 @@
     </section>
 
     <!-- ── Security ── -->
-    <section id="security" class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low">
-      <div class="max-w-[1440px] mx-auto">
+    <section id="security" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface-container-low overflow-hidden">
+      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center 60%;opacity:0.04;"></div>
+      <div class="relative max-w-[1440px] mx-auto">
         <div class="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
           <div class="max-w-2xl">
             <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Security &amp; Privacy</span>
@@ -946,7 +1074,7 @@
               <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
             </button>
             <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">No. The free download gives you the core Biome app — chat, workflows, skills, local/API-key models, and optional browser control — with 500 memory entries and community support. Pro adds the managed model proxy, extended memory, and priority support.</p>
+              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">No. The free download gives you the full Biome app — chat, workflows, skills, all AI models (bring your own key), file attachments, and community support. Pro unlocks Browser Control &amp; Chrome automation, AI Chat Piggyback, Zero-Knowledge privacy mode, and priority support.</p>
             </div>
           </div>
           <div class="faq-item border-b border-outline-variant/20">
@@ -1052,7 +1180,7 @@
           <span class="text-xl font-black tracking-[0.15em] text-[#0c2c16] uppercase">Biome</span>
         </div>
         <p class="text-[#424842] text-[0.75rem] leading-relaxed max-w-xs">
-          Building personal intelligence cores for everyone. Start for free. Connect anything. Always on.
+          Building personal AI agents for everyone. Start for free. Connect anything. Always on.
         </p>
         <p class="text-[#566342] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.4.1</p>
       </div>
@@ -1520,36 +1648,63 @@
 
 
     // ── Mobile Menu ────────────────────────────────────────
+    function setMenuHeight(menu, open) {
+      if (open) {
+        menu.style.height = '0px';
+        requestAnimationFrame(() => { menu.style.height = menu.scrollHeight + 'px'; });
+        menu.addEventListener('transitionend', () => { menu.style.height = ''; }, { once: true });
+      } else {
+        menu.style.height = menu.scrollHeight + 'px';
+        requestAnimationFrame(() => { menu.style.height = '0px'; });
+      }
+    }
+
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const icon = document.getElementById('hamburger-icon');
       const isOpen = menu.classList.contains('open');
       menu.classList.toggle('open', !isOpen);
       icon.textContent = isOpen ? 'menu' : 'close';
+      setMenuHeight(menu, !isOpen);
     }
 
     function closeMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const icon = document.getElementById('hamburger-icon');
+      if (!menu.classList.contains('open')) return;
       menu.classList.remove('open');
       icon.textContent = 'menu';
+      setMenuHeight(menu, false);
     }
 
     // ── FAQ Accordion ──────────────────────────────────────
+    function closeFaqBody(body, chevron) {
+      body.style.height = body.offsetHeight + 'px';
+      requestAnimationFrame(() => { body.style.height = '0px'; });
+      body.classList.remove('open');
+      if (chevron) chevron.classList.remove('open');
+    }
+
+    function openFaqBody(body, chevron) {
+      body.classList.add('open');
+      body.style.height = '0px';
+      requestAnimationFrame(() => { body.style.height = body.scrollHeight + 'px'; });
+      body.addEventListener('transitionend', () => { body.style.height = 'auto'; }, { once: true });
+      if (chevron) chevron.classList.add('open');
+    }
+
     function toggleFaq(btn) {
       const item = btn.parentElement;
       const body = item.querySelector('.faq-body');
       const chevron = btn.querySelector('.faq-chevron');
       const isOpen = body.classList.contains('open');
 
-      // Close all others
-      document.querySelectorAll('.faq-body').forEach(b => b.classList.remove('open'));
-      document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('open'));
+      // Close all others first
+      document.querySelectorAll('.faq-body.open').forEach(b => {
+        closeFaqBody(b, b.closest('.faq-item')?.querySelector('.faq-chevron'));
+      });
 
-      if (!isOpen) {
-        body.classList.add('open');
-        chevron.classList.add('open');
-      }
+      if (!isOpen) openFaqBody(body, chevron);
     }
 
     // ── Changelog ──────────────────────────────────────────
@@ -1557,10 +1712,20 @@
       const panel = document.getElementById('changelog-full');
       const icon = document.getElementById('changelog-icon');
       const isOpen = panel.classList.contains('open');
-      panel.classList.toggle('open', !isOpen);
-      icon.textContent = isOpen ? 'arrow_forward' : 'expand_less';
-      btn.querySelector('span:first-child') // update text
-      btn.childNodes[0].textContent = isOpen ? 'View Full Changelog ' : 'Hide Changelog ';
+      if (isOpen) {
+        panel.style.height = panel.scrollHeight + 'px';
+        requestAnimationFrame(() => { panel.style.height = '0px'; });
+        panel.classList.remove('open');
+        icon.textContent = 'arrow_forward';
+        btn.childNodes[0].textContent = 'View Full Changelog ';
+      } else {
+        panel.classList.add('open');
+        panel.style.height = '0px';
+        requestAnimationFrame(() => { panel.style.height = panel.scrollHeight + 'px'; });
+        panel.addEventListener('transitionend', () => { panel.style.height = ''; }, { once: true });
+        icon.textContent = 'expand_less';
+        btn.childNodes[0].textContent = 'Hide Changelog ';
+      }
     }
 
     // ── Active Nav on Scroll ───────────────────────────────
@@ -1589,11 +1754,16 @@
     // ── Terminal Animation ─────────────────────────────────
     function animateTerminal() {
       const lines = document.querySelectorAll('.terminal-line');
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       lines.forEach((line, i) => {
-        setTimeout(() => {
-          line.style.transition = 'opacity 0.35s ease';
+        if (reduced) {
           line.style.opacity = '1';
-        }, 400 + i * 350);
+        } else {
+          setTimeout(() => {
+            line.style.transition = 'opacity 0.35s ease';
+            line.style.opacity = '1';
+          }, 400 + i * 350);
+        }
       });
     }
 
@@ -1610,6 +1780,192 @@
     if (terminal) terminalObserver.observe(terminal);
   </script>
   <script src="/cookie-consent.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" crossorigin="anonymous"></script>
+  <script>
+  (function () {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // ── 1. Logo SVG draw-in ─────────────────────────────────
+    const logoCircles = document.querySelectorAll('#biome-logo-svg circle');
+    logoCircles.forEach(c => {
+      const len = c.getTotalLength();
+      c.style.strokeDasharray = len;
+      c.style.strokeDashoffset = reduced ? 0 : len;
+    });
+    if (!reduced && logoCircles.length) {
+      anime({
+        targets: '#biome-logo-svg circle',
+        strokeDashoffset: [anime.setDashoffset, 0],
+        duration: 1400,
+        delay: anime.stagger(180),
+        easing: 'easeInOutSine'
+      });
+    }
+
+    // ── 2. Hero entrance timeline ───────────────────────────
+    const heroTargets = ['.hero-eyebrow', '#hero-heading', '.hero-subtitle', '.hero-ctas', '.hero-metrics', '.hero-visual'];
+    if (!reduced) {
+      heroTargets.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.style.opacity = '0'; }));
+      setTimeout(() => {
+        anime.timeline({ easing: 'easeOutExpo' })
+          .add({ targets: '.hero-eyebrow',  opacity: [0, 1], translateY: [10, 0], duration: 500 })
+          .add({ targets: '#hero-heading',  opacity: [0, 1], translateY: [40, 0], duration: 750 }, '-=200')
+          .add({ targets: '.hero-subtitle', opacity: [0, 1], translateY: [20, 0], duration: 600 }, '-=450')
+          .add({ targets: '.hero-ctas',     opacity: [0, 1], translateY: [14, 0], duration: 500 }, '-=350')
+          .add({ targets: '.hero-metrics',  opacity: [0, 1], translateY: [10, 0], duration: 400 }, '-=250')
+          .add({ targets: '.hero-visual',   opacity: [0, 1], translateX: [40, 0], duration: 800 }, '-=700');
+      }, 60);
+    }
+
+    // ── 3. Metric counters (trigger when metrics row is in view) ──
+    const metricsEl = document.querySelector('.hero-metrics');
+    if (metricsEl) {
+      let metricsDone = false;
+      const mObs = new IntersectionObserver(entries => {
+        if (!entries[0].isIntersecting || metricsDone) return;
+        metricsDone = true;
+        mObs.disconnect();
+        if (reduced) return;
+        const counters = [
+          { id: 'metric-skills',    to: 20, suffix: '+' },
+          { id: 'metric-providers', to: 11, suffix: '+' }
+        ];
+        counters.forEach(({ id, to, suffix }) => {
+          const el = document.getElementById(id);
+          if (!el) return;
+          anime({
+            targets: { val: 0 }, val: to, round: 1,
+            duration: 1100, easing: 'easeOutExpo',
+            update(a) { el.textContent = Math.round(a.animations[0].currentValue) + suffix; }
+          });
+        });
+      }, { threshold: 0.5 });
+      mObs.observe(metricsEl);
+    }
+
+    // ── 4. Scroll-reveal stagger for section grids ──────────
+    if (!reduced) {
+      const revealGroups = [
+        { sel: '#how-it-works .space-y-10 > div', gap: 130 },
+        { sel: '#features .grid > div',           gap: 55  },
+        { sel: '#security .grid > div',           gap: 55  },
+        { sel: '#pricing .grid > div',            gap: 100 },
+      ];
+
+      revealGroups.forEach(({ sel, gap }) => {
+        const els = document.querySelectorAll(sel);
+        if (!els.length) return;
+        els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; });
+        let fired = false;
+        const obs = new IntersectionObserver(entries => {
+          if (fired || !entries[0].isIntersecting) return;
+          fired = true;
+          obs.disconnect();
+          anime({
+            targets: els,
+            opacity: [0, 1],
+            translateY: [24, 0],
+            delay: anime.stagger(gap),
+            duration: 620,
+            easing: 'easeOutExpo'
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
+        obs.observe(els[0]);
+      });
+
+      // Featured privacy card standalone reveal
+      const featCard = document.querySelector('#features .bg-primary.text-on-primary');
+      if (featCard) {
+        featCard.style.opacity = '0';
+        featCard.style.transform = 'translateY(20px)';
+        const fcObs = new IntersectionObserver(entries => {
+          if (!entries[0].isIntersecting) return;
+          fcObs.disconnect();
+          anime({ targets: featCard, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' });
+        }, { threshold: 0.15 });
+        fcObs.observe(featCard);
+      }
+    }
+
+    // ── 5. Feature icon hover jiggle ────────────────────────
+    if (!reduced) {
+      document.querySelectorAll('#features .grid > div').forEach(card => {
+        const icon = card.querySelector('.material-symbols-outlined');
+        if (!icon) return;
+        let jiggling = false;
+        card.addEventListener('mouseenter', () => {
+          if (jiggling) return;
+          jiggling = true;
+          anime({
+            targets: icon,
+            rotate: [0, -10, 10, -5, 5, 0],
+            duration: 480,
+            easing: 'easeInOutSine',
+            complete: () => { jiggling = false; }
+          });
+        });
+      });
+    }
+
+    // ── 6. Pricing cards stagger from slightly different Y ──
+    if (!reduced) {
+      const pricingCards = document.querySelectorAll('#pricing .grid > div');
+      if (pricingCards.length) {
+        pricingCards.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; });
+        let pFired = false;
+        const pObs = new IntersectionObserver(entries => {
+          if (pFired || !entries[0].isIntersecting) return;
+          pFired = true;
+          pObs.disconnect();
+          anime({
+            targets: pricingCards,
+            opacity: [0, 1],
+            translateY: [30, 0],
+            delay: anime.stagger(110, { start: 100 }),
+            duration: 650,
+            easing: 'easeOutExpo'
+          });
+        }, { threshold: 0.12 });
+        pObs.observe(pricingCards[0]);
+      }
+    }
+
+    // ── 7. Nav link underline slide-in on hover ─────────────
+    if (!reduced) {
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          anime({ targets: link, paddingBottom: ['2px', '6px'], duration: 200, easing: 'easeOutQuad' });
+        });
+        link.addEventListener('mouseleave', () => {
+          anime({ targets: link, paddingBottom: ['6px', '4px'], duration: 200, easing: 'easeOutQuad' });
+        });
+      });
+    }
+
+    // ── 8. Hero forest parallax on scroll ───────────────────
+    const parallaxBg = document.getElementById('parallax-bg');
+    if (parallaxBg && !reduced) {
+      let rafPending = false;
+      window.addEventListener('scroll', () => {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+          parallaxBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
+          rafPending = false;
+        });
+      }, { passive: true });
+    }
+
+    // ── 9. Nav: scroll shadow ────
+    const mainNav = document.querySelector('nav');
+    if (mainNav) {
+      window.addEventListener('scroll', () => {
+        mainNav.style.boxShadow = window.scrollY > 10 ? '0 1px 12px rgba(0,0,0,0.07)' : '';
+      }, { passive: true });
+    }
+
+  })();
+  </script>
 
 </body>
 </html>
