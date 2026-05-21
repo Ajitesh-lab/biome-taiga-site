@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Biome">
+  <rect width="512" height="512" rx="112" fill="#0c2c16"/>
+  <circle cx="256" cy="256" r="186" fill="none" stroke="#edf7ec" stroke-width="18"/>
+  <circle cx="256" cy="194" r="92" fill="none" stroke="#edf7ec" stroke-width="18"/>
+  <circle cx="336" cy="287" r="92" fill="none" stroke="#edf7ec" stroke-width="18"/>
+  <circle cx="176" cy="287" r="92" fill="none" stroke="#edf7ec" stroke-width="18"/>
+</svg>

@@ -1,1971 +1,628 @@
-<!DOCTYPE html>
-<html class="light scroll-smooth" lang="en">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>Biome | Your Personal AI Agent</title>
-  <meta name="description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
-  <!-- Open Graph -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content="https://biomeai.uk/"/>
-  <meta property="og:title" content="Biome | Your Personal AI Agent"/>
-  <meta property="og:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
-  <meta property="og:image" content="https://biomeai.uk/og-image.png"/>
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Biome | Your Personal AI Agent"/>
-  <meta name="twitter:description" content="Design, personalize, and deploy your own intelligent AI agent for free. Simple enough for anyone, powerful enough for everyone."/>
-  <meta name="twitter:image" content="https://biomeai.uk/og-image.png"/>
-  <!-- Canonical -->
-  <link rel="canonical" href="https://biomeai.uk/"/>
-  <!-- Structured Data -->
-  <script type="application/ld+json">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Biome — Personal AI Agent for Mac | Autonomous Research, Code & Files</title>
+<meta name="description" content="Biome is a personal AI agent for macOS. Autonomously research, write code, browse the web, and manage files — all local-first with your own API keys. Free plan available." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://biomeai.uk/" />
+<meta property="og:title" content="Biome — Personal AI Agent for Mac" />
+<meta property="og:description" content="Autonomously research, write code, browse the web, and manage files — all local-first on macOS. Free plan available." />
+<meta property="og:image" content="https://biomeai.uk/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Biome — Personal AI Agent for Mac" />
+<meta name="twitter:description" content="Autonomously research, write code, browse the web, and manage files — local-first on macOS. Free plan available." />
+<meta name="twitter:image" content="https://biomeai.uk/og-image.png" />
+<link rel="canonical" href="https://biomeai.uk/" />
+<script type="application/ld+json">
+[
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Biome",
     "url": "https://biomeai.uk",
-    "description": "Design, personalize, and deploy your own intelligent AI agent for free.",
-    "applicationCategory": "DesktopApplication",
-    "operatingSystem": ["macOS"],
+    "description": "Personal AI agent for macOS. Autonomously research, write code, browse the web, and manage files — local-first with your own API keys.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": ["macOS 13+"],
     "offers": [
+      {"@type": "Offer", "name": "Personal", "price": "0", "priceCurrency": "GBP"},
+      {"@type": "Offer", "name": "Pro", "price": "29", "priceCurrency": "GBP"}
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
       {
-        "@type": "Offer",
-        "name": "Personal",
-        "price": "0",
-        "priceCurrency": "GBP"
+        "@type": "Question",
+        "name": "Do I need an API key to use Biome?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes — Biome runs on your machine and calls AI APIs directly using your own keys. You can bring keys for Google Gemini (free tier available), Anthropic Claude, OpenAI, xAI Grok, Mistral, or Perplexity. Keys are stored locally, never sent to our servers. Gemini has a generous free tier, so you can get started at zero cost."}
       },
       {
-        "@type": "Offer",
-        "name": "Pro",
-        "price": "29",
-        "priceCurrency": "USD"
+        "@type": "Question",
+        "name": "What does the free plan include?",
+        "acceptedAnswer": {"@type": "Answer", "text": "The free download gives you the full Biome app — chat, workflows, skills, all AI models (bring your own key), file attachments, and community support. Pro unlocks Browser Control through the local browser relay and lightweight Chrome extension, AI Chat Piggyback, Zero-Knowledge privacy mode, and priority support."}
+      },
+      {
+        "@type": "Question",
+        "name": "Is my data private?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Almost everything stays on your machine. Conversations, memory, and settings are stored locally by the desktop app — never on our servers. API calls go directly from your device to whichever AI provider you choose. We only keep account, billing, and consent records needed to run the service."}
+      },
+      {
+        "@type": "Question",
+        "name": "What is Browser Control and do I need Chrome?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Browser Control is a Pro feature that lets your agent open URLs, click elements, fill forms, and read page content in Chrome through Biome's local browser relay and lightweight Chrome extension. It's not required for basic web search — that works without Chrome. Browser Control unlocks deeper automation like reading paywalled content, filling forms, and interacting with web apps."}
+      },
+      {
+        "@type": "Question",
+        "name": "What macOS version do I need?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Biome requires macOS 13 Ventura or later. It runs natively on both Apple Silicon (M-series) and Intel Macs. A Windows version is in active development."}
+      },
+      {
+        "@type": "Question",
+        "name": "Can I cancel my Pro subscription anytime?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Yes. Cancel anytime from your billing portal with no questions asked. You keep Pro access until the end of your current billing period, then revert to the free tier automatically."}
       }
     ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Biome",
+    "url": "https://biomeai.uk",
+    "email": "team@biomeai.uk"
   }
-  </script>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-80 -80 160 160'%3E%3Ccircle cx='0' cy='0' r='72' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='0' cy='-24' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3Ccircle cx='-31.2' cy='12' r='36' fill='none' stroke='%230c2c16' stroke-width='3'/%3E%3C/svg%3E"/>
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=DM+Mono:wght@400;500&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0..1,0&display=swap" rel="stylesheet"/>
-  <!-- Custom OTP Auth (no external SDK needed) -->
-  <script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          colors: {
-            "on-primary": "#ffffff",
-            "on-tertiary": "#ffffff",
-            "on-tertiary-fixed-variant": "#653a44",
-            "surface-bright": "#f9faf6",
-            "on-primary-container": "#8cae8f",
-            "on-tertiary-fixed": "#32101a",
-            "error": "#ba1a1a",
-            "primary": "#0c2c16",
-            "secondary": "#566342",
-            "surface-container-high": "#e7e9e5",
-            "surface": "#f9faf6",
-            "tertiary-fixed": "#ffd9e0",
-            "outline": "#727971",
-            "on-secondary": "#ffffff",
-            "inverse-surface": "#2e312f",
-            "surface-tint": "#46664b",
-            "surface-container-low": "#f3f4f0",
-            "surface-variant": "#e2e3df",
-            "tertiary": "#3f1a24",
-            "secondary-fixed": "#dae8be",
-            "on-secondary-fixed-variant": "#3f4b2c",
-            "surface-container-lowest": "#ffffff",
-            "secondary-container": "#dae8be",
-            "on-surface": "#1a1c1a",
-            "on-error-container": "#93000a",
-            "on-secondary-fixed": "#151f05",
-            "inverse-on-surface": "#f0f1ed",
-            "surface-dim": "#d9dad7",
-            "on-background": "#1a1c1a",
-            "surface-container": "#edeeea",
-            "error-container": "#ffdad6",
-            "on-primary-fixed": "#02210c",
-            "secondary-fixed-dim": "#becca3",
-            "background": "#f9faf6",
-            "tertiary-fixed-dim": "#f2b7c3",
-            "primary-fixed": "#c7ecca",
-            "on-secondary-container": "#5c6947",
-            "tertiary-container": "#582f39",
-            "inverse-primary": "#accfaf",
-            "primary-fixed-dim": "#accfaf",
-            "on-surface-variant": "#424842",
-            "on-tertiary-container": "#cf97a2",
-            "on-primary-fixed-variant": "#2e4e35",
-            "outline-variant": "#c2c8bf",
-            "surface-container-highest": "#e2e3df",
-            "on-error": "#ffffff",
-            "primary-container": "#23422a"
-          },
-          fontFamily: {
-            "headline": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"],
-            "body": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"],
-            "label": ["Space Grotesk", "Helvetica", "Arial", "sans-serif"]
-          },
-          borderRadius: {"DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px"},
-        },
-      },
-    }
-  </script>
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-    }
-    :root {
-      --ease-expo: cubic-bezier(0.16, 1, 0.3, 1);
-      --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    body {
-      background-color: #f9faf6;
-      color: #1a1c1a;
-      -webkit-font-smoothing: antialiased;
-      font-family: "Space Grotesk", "Helvetica", "Arial", sans-serif;
-    }
-    .code-font {
-      font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-      }
-    }
-
-    /* Toast */
-    #toast {
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    #toast.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #toast.hide {
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-
-    /* Modal */
-    #modal-overlay {
-      transition: opacity 0.25s ease;
-    }
-    #modal-overlay.show {
-      opacity: 1;
-      pointer-events: all;
-    }
-    #modal-overlay.hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-    #modal-box {
-      transition: opacity 0.25s ease, transform 0.25s ease;
-    }
-    #modal-overlay.show #modal-box {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    #modal-overlay.hide #modal-box {
-      opacity: 0;
-      transform: translateY(1.5rem);
-    }
-
-    /* FAQ accordion */
-    .faq-body {
-      height: 0;
-      overflow: hidden;
-      transition: height 0.35s var(--ease-expo);
-    }
-    .faq-chevron {
-      transition: transform 0.3s var(--ease-expo);
-    }
-    .faq-chevron.open {
-      transform: rotate(180deg);
-    }
-
-    /* Nav active */
-    nav a.nav-active {
-      color: #0c2c16;
-      border-bottom: 2px solid #0c2c16;
-      padding-bottom: 4px;
-    }
-    nav a.nav-inactive {
-      color: #424842;
-      border-bottom: 2px solid transparent;
-      padding-bottom: 4px;
-    }
-
-    /* Mobile menu */
-    #mobile-menu {
-      height: 0;
-      overflow: hidden;
-      transition: height 0.35s var(--ease-expo);
-    }
-
-    /* Changelog expand */
-    #changelog-full {
-      height: 0;
-      overflow: hidden;
-      transition: height 0.4s var(--ease-expo);
-    }
-
-    /* CTA press feedback */
-    .cta-press:active {
-      transform: scale(0.98);
-    }
-
-    /* Nav smooth transition between transparent/frosted states */
-    nav {
-      transition: background-color 0.4s ease, border-color 0.4s ease;
-    }
-    nav .nav-link {
-      transition: color 0.3s ease, border-color 0.2s ease, padding-bottom 0.2s ease;
-    }
-    .text-primary\/20 {
-      color: rgba(12, 44, 22, 0.58) !important;
-    }
-    .text-white\/20 {
-      color: rgba(255, 255, 255, 0.76) !important;
-    }
-    .text-on-surface-variant\/80,
-    .text-on-surface-variant\/60,
-    .text-on-surface-variant\/50 {
-      color: #424842 !important;
-    }
-    #integrations .text-on-surface-variant\/60,
-    #integrations .text-on-surface-variant\/50,
-    #pricing .text-on-surface-variant\/50 {
-      color: #424842 !important;
-    }
-    #download .text-on-primary-container\/50,
-    #download .text-on-primary-container\/80 {
-      color: #accfaf !important;
-    }
-    #dl-mac-btn .opacity-60 {
-      color: #0c2c16;
-      opacity: 0.9;
-    }
-  </style>
+]
+</script>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0c2c16" />
+<link rel="stylesheet" href="site.css?v=20260521-ui2">
 </head>
-<body class="selection:bg-secondary-container selection:text-on-secondary-container">
+<body>
 
-  <!-- ── Toast Notification ── -->
-  <div id="toast" class="hide fixed bottom-8 left-1/2 -translate-x-1/2 z-[200] bg-primary text-on-primary px-6 py-4 flex items-center gap-3 shadow-xl">
-    <span class="material-symbols-outlined text-secondary-container text-xl">check_circle</span>
-    <span id="toast-msg" class="text-sm font-bold tracking-tight"></span>
-  </div>
+<!-- ── Toast ── -->
+<div id="toast"></div>
 
-  <!-- ── Auth Modal ── -->
-  <div id="modal-overlay" class="hide fixed inset-0 bg-black/40 backdrop-blur-sm z-[100] flex items-center justify-center px-6">
-    <div id="modal-box" class="bg-surface-container-lowest w-full max-w-md p-10 shadow-2xl relative">
-      <button onclick="closeModal()" class="absolute top-5 right-5 text-on-surface-variant hover:text-primary transition-colors">
-        <span class="material-symbols-outlined">close</span>
-      </button>
+<!-- ── Auth Modal ── -->
+<div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title-el" aria-hidden="true" inert hidden>
+  <div id="modal-box">
+    <button class="modal-close" onclick="closeModal()" aria-label="Close">&#x2715;</button>
 
-      <!-- Step 1: Create Account / Sign In tabs -->
-      <div id="modal-step-1">
-        <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary block mb-4" id="modal-plan-label">Personal Plan</span>
-        <h3 class="text-3xl font-black tracking-tighter text-primary mb-2" id="modal-title">Start for Free</h3>
-        <p class="text-on-surface-variant text-sm leading-relaxed mb-6" id="modal-desc">Create your account to get started.</p>
+    <!-- Step 1: Create / Sign In -->
+    <div id="modal-step-1">
+      <div class="modal-eyebrow" id="modal-plan-label">Personal Plan</div>
+      <h2 class="modal-title" id="modal-title-el">Start for Free</h2>
+      <p class="modal-desc" id="modal-desc">Create your account and deploy your first AI agent in under 60 seconds.</p>
 
-        <!-- Tab bar -->
-        <div class="flex border border-outline-variant/40 mb-6 overflow-hidden" style="border-radius:4px">
-          <button id="modal-tab-create" onclick="switchModalTab('create')" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest bg-primary text-on-primary transition-colors">Create Account</button>
-          <button id="modal-tab-signin" onclick="switchModalTab('signin')" class="flex-1 py-3 text-xs font-bold uppercase tracking-widest bg-surface-container-low text-on-surface-variant transition-colors">Sign In</button>
-        </div>
-
-        <!-- Create Account panel -->
-        <div id="modal-panel-create">
-          <form id="modal-form" onsubmit="handleRegister(event)" class="space-y-4">
-            <div>
-              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Username</label>
-              <input id="modal-username-input" type="text" required placeholder="yourname" maxlength="30" autocomplete="off" autocorrect="off" spellcheck="false"
-                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email Address</label>
-              <input id="modal-email-input" type="email" required placeholder="you@company.com" autocomplete="email"
-                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-              <p id="modal-email-app-notice" class="hidden text-[10px] mt-2 leading-relaxed px-1" style="color:#6b7280">Use the same email as your Biome app — your Pro plan activates automatically when you sign in to the app.</p>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Password</label>
-              <input id="modal-password-input" type="password" required placeholder="Min 8 characters" autocomplete="new-password"
-                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-            </div>
-            <div id="modal-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
-            <button type="submit" id="modal-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors mt-2 disabled:opacity-50 disabled:cursor-not-allowed">
-              Send Verification Code
-            </button>
-          </form>
-          <p id="modal-footer-text" class="text-[10px] text-on-surface-variant/60 mt-6 leading-relaxed">
-            By signing up you agree to our <a href="/terms.html" target="_blank" class="underline hover:text-primary">Terms of Service</a> and <a href="/privacy.html" target="_blank" class="underline hover:text-primary">Privacy Policy</a>.
-          </p>
-        </div>
-
-        <!-- Sign In panel -->
-        <div id="modal-panel-signin" class="hidden">
-          <form id="modal-signin-form" onsubmit="handleSignIn(event)" class="space-y-4">
-            <div>
-              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Email or Username</label>
-              <input id="modal-si-identifier" type="text" required placeholder="you@company.com" autocomplete="email"
-                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-            </div>
-            <div>
-              <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Password</label>
-              <input id="modal-si-password" type="password" required placeholder="Your password" autocomplete="current-password"
-                class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-3 text-sm text-on-surface placeholder-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors"/>
-            </div>
-            <div id="modal-signin-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
-            <button type="submit" id="modal-signin-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-              Sign In
-            </button>
-          </form>
-        </div>
+      <div class="modal-tabs">
+        <button id="modal-tab-create" class="modal-tab active" onclick="switchModalTab('create')">Create Account</button>
+        <button id="modal-tab-signin" class="modal-tab" onclick="switchModalTab('signin')">Sign In</button>
       </div>
 
-      <!-- Step 2: OTP entry (registration) -->
-      <div id="modal-step-2" class="hidden">
-        <button onclick="backToStep1()" class="flex items-center gap-1 text-[10px] font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors mb-6">
-          <span class="material-symbols-outlined text-sm">arrow_back</span> Back
-        </button>
-        <h3 class="text-3xl font-black tracking-tighter text-primary mb-2">Check Your Inbox</h3>
-        <p class="text-on-surface-variant text-sm leading-relaxed mb-2">We sent a 6-digit code to</p>
-        <p class="text-primary font-bold text-sm mb-8" id="modal-otp-email-display"></p>
-        <form id="modal-otp-form" onsubmit="handleVerifyOTP(event)" class="space-y-4">
-          <div>
-            <label class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant block mb-2">Verification Code</label>
-            <input id="modal-otp-input" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required placeholder="000000"
-              class="w-full border border-outline-variant/40 bg-surface-container-low px-4 py-4 text-2xl font-black text-center tracking-[0.4em] text-on-surface focus:outline-none focus:border-primary transition-colors"/>
+      <!-- Register panel -->
+      <div id="modal-panel-create">
+        <form id="modal-form" onsubmit="handleRegister(event)">
+          <div class="modal-field">
+            <label class="modal-label" for="modal-username-input">Username</label>
+            <input id="modal-username-input" class="modal-input" type="text" required placeholder="yourname" maxlength="30" autocomplete="off" autocorrect="off" spellcheck="false" />
           </div>
-          <div id="modal-otp-error" class="hidden bg-error-container text-on-error-container text-xs font-bold px-4 py-3 leading-relaxed"></div>
-          <button type="submit" id="modal-otp-cta" class="w-full bg-primary text-on-primary py-4 font-bold text-sm uppercase tracking-widest hover:bg-primary-container transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
-            Verify &amp; Create Account
-          </button>
+          <div class="modal-field">
+            <label class="modal-label" for="modal-email-input">Email Address</label>
+            <input id="modal-email-input" class="modal-input" type="email" required placeholder="you@company.com" autocomplete="email" />
+            <p id="modal-email-app-notice" class="hidden">Use the same email as your Biome app — your Pro plan activates automatically when you sign in to the app.</p>
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="modal-password-input">Password</label>
+            <input id="modal-password-input" class="modal-input" type="password" required placeholder="Min 8 characters" autocomplete="new-password" />
+          </div>
+          <div id="modal-error" class="modal-error hidden"></div>
+          <button type="submit" id="modal-cta" class="modal-cta">Send Verification Code</button>
         </form>
-        <p class="text-[10px] text-on-surface-variant/60 mt-6">
-          Didn't get it? <button type="button" onclick="resendOTP()" class="underline font-bold hover:text-primary">Resend code</button>
-          &nbsp;·&nbsp; Code expires in 10 minutes.
-        </p>
+        <p class="modal-footer">By signing up you agree to our <a href="/terms.html" target="_blank" rel="noopener">Terms of Service</a> and <a href="/privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- Sign in panel -->
+      <div id="modal-panel-signin" class="hidden">
+        <form id="modal-signin-form" onsubmit="handleSignIn(event)">
+          <div class="modal-field">
+            <label class="modal-label" for="modal-si-identifier">Email or Username</label>
+            <input id="modal-si-identifier" class="modal-input" type="text" required placeholder="you@company.com" autocomplete="email" />
+          </div>
+          <div class="modal-field">
+            <label class="modal-label" for="modal-si-password">Password</label>
+            <input id="modal-si-password" class="modal-input" type="password" required placeholder="Your password" autocomplete="current-password" />
+          </div>
+          <div id="modal-signin-error" class="modal-error hidden"></div>
+          <button type="submit" id="modal-signin-cta" class="modal-cta">Sign In</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Step 2: OTP -->
+    <div id="modal-step-2" class="hidden">
+      <button onclick="backToStep1()" style="background:0;border:0;cursor:pointer;font-size:13px;color:var(--ink-2);margin-bottom:20px;padding:0;font-family:inherit;">&#8592; Back</button>
+      <h2 class="modal-title">Check Your Inbox</h2>
+      <p class="modal-desc">We sent a 6-digit code to <strong id="modal-otp-email-display"></strong></p>
+      <form id="modal-otp-form" onsubmit="handleVerifyOTP(event)">
+        <div class="modal-field">
+          <label class="modal-label" for="modal-otp-input">Verification Code</label>
+          <input id="modal-otp-input" class="modal-input otp-input" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required placeholder="000000" autocomplete="one-time-code" />
+        </div>
+        <div id="modal-otp-error" class="modal-error hidden"></div>
+        <button type="submit" id="modal-otp-cta" class="modal-cta">Verify &amp; Create Account</button>
+      </form>
+      <p class="modal-footer">Didn&#8217;t get it? <button type="button" onclick="resendOTP()" style="background:0;border:0;cursor:pointer;text-decoration:underline;color:var(--ink-3);font-family:inherit;font-size:11px;padding:0;">Resend code</button> &nbsp;&middot;&nbsp; Expires in 10 minutes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── Nav ── -->
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a class="brand" href="/">Biome</a>
+    <ul>
+      <li><a href="#features" class="nav-link" data-section="features">Features</a></li>
+      <li><a href="#pricing" class="nav-link" data-section="pricing">Pricing</a></li>
+      <li><a href="#download" class="nav-link" data-section="download">Download</a></li>
+      <li><a href="#support" class="nav-link" data-section="support">Support</a></li>
+      <li><a href="/blog/" class="nav-link">Blog</a></li>
+    </ul>
+    <div class="right">
+      <button id="nav-auth-btn" onclick="openModal('signin')">Sign in</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="hamburger-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M3 5h14M3 10h14M3 15h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </nav>
+  <div id="mobile-menu" aria-hidden="true">
+    <div class="mm-inner">
+      <a href="#features" onclick="closeMobileMenu()">Features</a>
+      <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
+      <a href="#download" onclick="closeMobileMenu()">Download</a>
+      <a href="#support" onclick="closeMobileMenu()">Support</a>
+      <a href="/blog/" onclick="closeMobileMenu()">Blog</a>
+      <button onclick="closeMobileMenu(); openModal('signin')">Sign In</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Hero ── -->
+<section class="light" id="hero" aria-labelledby="hero-heading">
+  <div class="hero-wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">Biome for macOS</p>
+      <h1 class="headline" id="hero-heading">A personal AI agent that works on your Mac.</h1>
+      <p class="sub">Ask once. Biome can browse, read files, write code, remember context, and ask before it touches your system.</p>
+      <div class="cta-row">
+        <button class="btn" onclick="handleDownload('macOS')">Download free</button>
+        <a class="link-cta" href="#features">See real tasks &rsaquo;</a>
+      </div>
+      <div class="hero-trust">
+        <span>Local-first</span>
+        <span>Bring your own keys</span>
+        <span>macOS 13+</span>
+      </div>
+    </div>
+
+    <div class="product-stage" aria-label="Biome app preview">
+      <div class="app-window">
+        <div class="app-sidebar">
+          <div class="app-brand"><span></span>Biome</div>
+          <div class="app-nav active">Chat</div>
+          <div class="app-nav">Workflows</div>
+          <div class="app-nav">Agents</div>
+          <div class="app-nav">Memory</div>
+        </div>
+        <div class="app-main">
+          <div class="app-top">
+            <span>Local agent ready</span>
+            <strong>Gemini 2.5 Flash</strong>
+          </div>
+          <div class="task-card">
+            <small>You</small>
+            <p>Research the top AI coding tools, compare pricing, and save a markdown report to my Desktop.</p>
+          </div>
+          <div class="task-timeline">
+            <div><span></span>Opened sources in Chrome</div>
+            <div><span></span>Read pricing pages</div>
+            <div><span></span>Compared features</div>
+            <div><span></span>Wrote <strong>~/Desktop/ai-tools.md</strong></div>
+          </div>
+          <div class="compose-preview">Ask Biome to do something...</div>
+        </div>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- ── Top Nav ── -->
-  <nav class="fixed top-0 w-full z-50 bg-white border-b border-outline-variant/10">
-    <div class="flex justify-between items-center h-20 px-6 md:px-12 w-full max-w-[1440px] mx-auto">
-      <a href="#hero" class="flex items-center gap-3">
-        <svg id="biome-logo-svg" width="32" height="32" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
-          <circle cx="0" cy="-24" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
-          <circle cx="28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
-          <circle cx="-28.6" cy="12" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+<!-- ── Proof ── -->
+<section class="proof-strip reveal" aria-label="Biome product proof">
+  <div class="wrap proof-grid">
+    <div><strong>60s</strong><span>typical setup</span></div>
+    <div><strong>11+</strong><span>model providers</span></div>
+    <div><strong>Local</strong><span>memory and settings</span></div>
+    <div><strong>Approval</strong><span>before risky actions</span></div>
+  </div>
+</section>
+
+<!-- ── Capabilities ── -->
+<section class="gray reveal" id="features" aria-labelledby="feat-heading">
+  <div class="wrap">
+    <p class="eyebrow">Real tasks.</p>
+    <h2 class="headline" id="feat-heading">Designed around work, not prompts.</h2>
+    <p class="sub">Biome is strongest when a request needs several steps across apps, files, and memory.</p>
+
+    <div class="workflow-list">
+      <article>
+        <span class="workflow-index">01</span>
+        <h3>Research with a deliverable</h3>
+        <p>Open sources, compare claims, and save a brief or table where you asked for it.</p>
+        <small>Browser, files, citations, memory</small>
+      </article>
+      <article>
+        <span class="workflow-index">02</span>
+        <h3>Code changes on your machine</h3>
+        <p>Inspect a repo, edit files, run checks, and stop for approval before sensitive commands.</p>
+        <small>Terminal, editor, approvals</small>
+      </article>
+      <article>
+        <span class="workflow-index">03</span>
+        <h3>Personal context that persists</h3>
+        <p>Remember preferences, project details, and recurring instructions without making you repeat them.</p>
+        <small>Saved facts, short-term context</small>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── How it works ── -->
+<section class="light reveal" id="how-it-works">
+  <div class="wrap">
+    <p class="eyebrow">How it works.</p>
+    <h2 class="headline">One request becomes a managed run.</h2>
+    <p class="sub">The interface shows what Biome is doing, what needs approval, and where the result landed.</p>
+
+    <div class="process">
+      <div><span>Ask</span><p>Use plain language and attach files when useful.</p></div>
+      <div><span>Inspect</span><p>Biome checks the page, repo, file, or connected account.</p></div>
+      <div><span>Act</span><p>It browses, edits, writes, or schedules with visible progress.</p></div>
+      <div><span>Confirm</span><p>Risky actions pause for your approval before they run.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Versus ── -->
+<section class="gray reveal" id="versus">
+  <div class="wrap">
+    <p class="eyebrow">Why Biome.</p>
+    <h2 class="headline">A desktop agent has different responsibilities.</h2>
+    <p class="sub">When AI can touch your local files and browser, clarity and control matter as much as capability.</p>
+
+    <table class="compare">
+      <thead>
+        <tr><th>Feature</th><th>Biome</th><th>ChatGPT</th><th>Copilot</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="feat">Works with local files</td><td class="biome">Native Mac access</td><td class="n">&#x2014;</td><td class="p">Limited</td></tr>
+        <tr><td class="feat">Controls a real browser</td><td class="biome">Local relay</td><td class="p">Limited tools</td><td class="n">&#x2014;</td></tr>
+        <tr><td class="feat">Requires approval for risky actions</td><td class="biome">Built in</td><td class="p">Varies</td><td class="p">Varies</td></tr>
+        <tr><td class="feat">Stores memory locally</td><td class="biome">On your Mac</td><td class="p">Cloud account</td><td class="n">&#x2014;</td></tr>
+        <tr><td class="feat">Bring your own model keys</td><td class="biome">11+ providers</td><td class="n">&#x2014;</td><td class="n">&#x2014;</td></tr>
+        <tr><td class="feat">macOS-first workflow</td><td class="biome">Yes</td><td class="n">Web-first</td><td class="p">IDE-first</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ── Pricing ── -->
+<section class="light reveal" id="pricing" aria-labelledby="pricing-heading">
+  <div class="wrap">
+    <p class="eyebrow">Pricing.</p>
+    <h2 class="headline" id="pricing-heading">Start free. Upgrade when Biome becomes part of the day.</h2>
+    <p class="sub">The free app covers personal local-agent work. Pro adds managed model access and priority support.</p>
+
+    <div class="pricing-grid">
+      <!-- Free -->
+      <div class="pricing-tile">
+        <div class="pricing-plan">01 &middot; Personal</div>
+        <div class="pricing-price">Free</div>
+        <div class="pricing-cadence">$0 &middot; No card required</div>
+        <ul class="pricing-features">
+          <li><span class="pricing-check">&#x2713;</span> Full chat, workflows &amp; skills</li>
+          <li><span class="pricing-check">&#x2713;</span> All AI models (bring your own key)</li>
+          <li><span class="pricing-check">&#x2713;</span> File &amp; image attachments</li>
+          <li><span class="pricing-check">&#x2713;</span> Visual workflow builder</li>
+          <li><span class="pricing-check">&#x2713;</span> Community support</li>
+        </ul>
+        <button class="pricing-cta" onclick="handleDownload('macOS')">Download Free</button>
+      </div>
+
+      <!-- Pro -->
+      <div class="pricing-tile featured">
+        <div class="pricing-plan">02 &middot; Professional &nbsp;&#x2605; Most Popular</div>
+        <div class="pricing-price">$29<span style="font-size:18px;font-weight:400;opacity:.7">/mo</span></div>
+        <div class="pricing-cadence">Billed monthly &middot; Cancel anytime</div>
+        <ul class="pricing-features">
+          <li><span class="pricing-check">&#x2713;</span> Everything in Free</li>
+          <li><span class="pricing-check">&#x2713;</span> Browser Control via local relay</li>
+          <li><span class="pricing-check">&#x2713;</span> AI Chat Piggyback (no extra API key)</li>
+          <li><span class="pricing-check">&#x2713;</span> Zero-Knowledge privacy mode</li>
+          <li><span class="pricing-check">&#x2713;</span> Priority email support</li>
+          <li><span class="pricing-check">&#x2713;</span> Early access to new features</li>
+        </ul>
+        <button class="pricing-cta" onclick="openModal('pro')">Get Pro</button>
+      </div>
+
+      <!-- Business -->
+      <div class="pricing-tile">
+        <div class="pricing-plan">03 &middot; Business</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-cadence">Let&rsquo;s talk</div>
+        <ul class="pricing-features">
+          <li><span class="pricing-check">&#x2713;</span> Everything in Pro</li>
+          <li><span class="pricing-check">&#x2713;</span> Shared team workspace <span style="font-size:10px;font-weight:600;color:var(--sage)">Soon</span></li>
+          <li><span class="pricing-check">&#x2713;</span> Custom privacy controls</li>
+          <li><span class="pricing-check">&#x2713;</span> White-glove onboarding</li>
+        </ul>
+        <a class="pricing-cta" href="mailto:team@biomeai.uk">Contact Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Download ── -->
+<section class="dark reveal" id="download" aria-labelledby="dl-heading">
+  <div class="wrap">
+    <p class="eyebrow">Download.</p>
+    <h2 class="headline" id="dl-heading">Install Biome on your Mac.</h2>
+    <p class="sub">Free forever. No credit card. Use your own model key or connect a Biome plan later.</p>
+
+    <div class="dl-box">
+      <div class="v-badge">v1.4.2 &middot; macOS 13+</div>
+      <div class="dl-title">Biome for Mac</div>
+      <div class="dl-sub">Apple Silicon &amp; Intel &middot; 96 MB</div>
+      <button class="btn-dl" onclick="handleDownload('macOS')">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 2v9M5 8l3 3 3-3M3 13h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <span class="text-xl font-black tracking-[0.15em] text-[#0c2c16] uppercase">Biome</span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="hidden md:flex items-center space-x-10 font-medium tracking-tight">
-        <a class="nav-link nav-active transition-colors" href="#features" data-section="features">Features</a>
-        <a class="nav-link nav-inactive transition-colors" href="#integrations" data-section="integrations">Integrations</a>
-        <a class="nav-link nav-inactive transition-colors" href="#pricing" data-section="pricing">Pricing</a>
-        <a class="nav-link nav-inactive transition-colors" href="#download" data-section="download">Download</a>
-        <a class="nav-link nav-inactive transition-colors" href="#support" data-section="support">Support</a>
-        <a class="nav-link nav-inactive transition-colors" href="#security" data-section="security">Security</a>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <button id="nav-auth-btn" onclick="openModal('signin')" class="border border-primary/30 text-primary px-6 md:px-8 py-3 font-bold hover:bg-surface-container-low transition-all active:scale-[0.99] text-sm">
-          Sign In
-        </button>
-        <!-- Hamburger -->
-        <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden p-2 text-primary" aria-label="Open menu">
-          <span class="material-symbols-outlined" id="hamburger-icon">menu</span>
-        </button>
-      </div>
+        Download Free
+      </button>
+      <div class="req">Free plan included &middot; Pro plan optional &middot; Cancel anytime</div>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden bg-[#f9faf6] border-t border-outline-variant/10 px-6">
-      <div class="py-6 space-y-6 flex flex-col font-medium tracking-tight">
-        <a href="#features" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Features</a>
-        <a href="#integrations" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Integrations</a>
-        <a href="#pricing" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Pricing</a>
-        <a href="#download" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Download</a>
-        <a href="#support" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Support</a>
-        <a href="#security" onclick="closeMobileMenu()" class="text-on-surface hover:text-primary transition-colors">Security</a>
-        <button onclick="closeMobileMenu(); openModal('signin')" class="text-left text-on-surface hover:text-primary transition-colors font-bold">Sign In</button>
-      </div>
-    </div>
-  </nav>
+    <p style="margin-top:24px;font-size:13px;color:rgba(172,207,175,0.5);max-width:480px;margin-inline:auto;line-height:1.6">
+      <strong style="color:rgba(172,207,175,0.75)">Security note</strong>: On macOS, if blocked on first launch go to
+      <strong style="color:rgba(172,207,175,0.75)">System Settings &gt; Privacy &amp; Security</strong> and click
+      <strong style="color:rgba(172,207,175,0.75)">Open Anyway</strong>.
+      <a href="/security.html" style="color:rgba(172,207,175,0.5);text-decoration:underline;">Learn more &rarr;</a>
+    </p>
+  </div>
+</section>
 
-  <main class="pt-20">
+<!-- ── Security ── -->
+<section class="gray reveal" id="security" aria-labelledby="sec-heading">
+  <div class="wrap">
+    <p class="eyebrow">Security &amp; Privacy.</p>
+    <h2 class="headline" id="sec-heading">Clear boundaries for local autonomy.</h2>
+    <p class="sub">Your conversations, memory, and API keys live on your machine. Biome asks before sensitive local actions.</p>
 
-    <!-- ── Hero ── -->
-    <section id="hero" aria-labelledby="hero-heading" class="relative min-h-[800px] flex items-center px-6 md:px-12 max-w-[1440px] mx-auto overflow-hidden">
-      <div class="w-full grid grid-cols-1 lg:grid-cols-2 gap-16 items-center py-24 lg:py-32">
-
-        <!-- Left: text -->
-        <div>
-          <span class="hero-eyebrow inline-flex items-center gap-2 text-[0.65rem] uppercase tracking-[0.25em] font-bold mb-6 px-3 py-1.5 rounded-full border border-primary/20 bg-primary/8 text-primary">
-            <span class="w-1.5 h-1.5 rounded-full bg-secondary inline-block"></span>
-            v1.4.1 — macOS release now available
-          </span>
-          <h1 id="hero-heading" class="text-[4rem] md:text-[5.5rem] lg:text-[6rem] font-black leading-[0.88] tracking-tighter text-primary mb-8">
-            Your Personal<br>AI Agent.<br><span class="text-secondary">Zero Code.</span>
-          </h1>
-          <p class="hero-subtitle text-xl text-on-surface-variant max-w-lg leading-relaxed mb-10">
-            Design, personalize, and deploy your own intelligent agent for
-            <span class="text-primary font-bold underline decoration-secondary-container">free today</span>.
-            Simple enough for anyone, powerful enough for everyone.
-          </p>
-          <div class="hero-ctas flex flex-col sm:flex-row gap-4 mb-12">
-            <button onclick="openModal('personal')" class="cta-press bg-primary text-on-primary px-10 py-5 text-base font-bold hover:bg-primary-container transition-colors">
-              Get Started — It's Free
-            </button>
-            <a href="#how-it-works" class="cta-press border border-outline-variant/60 text-on-surface-variant px-10 py-5 text-base font-bold hover:border-primary hover:text-primary transition-colors flex items-center justify-center gap-2">
-              See How It Works
-              <span class="material-symbols-outlined text-xl">arrow_downward</span>
-            </a>
-          </div>
-          <!-- Metrics Bar -->
-          <dl class="hero-metrics flex flex-wrap border-t border-outline-variant/30 pt-8 divide-x divide-outline-variant/30">
-            <div class="flex flex-col pr-8 gap-1">
-              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">To Start</dt>
-              <dd id="metric-cost" class="text-2xl font-black text-primary order-1">$0</dd>
-            </div>
-            <div class="flex flex-col px-8 gap-1">
-              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">AI Skills</dt>
-              <dd id="metric-skills" class="text-2xl font-black text-primary order-1">20+</dd>
-            </div>
-            <div class="flex flex-col pl-8 gap-1">
-              <dt class="text-[10px] uppercase tracking-widest font-bold text-on-surface-variant order-2">AI Providers</dt>
-              <dd id="metric-providers" class="text-2xl font-black text-primary order-1">11+</dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- Right: chat mockup -->
-        <div class="hero-visual hidden lg:block relative">
-          <div class="bg-[#0b0f0d] shadow-2xl border border-white/5" style="border-radius:2px">
-            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
-              <span class="ml-auto text-[9px] text-white/20 tracking-widest uppercase font-bold">Biome — Personal Agent</span>
-            </div>
-            <div class="p-6 space-y-5 min-h-[360px]">
-              <div class="flex justify-end">
-                <div class="bg-primary/25 text-white/80 text-sm px-4 py-3 max-w-[82%] leading-relaxed" style="border-radius:2px">
-                  Research the top AI coding tools and write me a comparison table
-                </div>
-              </div>
-              <div class="space-y-2 pl-1">
-                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
-                  <span class="material-symbols-outlined" style="font-size:13px">search</span>
-                  Searching the web&hellip;
-                </div>
-                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
-                  <span class="material-symbols-outlined" style="font-size:13px">open_in_browser</span>
-                  Reading 6 sources in Chrome&hellip;
-                </div>
-                <div class="flex items-center gap-2 text-[11px] text-green-400/70 font-medium">
-                  <span class="material-symbols-outlined" style="font-size:13px">code</span>
-                  Executing code to format table&hellip;
-                </div>
-              </div>
-              <div class="bg-white/5 text-[12px] px-4 py-4 leading-relaxed" style="border-radius:2px">
-                <p class="font-semibold mb-3 text-sm text-white/90">Here's your comparison:</p>
-                <div class="code-font text-[11px] text-white/50 space-y-1.5">
-                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">GitHub Copilot</span><span>IDE autocomplete · $10/mo</span></div>
-                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Cursor</span><span>AI editor · $20/mo</span></div>
-                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Claude</span><span>Reasoning + code · API</span></div>
-                  <div class="flex gap-3"><span class="text-green-400/70 w-28 shrink-0">Biome</span><span class="text-secondary-container/80">All of the above, local · free</span></div>
-                </div>
-              </div>
-            </div>
-            <div class="border-t border-white/5 px-4 py-3 flex items-center gap-3">
-              <span class="text-white/20 text-xs flex-1 code-font">Ask Biome anything&hellip;</span>
-              <span class="material-symbols-outlined text-green-400/30" style="font-size:16px">send</span>
-            </div>
-          </div>
-          <div class="absolute -inset-4 bg-primary/5 blur-2xl -z-10 rounded-full"></div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── Built For Bar ── -->
-    <section class="bg-surface-container py-12 px-6 md:px-12">
-      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 justify-center">
-        <span class="text-[10px] uppercase tracking-[0.4em] font-black text-on-surface-variant/60 text-center">Built for researchers, developers, founders &amp; everyday power users</span>
-        <div class="flex flex-wrap justify-center items-center gap-8">
-          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">school</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Researchers</span></div>
-          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">code</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Developers</span></div>
-          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">rocket_launch</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Founders</span></div>
-          <div class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">person</span><span class="text-sm font-bold text-on-surface-variant tracking-tight">Everyone</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── How It Works ── -->
-    <section id="how-it-works" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface overflow-hidden">
-      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center;opacity:0.045;"></div>
-      <div class="relative max-w-[1440px] mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
-          <div>
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">How It Works</span>
-            <h2 class="text-5xl md:text-6xl font-black tracking-tighter text-primary leading-[0.9] mb-12">Idea to Agent<br>in 60 Seconds.</h2>
-            <div class="space-y-10">
-              <div class="flex gap-8">
-                <span class="text-4xl font-black text-primary/20 leading-none mt-1">01</span>
-                <div>
-                  <h3 class="text-xl font-black mb-2">Connect Your Sources</h3>
-                  <p class="text-on-surface-variant leading-relaxed">Point to your files, socials, or websites. Biome ingests and maps your data automatically — no technical setup required.</p>
-                </div>
-              </div>
-              <div class="flex gap-8">
-                <span class="text-4xl font-black text-primary/20 leading-none mt-1">02</span>
-                <div>
-                  <h3 class="text-xl font-black mb-2">Configure Your Agent</h3>
-                  <p class="text-on-surface-variant leading-relaxed">Drag and drop capabilities. Set your agent's personality, skills, and triggers through our visual no-code interface.</p>
-                </div>
-              </div>
-              <div class="flex gap-8">
-                <span class="text-4xl font-black text-primary/20 leading-none mt-1">03</span>
-                <div>
-                  <h3 class="text-xl font-black mb-2">Ready in One Click</h3>
-                  <p class="text-on-surface-variant leading-relaxed">Hit deploy and your agent is live on your desktop. No cloud account, no server costs — everything runs locally on your machine.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="bg-primary p-[3px]">
-            <div class="bg-[#0b0f0d] p-4 shadow-2xl overflow-hidden relative max-h-[420px]">
-              <!-- Title bar -->
-              <div class="flex items-center gap-1.5 mb-4">
-                <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
-                <span class="ml-2 text-[9px] font-bold text-white/20 tracking-widest uppercase">zsh — biome — 80×24</span>
-              </div>
-              <pre class="code-font text-[11px] leading-[1.6] overflow-x-auto"><code id="terminal-code"><span class="text-white/35">❯</span> <span class="text-green-300/80">biome</span> <span class="text-white/60">deploy --local</span>
-<span class="text-white/20">  ─────────────────────────────────────────────</span>
-<span class="terminal-line text-white/50 opacity-0">  <span class="text-green-400/70">biome</span> <span class="text-white/30">v1.4.1</span>  ·  AI Agent Platform</span>
-<span class="terminal-line text-white/20 opacity-0">  ─────────────────────────────────────────────</span>
-<span class="terminal-line text-white/40 opacity-0">
-<span class="text-white/25">[1/5]</span> <span class="text-white/60">Checking environment</span></span>
-<span class="terminal-line text-white/30 opacity-0">      node    <span class="text-white/55">v22.11.0</span>         <span class="text-green-400">✓</span></span>
-<span class="terminal-line text-white/30 opacity-0">      brew    <span class="text-white/55">4.4.1</span>            <span class="text-green-400">✓</span>
-      xcode   <span class="text-white/55">15.4 (arm64)</span>     <span class="text-green-400">✓</span></span>
-<span class="terminal-line text-white/40 opacity-0">
-<span class="text-white/25">[2/5]</span> <span class="text-white/60">Starting Biome gateway</span></span>
-<span class="terminal-line text-white/30 opacity-0">      binding  <span class="text-green-300/70">ws://127.0.0.1:18789</span>
-      pid      <span class="text-white/45">48291</span>
-      models   <span class="text-white/55">gemini-2.5-pro · gpt-4o · gemini-2.0-flash</span>
-               <span class="text-green-400">✓ ready</span>  <span class="text-white/30">(312ms)</span></span>
-<span class="terminal-line text-white/40 opacity-0">
-<span class="text-white/25">[3/5]</span> <span class="text-white/60">Launching browser relay</span></span>
-<span class="terminal-line text-white/30 opacity-0">      binding  <span class="text-green-300/70">http://127.0.0.1:9999</span>
-      chrome   <span class="text-white/55">ext v6 connected  ·  3 active tabs</span>
-               <span class="text-green-400">✓ ready</span>  <span class="text-white/30">(89ms)</span></span>
-<span class="terminal-line text-white/40 opacity-0">
-<span class="text-white/25">[4/5]</span> <span class="text-white/60">Registering AI skills</span></span>
-<span class="terminal-line text-white/30 opacity-0">      web_search · code_exec · screenshot
-      browser_nav · summarise · file_read · +6
-               <span class="text-green-400">✓ 12 skills loaded</span></span>
-<span class="terminal-line text-white/40 opacity-0">
-<span class="text-white/25">[5/5]</span> <span class="text-white/60">Running health checks</span></span>
-<span class="terminal-line text-white/30 opacity-0">      GET /health          <span class="text-green-400">200 OK</span>  <span class="text-white/30">(14ms)</span>
-      ws handshake         <span class="text-green-400">OPEN</span>    <span class="text-white/30">(8ms)</span>
-      relay /ping          <span class="text-green-400">200 OK</span>  <span class="text-white/30">(6ms)</span></span>
-<span class="terminal-line opacity-0">
-  <span class="text-white/20">─────────────────────────────────────────────</span>
-  <span class="text-green-400 font-bold">✓ Agent is live on your Mac</span>
-  <span class="text-white/30">→</span> <span class="text-white/45">3 models · 12 skills · browser linked</span>
-  <span class="text-white/30">→</span> <span class="text-white/35">ws://127.0.0.1:18789  ·  relay :9999</span></span></code></pre>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Features ── -->
-    <section id="features" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface-container-low overflow-hidden">
-      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center;opacity:0.03;"></div>
-      <div class="relative max-w-[1440px] mx-auto">
-        <div class="mb-16 md:mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div class="max-w-2xl">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Key Features</span>
-            <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary leading-none">A Dedicated AI Agent.<br>Just for You.</h2>
-          </div>
-          <div class="hidden md:block h-[1px] flex-grow mx-12 bg-outline-variant opacity-20"></div>
-        </div>
-        <!-- Featured card: key differentiator -->
-        <div class="mb-10 bg-primary text-on-primary p-10 md:p-14 flex flex-col md:flex-row md:items-center gap-8 md:gap-16 group">
-          <div class="w-20 h-20 bg-primary-container flex items-center justify-center shrink-0">
-            <span class="material-symbols-outlined text-secondary-container text-4xl" style="font-variation-settings:'FILL' 1">lock</span>
-          </div>
-          <div class="flex-1">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary-container/60 mb-3 block">Core Principle</span>
-            <h3 class="text-3xl md:text-4xl font-black tracking-tighter mb-4">Private by Default. Always.</h3>
-            <p class="text-on-primary-container text-lg leading-relaxed max-w-2xl">Your conversations, memory, and API keys are stored locally on your device — never on our servers. API calls go directly from your Mac to your chosen AI provider. Granular permission modes let you control exactly what the agent can touch.</p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-outline-variant/20">
-          <div class="group p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">01</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">schedule</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Deep Context Awareness</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Biome remembers every conversation and builds persistent long-term memory. The more you use it, the smarter it becomes.</p>
-          </div>
-          <div class="group p-8 border-b md:border-b-0 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">02</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">hub</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">20+ AI Skills</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Web search, live code execution, file and image attachments, and browser automation — all built in.</p>
-          </div>
-          <div class="group p-8 border-b md:border-b-0 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">03</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">account_tree</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight flex items-center gap-2">
-              Visual Logic Builder
-              <span class="bg-primary/10 text-primary text-[9px] font-black uppercase tracking-widest px-1.5 py-0.5">Beta</span>
-            </h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Build complex multi-step workflows without a single line of code. Branch logic, conditionals, and loops — all visual.</p>
-          </div>
-          <div class="group p-8 border-b md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">04</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">model_training</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Bring Your Own Model</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Use Claude, GPT-4, Gemini, or any OpenAI-compatible endpoint. Switch models per workflow step without rebuilding anything.</p>
-          </div>
-          <div class="group p-8 border-b md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">05</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">payments</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Start Free. Stay Free.</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">The free tier is permanent, not a trial. We make money when you scale, not when you're getting started.</p>
-          </div>
-          <div class="group p-8 border-b hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">06</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">attach_file</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">File & Image Attachments</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Attach PDFs, images, code files, CSVs, and more. The AI reads your files directly — no third-party upload.</p>
-          </div>
-          <div class="group p-8 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">07</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">history</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Full Conversation History</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Every session is saved locally and instantly searchable. Pick up any conversation exactly where you left off.</p>
-          </div>
-          <div class="group p-8 md:border-r border-outline-variant/20 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">08</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">play_circle</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Chat-Triggered Workflows</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Build workflows once, run them from anywhere — just type <span class="code-font bg-surface-container px-1 py-0.5 text-[11px]">run workflow My Pipeline</span> in chat.</p>
-          </div>
-          <div class="group p-8 hover:bg-surface transition-colors relative overflow-hidden">
-            <span class="absolute top-4 right-6 text-6xl font-black text-outline-variant/10 leading-none select-none">09</span>
-            <div class="w-14 h-14 bg-surface-container flex items-center justify-center mb-6 group-hover:bg-secondary-container transition-colors">
-              <span class="material-symbols-outlined text-primary text-2xl">record_voice_over</span>
-            </div>
-            <h3 class="text-xl font-bold text-primary mb-3 tracking-tight">Voice & Channels</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Talk to your agent by voice, or connect it to WhatsApp, Telegram, Slack, Discord, and 20+ more messaging channels.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Browser Control System ── -->
-    <section id="integrations" class="py-24 md:py-32 px-6 md:px-12 bg-surface">
-      <div class="max-w-[1440px] mx-auto">
-
-        <!-- Section header -->
-        <div class="mb-16 md:mb-20 max-w-3xl">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Browser Control System</span>
-            <span class="bg-primary/10 text-primary text-[10px] font-black uppercase tracking-widest px-2 py-1">Beta</span>
-          </div>
-          <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary mb-6">Your AI lives in your browser.</h2>
-          <p class="text-on-surface-variant text-lg leading-relaxed">Biome ships with a background browser relay that gives the AI direct, real-time control over your Chrome browser — open tabs, navigate pages, click elements, read content, and automate anything you can do manually. No cloud infrastructure. No screen sharing. Completely local.</p>
-        </div>
-
-        <!-- Two-column: capabilities left, visual right -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-start mb-20">
-          <div class="space-y-5">
-            <!-- Core browser actions -->
-            <div class="grid grid-cols-2 gap-3">
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">tab</span>
-                <span class="text-sm font-semibold text-on-surface">Open &amp; manage tabs</span>
-              </div>
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">travel_explore</span>
-                <span class="text-sm font-semibold text-on-surface">Navigate to any URL</span>
-              </div>
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">ads_click</span>
-                <span class="text-sm font-semibold text-on-surface">Click &amp; type on pages</span>
-              </div>
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">article</span>
-                <span class="text-sm font-semibold text-on-surface">Read page content</span>
-              </div>
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">push_pin</span>
-                <span class="text-sm font-semibold text-on-surface">Pin &amp; sort tabs</span>
-              </div>
-              <div class="flex items-center gap-3 px-4 py-3 border border-outline-variant/20 bg-surface-container-low">
-                <span class="material-symbols-outlined text-primary text-base">screenshot_monitor</span>
-                <span class="text-sm font-semibold text-on-surface">Screenshot &amp; inspect</span>
-              </div>
-            </div>
-            <p class="text-xs text-on-surface-variant/60 leading-relaxed pt-1">Powered by a lightweight local relay server (port 9999) + a Chrome extension. Enable in Settings → General → Browser Control. The app starts the server automatically.</p>
-            <div class="pt-4">
-              <a href="https://chrome.google.com/webstore" target="_blank" class="inline-flex items-center gap-2 text-xs font-bold text-primary border border-primary/20 hover:bg-primary/5 px-4 py-2 transition-colors">
-                <span class="material-symbols-outlined text-sm">extension</span>
-                Get the Chrome Extension
-              </a>
-              <p class="text-[10px] text-on-surface-variant/50 mt-2">Required for browser automation workflows.</p>
-            </div>
-          </div>
-
-          <!-- Visual: browser mockup -->
-          <div class="bg-[#0b0f0d] border border-white/5 shadow-2xl" style="border-radius:2px">
-            <!-- Browser chrome -->
-            <div class="flex items-center gap-1.5 px-4 py-3 border-b border-white/5">
-              <div class="w-2.5 h-2.5 rounded-full bg-[#ff5f57]"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-[#febc2e]"></div>
-              <div class="w-2.5 h-2.5 rounded-full bg-[#28c840]"></div>
-              <!-- Fake URL bar -->
-              <div class="ml-3 flex-1 bg-white/5 px-3 py-1 flex items-center gap-2">
-                <span class="material-symbols-outlined text-green-400/50" style="font-size:11px">lock</span>
-                <span class="text-[10px] text-white/30 code-font">app.notion.so/workspace</span>
-              </div>
-            </div>
-            <!-- Tab bar -->
-            <div class="flex items-center gap-1 px-3 pt-2 border-b border-white/5 bg-black/20">
-              <div class="flex items-center gap-2 px-3 py-1.5 bg-white/8 border-t border-x border-white/10 text-[10px] text-white/50 font-medium">
-                <span class="material-symbols-outlined text-blue-400/60" style="font-size:11px">tab</span>
-                Notion
-              </div>
-              <div class="flex items-center gap-2 px-3 py-1.5 text-[10px] text-white/25 font-medium">
-                <span class="material-symbols-outlined text-white/20" style="font-size:11px">tab</span>
-                Gmail
-              </div>
-              <div class="flex items-center gap-2 px-3 py-1.5 text-[10px] text-white/25 font-medium">
-                <span class="material-symbols-outlined text-white/20" style="font-size:11px">tab</span>
-                Linear
-              </div>
-            </div>
-            <!-- Page content being automated -->
-            <div class="p-5 space-y-3">
-              <!-- Biome action overlay indicator -->
-              <div class="flex items-center gap-2 bg-primary/20 border border-primary/30 px-3 py-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span>
-                <span class="text-[10px] text-green-400/80 font-bold uppercase tracking-widest">Biome is controlling this tab</span>
-              </div>
-              <!-- Simulated page content -->
-              <div class="space-y-2 opacity-60">
-                <div class="h-2.5 bg-white/10 w-3/4"></div>
-                <div class="h-2.5 bg-white/10 w-1/2"></div>
-              </div>
-              <!-- Action log -->
-              <div class="space-y-1.5 pt-2 border-t border-white/5">
-                <div class="flex items-center gap-2 text-[11px] text-white/40">
-                  <span class="material-symbols-outlined text-green-400/60" style="font-size:12px">check_circle</span>
-                  Navigated to Notion workspace
-                </div>
-                <div class="flex items-center gap-2 text-[11px] text-white/40">
-                  <span class="material-symbols-outlined text-green-400/60" style="font-size:12px">check_circle</span>
-                  Clicked "New page"
-                </div>
-                <div class="flex items-center gap-2 text-[11px] text-white/60">
-                  <span class="material-symbols-outlined text-yellow-400/60" style="font-size:12px">pending</span>
-                  Typing meeting notes&hellip;
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- AI Chat Piggyback subsection -->
-        <div class="border-t border-outline-variant/20 pt-16">
-          <div class="mb-10 max-w-2xl">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-secondary mb-3 block">Browser Control → AI Chat Piggyback</span>
-            <h3 class="text-3xl md:text-4xl font-black tracking-tighter text-primary mb-4">Use any AI chat in your browser — no extra API key.</h3>
-            <p class="text-on-surface-variant leading-relaxed">Because Biome already controls your browser, it can automatically relay queries to whichever AI chat you have open and pipe the response back. Works with any AI chat interface in Chrome. Your own session, your own subscription.</p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-            <!-- Claude recommended -->
-            <div class="flex items-start gap-5 p-6 border border-primary/20 bg-surface-container-low">
-              <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-on-secondary-container">auto_awesome</span>
-              </div>
-              <div>
-                <div class="flex items-center gap-2 mb-1">
-                  <h4 class="font-black text-primary text-lg">Claude</h4>
-                  <span class="text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 bg-secondary-container text-on-surface">Recommended</span>
-                </div>
-                <p class="text-on-surface-variant/80 text-sm leading-relaxed">Biome works best with an active <a href="https://claude.ai" target="_blank" class="underline hover:text-primary transition-colors">claude.ai</a> session open in Chrome. Claude's longer context window and instruction-following make it ideal for complex agentic tasks via browser piggyback.</p>
-              </div>
-            </div>
-
-            <!-- Any AI chat -->
-            <div class="flex items-start gap-5 p-6 border border-outline-variant/20 bg-surface-container-low">
-              <div class="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center shrink-0 border border-outline-variant/20">
-                <span class="material-symbols-outlined text-outline">chat</span>
-              </div>
-              <div>
-                <h4 class="font-black text-primary text-lg mb-1">Any AI chat in your browser</h4>
-                <p class="text-on-surface-variant/80 text-sm leading-relaxed">The piggyback system is not Claude-specific — it works with ChatGPT, Gemini, Perplexity, and any other AI chat interface you have open in Chrome. If you can type into it, Biome can use it.</p>
-              </div>
-            </div>
-          </div>
-
-          <p class="text-xs text-on-surface-variant/50 leading-relaxed max-w-2xl">* A primary model (API key or Biome plan) is still required for Biome's core reasoning and tool loop. The AI chat piggyback is an optional enhancement layer for web-augmented responses.</p>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ── Pricing ── -->
-    <section id="pricing" class="py-24 md:py-32 px-6 md:px-12 bg-surface-container-low">
-      <div class="max-w-[1440px] mx-auto">
-        <div class="text-center mb-16 md:mb-24">
-          <h2 class="text-5xl md:text-6xl font-black tracking-tighter text-primary mb-4">Pricing Plans</h2>
-          <p class="text-on-surface-variant uppercase tracking-[0.4em] text-[10px] font-bold">No hidden fees. No trial periods. Start building today.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-outline-variant/20">
-          <!-- Free -->
-          <div class="p-8 md:p-12 border-b md:border-b-0 md:border-r border-outline-variant/20 flex flex-col justify-between hover:bg-surface-container-low transition-colors">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-8 block">01 / Personal</span>
-              <div class="text-4xl font-black text-primary mb-2 tracking-tighter">Free Forever</div>
-              <div class="text-sm font-bold text-secondary mb-8 uppercase tracking-widest">$0 USD — No card required</div>
-              <ul class="space-y-4 mb-8">
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Full chat, workflows &amp; skills</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>All AI models (bring your own key)</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>File &amp; image attachments</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Visual workflow builder</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Community support</li>
-              </ul>
-            </div>
-            <a href="#download" class="w-full py-4 border border-primary text-primary font-bold hover:bg-primary hover:text-on-primary transition-colors text-center block">
-              Download Free
-            </a>
-          </div>
-
-          <!-- Pro -->
-          <div class="p-8 md:p-12 bg-surface-container-lowest shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] z-10 flex flex-col justify-between ring-2 ring-primary">
-            <div>
-              <div class="flex items-center justify-between mb-8">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-secondary block">02 / Professional</span>
-                <span class="bg-secondary-container text-on-secondary-container text-[9px] font-black uppercase tracking-widest px-2 py-1">Most Popular</span>
-              </div>
-              <div class="text-4xl font-black text-primary mb-2 tracking-tighter">$29<span class="text-lg font-normal text-on-surface-variant">/mo</span></div>
-              <div class="text-sm font-bold text-secondary mb-8 uppercase tracking-widest">Billed Monthly · Cancel Anytime</div>
-              <ul class="space-y-4 mb-8">
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Everything in Free</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Browser Control &amp; Chrome automation</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>AI Chat Piggyback (no extra API key)</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Zero-Knowledge privacy mode</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Priority email support</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Early access to new features</li>
-              </ul>
-            </div>
-            <button onclick="openModal('pro')" class="w-full py-4 bg-primary text-on-primary font-bold hover:opacity-90 transition-colors">
-              Get Pro
-            </button>
-            <p class="text-[10px] text-on-surface-variant/60 mt-4 leading-relaxed text-center">Use the same email address as your Biome app account to activate Pro instantly.</p>
-          </div>
-
-          <!-- Business -->
-          <div class="p-8 md:p-12 flex flex-col justify-between hover:bg-surface-container-low transition-colors">
-            <div>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-8 block">03 / Business</span>
-              <div class="text-4xl font-black text-primary mb-2 tracking-tighter">Custom</div>
-              <div class="text-sm font-bold text-secondary mb-8 uppercase tracking-widest">Let's Talk</div>
-              <ul class="space-y-4 mb-8">
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Everything in Pro</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Shared team workspace <span class="ml-2 text-[9px] font-bold uppercase tracking-wide text-secondary border border-secondary/30 px-1.5 py-0.5">Soon</span></li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>Custom privacy controls</li>
-                <li class="flex items-center text-sm text-on-surface-variant"><span class="material-symbols-outlined text-primary mr-3 text-sm">check</span>White-glove onboarding</li>
-              </ul>
-            </div>
-            <a href="mailto:team@biomeai.uk" class="w-full py-4 border border-primary text-primary font-bold hover:bg-primary hover:text-on-primary transition-colors text-center block">
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Download ── -->
-    <section id="download" class="bg-primary text-on-primary py-24 md:py-32 px-6 md:px-12 overflow-hidden relative">
-      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1511497584788-876760111969?w=1920&q=80&fit=crop&crop=center');background-size:cover;background-position:center;mix-blend-mode:overlay;opacity:0.22;"></div>
-      <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row items-center justify-between relative z-10 gap-12">
-        <div class="max-w-xl">
-          <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-6">Start Building.</h2>
-          <p class="text-on-primary-container text-xl leading-relaxed">Download the Biome desktop app and deploy your first personal AI agent in minutes. <span class="text-white font-bold">Always-on intelligence awaits.</span></p>
-        </div>
-        <div class="flex flex-col sm:flex-row gap-6 w-full md:w-auto">
-          <button onclick="handleDownload('macOS')" id="dl-mac-btn" class="bg-secondary-container text-primary px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-white transition-colors gap-4">
-            <span class="material-symbols-outlined">keyboard_command_key</span>
-            <div class="text-left">
-              <div class="leading-none mb-1">Download for MacOS</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">v1.4.1 · 96MB · macOS 13+</div>
-            </div>
-          </button>
-          <button type="button" id="dl-win-btn" aria-disabled="true" class="bg-white/50 text-primary/60 px-8 md:px-10 py-6 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center cursor-not-allowed gap-4">
-            <span class="material-symbols-outlined">window</span>
-            <div class="text-left">
-              <div class="leading-none mb-1">Windows coming soon</div>
-              <div class="text-[9px] opacity-60 font-normal normal-case tracking-normal">Not in this release</div>
-            </div>
-          </button>
-        </div>
-        <div class="mt-10 md:mt-0 flex items-start gap-3 text-[11px] text-on-primary-container/50 max-w-xs leading-relaxed">
-          <span class="material-symbols-outlined text-secondary-container/60 text-base mt-0.5 shrink-0">shield</span>
-          <span><strong class="text-on-primary-container/80">Security Note</strong> &mdash; On macOS, if the app is blocked on first launch go to <strong class="text-on-primary-container/80">System Settings &gt; Privacy &amp; Security</strong> and click <strong class="text-on-primary-container/80">Open Anyway</strong>. This is a normal one-time confirmation for independently distributed software. <a href="/security.html" class="underline hover:text-white transition-colors">Learn more &rarr;</a></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Security ── -->
-    <section id="security" class="relative py-24 md:py-32 px-6 md:px-12 bg-surface-container-low overflow-hidden">
-      <div aria-hidden="true" class="absolute inset-0" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=1920&q=70&fit=crop&crop=center');background-size:cover;background-position:center 60%;opacity:0.04;"></div>
-      <div class="relative max-w-[1440px] mx-auto">
-        <div class="mb-16 md:mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div class="max-w-2xl">
-            <span class="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4 block">Security &amp; Privacy</span>
-            <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary leading-none">Built Private.<br>Hardened by Design.</h2>
-          </div>
-          <a href="/security.html" class="shrink-0 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-primary border border-primary/20 hover:bg-primary/5 px-5 py-3 transition-colors">
-            Full Security Details
-            <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border border-outline-variant/20">
-          <div class="p-8 border-b lg:border-b-0 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">lock</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Local First, Always</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Your conversations, memory, and API keys live on your machine — never on our servers. AI calls go directly from your device to your chosen provider. We only store your email address.</p>
-          </div>
-          <div class="p-8 border-b lg:border-b-0 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">verified_user</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">SSRF Hardened</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">All outbound network requests are validated against host allowlists and private-IP DNS checks. The gateway cannot be tricked into fetching from internal or unintended hosts.</p>
-          </div>
-          <div class="p-8 border-b md:border-b-0 md:border-r lg:border-r-0 border-outline-variant/20 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">gpp_maybe</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Exec Approval Required</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Every command the AI wants to run requires your explicit approval. Approval timeouts result in a hard block — there is no silent fallback execution path.</p>
-          </div>
-          <div class="p-8 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">policy</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Trust Isolation</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">External content — webhooks, wake events, runtime notifications — is quarantined as untrusted before entering the AI's context. Outside sources cannot inject trusted instructions.</p>
-          </div>
-          <div class="p-8 border-r border-outline-variant/20 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">history_toggle_off</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Clean Session History</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Internal tool data and system metadata are stripped from all user-facing views. What you see in chat is exactly what the model intended — no raw internals leaking through.</p>
-          </div>
-          <div class="p-8 group hover:bg-surface transition-colors">
-            <div class="w-12 h-12 bg-primary flex items-center justify-center mb-6">
-              <span class="material-symbols-outlined text-secondary-container text-xl" style="font-variation-settings:'FILL' 1">speed</span>
-            </div>
-            <h3 class="text-lg font-black text-primary mb-3 tracking-tight">Rate Limited Backend</h3>
-            <p class="text-on-surface-variant text-sm leading-relaxed">Our small server footprint (account &amp; onboarding only) enforces per-IP rate limits. OTP codes expire in 10 minutes and cannot be reused. Everything else runs entirely on your machine.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Support / FAQ ── -->
-    <section id="support" class="py-24 md:py-32 px-6 md:px-12 bg-surface">
-      <div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-black tracking-tighter text-primary mb-8">Simple Support</h2>
-          <p class="text-on-surface-variant text-lg mb-12 leading-relaxed">Our team and community are here to help you get the most out of your personal AI. No jargon, just clear solutions.</p>
-          <a href="mailto:team@biomeai.uk" class="inline-flex items-center text-primary font-black uppercase tracking-widest text-sm border-b-2 border-secondary-container pb-2 hover:border-primary transition-all">
-            team@biomeai.uk
-            <span class="material-symbols-outlined ml-4">arrow_forward</span>
-          </a>
-          <div class="mt-12 p-6 bg-surface-container-low border-l-4 border-secondary-container">
-            <p class="text-sm text-on-surface-variant leading-relaxed"><span class="font-bold text-primary">Average response time: 2 hours.</span> We're a small team that actually reads every message. No bots, no ticket queues on the Personal plan.</p>
-          </div>
-        </div>
-        <div class="space-y-0">
-          <!-- FAQ items -->
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">Do I need an API key to use Biome?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Yes — Biome runs entirely on your machine and calls AI APIs directly using your own keys. You bring keys for whichever providers you want: Google Gemini (free tier available), Anthropic Claude, OpenAI, xAI Grok, Mistral, or Perplexity. Keys are stored locally, never sent to our servers. Gemini has a generous free tier, so you can get started at zero cost.</p>
-            </div>
-          </div>
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">What is Browser Control and do I need the Chrome extension?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Browser Control is an optional feature that gives the AI direct access to your Chrome browser — it can open tabs, navigate pages, click elements, read content, and more. It requires a lightweight Chrome extension (loaded from the Biome app in one click) and a local relay server that Biome starts automatically. The core chat and agent features work fine without it.</p>
-            </div>
-          </div>
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">Which AI models does it support?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Biome supports Google Gemini (2.0 Flash, 2.5 Flash, 2.5 Pro), Anthropic Claude (3.5 Sonnet, 3.5 Haiku, 3 Opus), OpenAI (GPT-4o, GPT-4o mini, o1), xAI Grok-2, Mistral (Large, Nemo), and Perplexity Sonar. Add an API key for any provider in Settings → API Keys and those models instantly appear in the model picker.</p>
-            </div>
-          </div>
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">Can I connect external services and data sources?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Yes — Biome has a built-in AI skill system. Built-in skills include web search, live code execution, file and image attachments, browser automation, and multi-step workflow pipelines. You can also add custom data source URLs in Settings that the AI will reference in every conversation. If you need a specific integration, email us — we prioritise community requests.</p>
-            </div>
-          </div>
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">Is there a catch to the Free plan?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">No. The free download gives you the full Biome app — chat, workflows, skills, all AI models (bring your own key), file attachments, and community support. Pro unlocks Browser Control &amp; Chrome automation, AI Chat Piggyback, Zero-Knowledge privacy mode, and priority support.</p>
-            </div>
-          </div>
-          <div class="faq-item border-b border-outline-variant/20">
-            <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between py-6 text-left gap-4">
-              <h3 class="text-lg font-bold text-primary">How is my data kept private?</h3>
-              <span class="material-symbols-outlined faq-chevron text-on-surface-variant flex-shrink-0">expand_more</span>
-            </button>
-            <div class="faq-body">
-              <p class="text-on-surface-variant text-sm leading-relaxed pb-6">Almost everything stays on your machine. Conversations, memory, and settings are stored locally by the desktop app — never on our servers. Website sign-in uses a secure HttpOnly session cookie, and API calls go directly from your device to whichever AI provider you choose. We only keep account, billing, support, and consent records needed to run the service.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Changelog ── -->
-    <section class="py-12 px-6 md:px-12 bg-surface-container-low border-y border-outline-variant/20">
-      <div class="max-w-[1440px] mx-auto">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between text-[10px] font-bold uppercase tracking-widest text-on-surface-variant gap-4">
-          <div class="flex items-center gap-4">
-            <span class="bg-secondary text-on-secondary px-2 py-1">Latest</span>
-            <span>v1.4.1 — Google Connect</span>
-          </div>
-          <div class="hidden md:block h-4 w-[1px] bg-outline-variant/30 mx-8"></div>
-          <div>v1.1 — Visual Workflow Builder</div>
-          <div class="hidden md:block h-4 w-[1px] bg-outline-variant/30 mx-8"></div>
-          <button onclick="toggleChangelog(this)" class="hover:text-primary transition-colors flex items-center gap-1" id="changelog-btn">
-            View Full Changelog
-            <span class="material-symbols-outlined text-sm leading-none" id="changelog-icon">arrow_forward</span>
-          </button>
-        </div>
-
-        <!-- Full Changelog -->
-        <div id="changelog-full" class="">
-          <div class="pt-8 pb-2 space-y-6">
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-secondary whitespace-nowrap bg-secondary-container px-2 py-1">v1.4.1</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Google Connect — May 2026</p>
-                <p class="text-xs text-on-surface-variant">Connect Google from the macOS app and let the agent work with Gmail, Calendar, and Drive through Biome's bundled helper.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/40 whitespace-nowrap bg-surface-container px-2 py-1">v1.3.0</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Email Login &amp; Pro Accounts — Apr 2026</p>
-                <p class="text-xs text-on-surface-variant">Sign in with email OTP — no more access keys. Pro plan activates automatically when you sign in. Virtual key system for secure API proxying. Agent system prompt editor. Cleaner UI with icon overhaul throughout.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.2.0</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Channels, Voice &amp; More — Apr 2026</p>
-                <p class="text-xs text-on-surface-variant">Messaging channels (WhatsApp, Telegram, Slack, Discord and 20+ more), voice input &amp; text-to-speech, scheduled tasks (cron), multi-agent management, and 5 new model providers: Groq, OpenRouter, Together AI, DeepSeek, and Ollama (local).</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.1.0</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Workflow Builder — Mar 2026</p>
-                <p class="text-xs text-on-surface-variant">New visual logic builder with branching, conditionals, and filter steps. Build multi-step AI workflows entirely on your local machine.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.0.4</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Unlimited Source Mapping — Feb 2026</p>
-                <p class="text-xs text-on-surface-variant">Removed the 10-source cap on the free tier. All plans now support unlimited data source connections.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.0.2</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Notion + Linear Integrations — Jan 2026</p>
-                <p class="text-xs text-on-surface-variant">Native Notion database sync and Linear issue tracking. Agents can now create, update, and query both platforms directly.</p>
-              </div>
-            </div>
-            <div class="flex gap-8 items-start">
-              <span class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant whitespace-nowrap bg-surface-container px-2 py-1">v1.0.0</span>
-              <div>
-                <p class="text-xs font-bold text-primary mb-1">Foundation Release — Dec 2025</p>
-                <p class="text-xs text-on-surface-variant">Initial public launch. Multi-model chat, long-term memory, browser control, and one-click deployment.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ── Footer ── -->
-  <footer class="bg-surface-container-lowest w-full py-20 md:py-24 px-6 md:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start max-w-[1440px] mx-auto">
-      <div class="space-y-6">
-        <div class="flex items-center gap-3">
-          <svg width="36" height="36" viewBox="-80 -80 160 160" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="0" cy="0" r="62" fill="none" stroke="#0c2c16" stroke-width="2"/>
-            <circle cx="0" cy="-29" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
-            <circle cx="25.1" cy="14.5" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
-            <circle cx="-25.1" cy="14.5" r="33" fill="none" stroke="#0c2c16" stroke-width="2"/>
+    <div class="security-grid">
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="2" fill="white" stroke="none"/>
+            <path d="M8 11V7a4 4 0 018 0v4" stroke="white" stroke-width="2" fill="none"/>
+            <circle cx="12" cy="16" r="1.5" fill="#0c2c16" stroke="none"/>
           </svg>
-          <span class="text-xl font-black tracking-[0.15em] text-[#0c2c16] uppercase">Biome</span>
         </div>
-        <p class="text-[#424842] text-[0.75rem] leading-relaxed max-w-xs">
-          Building personal AI agents for everyone. Start for free. Connect anything. Always on.
-        </p>
-        <p class="text-[#566342] text-[0.7rem] uppercase tracking-widest font-bold">Foundation v1.4.1</p>
+        <h3>Local First, Always</h3>
+        <p>Conversations, memory, and API keys stay on your machine. AI calls go directly from your device to your chosen provider. We only store your email address.</p>
       </div>
-      <div class="grid grid-cols-2 gap-8 text-[0.75rem] uppercase tracking-[0.1em] font-bold">
-        <div class="flex flex-col space-y-4">
-          <a href="/privacy.html" class="text-[#424842] hover:text-primary transition-colors">Privacy Policy</a>
-          <a href="/terms.html" class="text-[#424842] hover:text-primary transition-colors">Terms of Service</a>
-          <a href="/cookies.html" class="text-[#424842] hover:text-primary transition-colors">Cookies</a>
-          <a href="/security.html" class="text-[#424842] hover:text-primary transition-colors">Security</a>
-          <a href="/docs.html" class="text-[#424842] hover:text-primary transition-colors">Documentation</a>
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L4 6v5c0 5.25 3.5 10.15 8 11.5 4.5-1.35 8-6.25 8-11.5V6l-8-4z" fill="rgba(255,255,255,0.15)" stroke="white"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
         </div>
-        <div class="flex flex-col space-y-4">
-          <a href="mailto:team@biomeai.uk" class="text-[#424842] hover:text-primary transition-colors">Contact</a>
-        </div>
+        <h3>SSRF Hardened</h3>
+        <p>All outbound requests are validated against host allowlists and private-IP DNS checks. The gateway cannot be tricked into fetching from internal hosts.</p>
       </div>
-      <div class="md:text-right">
-        <p class="text-[#424842] text-[0.75rem] uppercase tracking-[0.05em]">
-          © 2026 Biome<br>All rights reserved.
-        </p>
-        <a href="mailto:team@biomeai.uk" class="text-[#0c2c16] font-black mt-4 inline-block text-[0.75rem] uppercase tracking-[0.1em] border-b border-primary/20 pb-1 hover:border-primary transition-colors">
-          team@biomeai.uk
-        </a>
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6L9 17l-5-5"/>
+          </svg>
+        </div>
+        <h3>Exec Approval Required</h3>
+        <p>Every command the AI wants to run requires your explicit approval. Approval timeouts result in a hard block — no silent fallback execution path.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="8" fill="rgba(255,255,255,0.12)" stroke="white"/>
+            <circle cx="12" cy="12" r="3" fill="white" stroke="none"/>
+            <line x1="12" y1="4" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="20"/>
+            <line x1="4" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="20" y2="12"/>
+          </svg>
+        </div>
+        <h3>Trust Isolation</h3>
+        <p>External content — webhooks, wake events, runtime notifications — is quarantined as untrusted before entering the AI's context.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 6 5 6 21 6"/><rect x="8" y="6" width="8" height="0" rx="0"/>
+            <path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/>
+            <path d="M10 11v6M14 11v6"/>
+            <path d="M9 6V4h6v2"/>
+          </svg>
+        </div>
+        <h3>Clean Session History</h3>
+        <p>Internal tool data and system metadata are stripped from all user-facing views. What you see in chat is exactly what the model intended.</p>
+      </div>
+      <div class="sec-card">
+        <div class="sec-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="rgba(255,255,255,0.15)" stroke="white"/>
+          </svg>
+        </div>
+        <h3>Rate Limited Backend</h3>
+        <p>Per-IP rate limits on every endpoint. OTP codes expire in 10 minutes and cannot be reused. Everything else runs entirely on your machine.</p>
       </div>
     </div>
-  </footer>
 
-  <!-- ── JavaScript ── -->
-  <script>
-    // ────────────────────────────────────────────────────────
-    // BIOME AUTH CONFIG — local backend overrides are only honored on development hosts.
-    // ────────────────────────────────────────────────────────
-    const DEFAULT_BACKEND_URL = 'https://api.biomeai.uk';
-    const BACKEND_OVERRIDE_KEY = 'biome_backend_url';
-    const APPROVED_BACKEND_HOSTS = new Set(['api.biomeai.uk']);
-
-    function isDevelopmentPageHost() {
-      const host = location.hostname.toLowerCase();
-      return location.protocol === 'file:'
-        || host === 'localhost'
-        || host === '0.0.0.0'
-        || host === '::1'
-        || /^127(?:\.\d{1,3}){3}$/.test(host);
-    }
-
-    function normalizeBackendUrl(raw) {
-      const value = String(raw || '').trim().replace(/\/+$/, '');
-      return value || null;
-    }
-
-    function isLocalBackendUrl(raw) {
-      const value = normalizeBackendUrl(raw);
-      if (!value) return false;
-      try {
-        const url = new URL(value);
-        const host = url.hostname.toLowerCase();
-        return (url.protocol === 'http:' || url.protocol === 'https:')
-          && (host === 'localhost' || host === '0.0.0.0' || host === '::1' || /^127(?:\.\d{1,3}){3}$/.test(host));
-      } catch {
-        return /^https?:\/\/(?:localhost|127(?:\.\d{1,3}){0,3}|0\.0\.0\.0|\[::1\])(?::|\/|$)/i.test(value);
-      }
-    }
-
-    function isApprovedBackendUrl(raw) {
-      const value = normalizeBackendUrl(raw);
-      if (!value) return false;
-      try {
-        const url = new URL(value);
-        if (url.protocol !== 'https:' && !isLocalBackendUrl(value)) return false;
-        if (APPROVED_BACKEND_HOSTS.has(url.hostname.toLowerCase())) return true;
-        return isDevelopmentPageHost() && isLocalBackendUrl(value);
-      } catch {
-        return false;
-      }
-    }
-
-    function resolveBackendUrl() {
-      const stored = normalizeBackendUrl(localStorage.getItem(BACKEND_OVERRIDE_KEY));
-      if (stored && isApprovedBackendUrl(stored)) return stored;
-      if (stored) localStorage.removeItem(BACKEND_OVERRIDE_KEY);
-      return DEFAULT_BACKEND_URL;
-    }
-    let BACKEND_URL = resolveBackendUrl();
-
-    async function fetchBackend(path, options = {}) {
-      const requestOptions = {
-        credentials: 'include',
-        ...options,
-        headers: {
-          ...(options.body && !(options.body instanceof FormData) ? { 'Content-Type': 'application/json' } : {}),
-          ...(options.headers || {})
-        }
-      };
-
-      try {
-        return await fetch(`${BACKEND_URL}${path}`, requestOptions);
-      } catch (error) {
-        const stored = normalizeBackendUrl(localStorage.getItem(BACKEND_OVERRIDE_KEY));
-        if (stored && BACKEND_URL !== DEFAULT_BACKEND_URL) {
-          localStorage.removeItem(BACKEND_OVERRIDE_KEY);
-          BACKEND_URL = DEFAULT_BACKEND_URL;
-          return fetch(`${BACKEND_URL}${path}`, requestOptions);
-        }
-        throw error;
-      }
-    }
-
-    function backendNetworkMessage() {
-      return 'Could not reach Biome sign-in. Refresh and try again, or contact team@biomeai.uk if it continues.';
-    }
-
-    // ── Session management (HttpOnly cookie + non-sensitive cached user) ─────
-    const LEGACY_AUTH_KEY = 'biome_auth_token';
-    const AUTH_USER_KEY = 'biome_auth_user';
-
-    function getStoredUser() {
-      const storedUser = localStorage.getItem(AUTH_USER_KEY);
-      let user = null;
-
-      if (storedUser) {
-        try { user = JSON.parse(storedUser) || user; } catch {}
-      }
-
-      return user;
-    }
-
-    function getUser() { return getStoredUser(); }
-    function saveSession(user) {
-      localStorage.removeItem(LEGACY_AUTH_KEY);
-      if (user) localStorage.setItem(AUTH_USER_KEY, JSON.stringify(user));
-    }
-    function clearSession() {
-      localStorage.removeItem(LEGACY_AUTH_KEY);
-      localStorage.removeItem(AUTH_USER_KEY);
-    }
-
-    // ── Nav auth state ─────────────────────────────────────
-    function updateNavAuth(user) {
-      const btn = document.getElementById('nav-auth-btn');
-      if (!btn) return;
-      if (user) {
-        const label = user.name || user.email.split('@')[0];
-        btn.textContent = label;
-        btn.onclick = handleSignOut;
-        btn.title = 'Click to sign out';
-      } else {
-        btn.textContent = 'Sign In';
-        btn.onclick = () => openModal('signin');
-        btn.title = '';
-      }
-    }
-
-    async function handleSignOut() {
-      try {
-        await fetchBackend('/auth/logout', { method: 'POST' });
-      } catch {}
-      clearSession();
-      postAuthAction = null;
-      updateNavAuth(null);
-      showToast('Signed out successfully.');
-    }
-
-    // Check session on page load
-    (async () => {
-      const cached = getUser();
-      if (cached) updateNavAuth(cached);
-      try {
-        const res = await fetchBackend('/auth/me');
-        const data = await res.json();
-        if (data.ok) {
-          saveSession(data.user);
-          updateNavAuth(data.user);
-        } else {
-          clearSession();
-          updateNavAuth(null);
-        }
-      } catch {
-        if (cached) updateNavAuth(cached);
-      }
-    })();
-
-    // ── Modal configs ──────────────────────────────────────
-    const modalConfigs = {
-      personal:         { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
-      pro:              { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Managed model proxy, extended memory, and priority support. Cancel anytime.' },
-      signin:           { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
-      download_macos:   { label: 'Download for macOS — v1.4.1', title: 'Create an Account First', desc: 'Your download will begin immediately after signup. Takes 30 seconds, no credit card needed.' },
-      download_windows: { label: 'Windows coming soon', title: 'Windows Build Not Available', desc: 'The current public release is macOS-only. The Windows download will be enabled when a Biome Windows build is published from this workspace.' }
-    };
-
-    let pendingDownload = null;
-    let postAuthAction = null;
-
-    function openModal(plan, preservePostAuth = false) {
-      if (plan === 'pro') {
-        postAuthAction = 'pro_checkout';
-        if (getUser()) {
-          startProCheckout();
-          return;
-        }
-      } else if (!preservePostAuth) {
-        postAuthAction = null;
-      }
-
-      const cameFromProCheckout = postAuthAction === 'pro_checkout';
-      const cfg = modalConfigs[plan] || modalConfigs.personal;
-      document.getElementById('modal-plan-label').textContent = cameFromProCheckout && plan === 'signin' ? modalConfigs.pro.label : cfg.label;
-      document.getElementById('modal-title').textContent = cameFromProCheckout && plan === 'signin' ? 'Sign In to Continue' : cfg.title;
-      document.getElementById('modal-desc').textContent = cameFromProCheckout && plan === 'signin'
-        ? 'Sign in or create your account, then we\u2019ll take you straight to checkout.'
-        : cfg.desc;
-
-      // Show Pro app-email notice only when heading to Pro checkout
-      const isProFlow = plan === 'pro' || cameFromProCheckout;
-      document.getElementById('modal-email-app-notice').classList.toggle('hidden', !isProFlow);
-
-      document.getElementById('modal-cta').disabled = false;
-      document.getElementById('modal-cta').textContent = cameFromProCheckout ? 'Continue to Checkout' : 'Send Verification Code';
-      document.getElementById('modal-otp-cta').disabled = false;
-      document.getElementById('modal-otp-cta').textContent = cameFromProCheckout ? 'Verify & Continue to Checkout' : 'Verify & Create Account';
-      document.getElementById('modal-signin-cta').disabled = false;
-      document.getElementById('modal-signin-cta').textContent = 'Sign In';
-
-      // Reset forms
-      document.getElementById('modal-form')?.reset();
-      document.getElementById('modal-signin-form')?.reset();
-      document.getElementById('modal-error').classList.add('hidden');
-      document.getElementById('modal-signin-error').classList.add('hidden');
-      document.getElementById('modal-step-1').classList.remove('hidden');
-      document.getElementById('modal-step-2').classList.add('hidden');
-
-      // Default tab: 'signin' if plan === 'signin', else 'create'
-      const startTab = plan === 'signin' ? 'signin' : 'create';
-      _modalActiveTab = startTab;
-      switchModalTab(startTab);
-
-      const overlay = document.getElementById('modal-overlay');
-      overlay.classList.remove('hide');
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      const overlay = document.getElementById('modal-overlay');
-      overlay.classList.remove('show');
-      overlay.classList.add('hide');
-      document.body.style.overflow = '';
-    }
-
-    async function startProCheckout() {
-      showToast('Redirecting to checkout…');
-      try {
-        const checkoutRes = await fetchBackend('/billing/create-checkout-session', {
-          method: 'POST'
-        });
-        const checkoutData = await checkoutRes.json().catch(() => ({}));
-        if (checkoutRes.ok && checkoutData.ok && checkoutData.url) {
-          postAuthAction = null;
-          window.location.href = checkoutData.url;
-        } else if (checkoutRes.status === 401) {
-          clearSession();
-          updateNavAuth(null);
-          postAuthAction = 'pro_checkout';
-          showToast(checkoutData.error || 'Please sign in again to continue to checkout.');
-          openModal('signin', true);
-        } else {
-          showToast(checkoutData.error || 'Could not start checkout — please try again.');
-        }
-      } catch {
-        showToast('Could not reach payment server — check your connection.');
-      }
-    }
-
-    let _modalActiveTab = 'create'; // 'create' or 'signin'
-    let _pendingRegEmail = '';
-
-    function switchModalTab(tab) {
-      _modalActiveTab = tab;
-      const isCreate = tab === 'create';
-      const tabCreate = document.getElementById('modal-tab-create');
-      const tabSignin = document.getElementById('modal-tab-signin');
-      const panelCreate = document.getElementById('modal-panel-create');
-      const panelSignin = document.getElementById('modal-panel-signin');
-      if (tabCreate) { tabCreate.classList.toggle('bg-primary', isCreate); tabCreate.classList.toggle('text-on-primary', isCreate); tabCreate.classList.toggle('bg-surface-container-low', !isCreate); tabCreate.classList.toggle('text-on-surface-variant', !isCreate); }
-      if (tabSignin) { tabSignin.classList.toggle('bg-primary', !isCreate); tabSignin.classList.toggle('text-on-primary', !isCreate); tabSignin.classList.toggle('bg-surface-container-low', isCreate); tabSignin.classList.toggle('text-on-surface-variant', isCreate); }
-      if (panelCreate) panelCreate.classList.toggle('hidden', !isCreate);
-      if (panelSignin) panelSignin.classList.toggle('hidden', isCreate);
-      document.getElementById('modal-error')?.classList.add('hidden');
-      document.getElementById('modal-signin-error')?.classList.add('hidden');
-      setTimeout(() => {
-        if (isCreate) document.getElementById('modal-username-input')?.focus();
-        else document.getElementById('modal-si-identifier')?.focus();
-      }, 50);
-    }
-
-    function backToStep1() {
-      document.getElementById('modal-step-1').classList.remove('hidden');
-      document.getElementById('modal-step-2').classList.add('hidden');
-      document.getElementById('modal-otp-error').classList.add('hidden');
-      document.getElementById('modal-otp-input').value = '';
-    }
-
-    document.getElementById('modal-overlay').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
-
-    // ── Register: send OTP ─────────────────────────────────
-    async function handleRegister(e) {
-      e.preventDefault();
-      const username = document.getElementById('modal-username-input').value.trim();
-      const email    = document.getElementById('modal-email-input').value.trim();
-      const password = document.getElementById('modal-password-input').value;
-      const cta      = document.getElementById('modal-cta');
-      const errorEl  = document.getElementById('modal-error');
-      cta.disabled = true; cta.textContent = 'Sending code\u2026'; errorEl.classList.add('hidden');
-      try {
-        const res = await fetchBackend('/auth/register', {
-          method: 'POST',
-          body: JSON.stringify({ username, email, password })
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!data.ok) throw new Error(data.error || 'Failed to send code');
-        _pendingRegEmail = email;
-        document.getElementById('modal-otp-email-display').textContent = email;
-        document.getElementById('modal-step-1').classList.add('hidden');
-        document.getElementById('modal-step-2').classList.remove('hidden');
-        setTimeout(() => document.getElementById('modal-otp-input').focus(), 100);
-      } catch (err) {
-        errorEl.textContent = err instanceof TypeError ? backendNetworkMessage() : err.message; errorEl.classList.remove('hidden');
-        cta.disabled = false;
-        cta.textContent = postAuthAction === 'pro_checkout' ? 'Continue to Checkout' : 'Send Verification Code';
-      }
-    }
-
-    // ── Step 2: Verify OTP → complete registration ─────────
-    async function handleVerifyOTP(e) {
-      e.preventDefault();
-      const otp     = document.getElementById('modal-otp-input').value.trim();
-      const cta     = document.getElementById('modal-otp-cta');
-      const errorEl = document.getElementById('modal-otp-error');
-      cta.disabled = true; cta.textContent = 'Creating account\u2026'; errorEl.classList.add('hidden');
-      try {
-        const res = await fetchBackend('/auth/complete-registration', {
-          method: 'POST',
-          body: JSON.stringify({ email: _pendingRegEmail, otp })
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!data.ok) throw new Error(data.error || 'Verification failed');
-        saveSession(data.user);
-        updateNavAuth(data.user);
-        if (postAuthAction === 'pro_checkout') {
-          cta.textContent = 'Redirecting to checkout\u2026';
-          closeModal();
-          startProCheckout();
-        } else {
-          const dl = pendingDownload; pendingDownload = null; closeModal();
-          if (dl) { setTimeout(() => triggerDownload(dl), 400); }
-          else { showToast(`Welcome to Biome, ${data.user.name || data.user.username || data.user.email.split('@')[0]}! \u2713`); }
-        }
-      } catch (err) {
-        errorEl.textContent = err instanceof TypeError ? backendNetworkMessage() : err.message; errorEl.classList.remove('hidden');
-        cta.disabled = false;
-        cta.textContent = postAuthAction === 'pro_checkout' ? 'Verify & Continue to Checkout' : 'Verify & Create Account';
-      }
-    }
-
-    // ── Sign In: password-based login ──────────────────────
-    async function handleSignIn(e) {
-      e.preventDefault();
-      const identifier = document.getElementById('modal-si-identifier').value.trim();
-      const password   = document.getElementById('modal-si-password').value;
-      const cta        = document.getElementById('modal-signin-cta');
-      const errorEl    = document.getElementById('modal-signin-error');
-      cta.disabled = true; cta.textContent = 'Signing in\u2026'; errorEl.classList.add('hidden');
-      try {
-        const res = await fetchBackend('/auth/login', {
-          method: 'POST',
-          body: JSON.stringify({ identifier, password })
-        });
-        const data = await res.json().catch(() => ({}));
-        if (!data.ok) throw new Error(data.error || 'Sign in failed');
-        saveSession(data.user);
-        updateNavAuth(data.user);
-        if (postAuthAction === 'pro_checkout') {
-          closeModal();
-          startProCheckout();
-        } else {
-          const dl = pendingDownload; pendingDownload = null; closeModal();
-          if (dl) { setTimeout(() => triggerDownload(dl), 400); }
-          else { showToast(`Welcome back, ${data.user.name || data.user.username || data.user.email.split('@')[0]}! \u2713`); }
-        }
-      } catch (err) {
-        errorEl.textContent = err instanceof TypeError ? backendNetworkMessage() : err.message; errorEl.classList.remove('hidden');
-        cta.disabled = false;
-        cta.textContent = 'Sign In';
-      }
-    }
-
-    // ── Resend OTP ─────────────────────────────────────────
-    async function resendOTP() {
-      const username = document.getElementById('modal-username-input')?.value.trim() || '';
-      const email    = _pendingRegEmail || document.getElementById('modal-email-input')?.value.trim();
-      const password = document.getElementById('modal-password-input')?.value || '';
-      try {
-        const res = await fetchBackend('/auth/register', {
-          method: 'POST',
-          body: JSON.stringify({ username, email, password })
-        });
-        const data = await res.json().catch(() => ({}));
-        showToast(data.ok ? 'New code sent \u2014 check your inbox.' : 'Could not resend. Try again in a moment.');
-      } catch { showToast('Could not resend. Check your connection.'); }
-    }
-
-    // ── Toast ──────────────────────────────────────────────
-    let toastTimer;
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-msg').textContent = msg;
-      clearTimeout(toastTimer);
-      toast.classList.remove('hide'); toast.classList.add('show');
-      toastTimer = setTimeout(() => { toast.classList.remove('show'); toast.classList.add('hide'); }, 4000);
-    }
-
-
-    // ── Downloads ──────────────────────────────────────────
-    const DOWNLOAD_URLS = {
-      macOS: 'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg'
-    };
-
-    async function trackDownload(platform, url) {
-      try {
-        await fetchBackend('/track', {
-          method: 'POST',
-          body: JSON.stringify({
-            event: 'download',
-            platform,
-            file: url.split('/').pop()
-          })
-        });
-      } catch {}
-    }
-
-    async function triggerDownload(platform) {
-      const url = DOWNLOAD_URLS[platform];
-      if (!url) {
-        showToast(`${platform} is not available in this release.`);
-        return;
-      }
-      await trackDownload(platform, url);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = url.split('/').pop();
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      showToast(`Biome v1.4.1 for ${platform} — download starting.`);
-    }
-
-    async function handleDownload(platform) {
-      if (getUser()) {
-        await triggerDownload(platform);
-      } else {
-        pendingDownload = platform;
-        openModal(platform === 'macOS' ? 'download_macos' : 'download_windows');
-      }
-    }
-
-
-    // ── Mobile Menu ────────────────────────────────────────
-    function setMenuHeight(menu, open) {
-      if (open) {
-        menu.style.height = '0px';
-        requestAnimationFrame(() => { menu.style.height = menu.scrollHeight + 'px'; });
-        menu.addEventListener('transitionend', () => { menu.style.height = ''; }, { once: true });
-      } else {
-        menu.style.height = menu.scrollHeight + 'px';
-        requestAnimationFrame(() => { menu.style.height = '0px'; });
-      }
-    }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const icon = document.getElementById('hamburger-icon');
-      const isOpen = menu.classList.contains('open');
-      menu.classList.toggle('open', !isOpen);
-      icon.textContent = isOpen ? 'menu' : 'close';
-      setMenuHeight(menu, !isOpen);
-    }
-
-    function closeMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      const icon = document.getElementById('hamburger-icon');
-      if (!menu.classList.contains('open')) return;
-      menu.classList.remove('open');
-      icon.textContent = 'menu';
-      setMenuHeight(menu, false);
-    }
-
-    // ── FAQ Accordion ──────────────────────────────────────
-    function closeFaqBody(body, chevron) {
-      body.style.height = body.offsetHeight + 'px';
-      requestAnimationFrame(() => { body.style.height = '0px'; });
-      body.classList.remove('open');
-      if (chevron) chevron.classList.remove('open');
-    }
-
-    function openFaqBody(body, chevron) {
-      body.classList.add('open');
-      body.style.height = '0px';
-      requestAnimationFrame(() => { body.style.height = body.scrollHeight + 'px'; });
-      body.addEventListener('transitionend', () => { body.style.height = 'auto'; }, { once: true });
-      if (chevron) chevron.classList.add('open');
-    }
-
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const body = item.querySelector('.faq-body');
-      const chevron = btn.querySelector('.faq-chevron');
-      const isOpen = body.classList.contains('open');
-
-      // Close all others first
-      document.querySelectorAll('.faq-body.open').forEach(b => {
-        closeFaqBody(b, b.closest('.faq-item')?.querySelector('.faq-chevron'));
-      });
-
-      if (!isOpen) openFaqBody(body, chevron);
-    }
-
-    // ── Changelog ──────────────────────────────────────────
-    function toggleChangelog(btn) {
-      const panel = document.getElementById('changelog-full');
-      const icon = document.getElementById('changelog-icon');
-      const isOpen = panel.classList.contains('open');
-      if (isOpen) {
-        panel.style.height = panel.scrollHeight + 'px';
-        requestAnimationFrame(() => { panel.style.height = '0px'; });
-        panel.classList.remove('open');
-        icon.textContent = 'arrow_forward';
-        btn.childNodes[0].textContent = 'View Full Changelog ';
-      } else {
-        panel.classList.add('open');
-        panel.style.height = '0px';
-        requestAnimationFrame(() => { panel.style.height = panel.scrollHeight + 'px'; });
-        panel.addEventListener('transitionend', () => { panel.style.height = ''; }, { once: true });
-        icon.textContent = 'expand_less';
-        btn.childNodes[0].textContent = 'Hide Changelog ';
-      }
-    }
-
-    // ── Active Nav on Scroll ───────────────────────────────
-    const sections = ['hero', 'features', 'integrations', 'pricing', 'download', 'security', 'support'];
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(link => {
-            const isActive = link.dataset.section === id ||
-              (id === 'hero' && link.dataset.section === 'features');
-            link.classList.toggle('nav-active', isActive);
-            link.classList.toggle('nav-inactive', !isActive);
-          });
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-
-    sections.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    // ── Terminal Animation ─────────────────────────────────
-    function animateTerminal() {
-      const lines = document.querySelectorAll('.terminal-line');
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      lines.forEach((line, i) => {
-        if (reduced) {
-          line.style.opacity = '1';
-        } else {
-          setTimeout(() => {
-            line.style.transition = 'opacity 0.35s ease';
-            line.style.opacity = '1';
-          }, 400 + i * 350);
-        }
-      });
-    }
-
-    const terminalObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateTerminal();
-          terminalObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-
-    const terminal = document.getElementById('terminal-code');
-    if (terminal) terminalObserver.observe(terminal);
-  </script>
-  <script src="/cookie-consent.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" crossorigin="anonymous"></script>
-  <script>
-  (function () {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    // ── 1. Logo SVG draw-in ─────────────────────────────────
-    const logoCircles = document.querySelectorAll('#biome-logo-svg circle');
-    logoCircles.forEach(c => {
-      const len = c.getTotalLength();
-      c.style.strokeDasharray = len;
-      c.style.strokeDashoffset = reduced ? 0 : len;
-    });
-    if (!reduced && logoCircles.length) {
-      anime({
-        targets: '#biome-logo-svg circle',
-        strokeDashoffset: [anime.setDashoffset, 0],
-        duration: 1400,
-        delay: anime.stagger(180),
-        easing: 'easeInOutSine'
-      });
-    }
-
-    // ── 2. Hero entrance timeline ───────────────────────────
-    const heroTargets = ['.hero-eyebrow', '#hero-heading', '.hero-subtitle', '.hero-ctas', '.hero-metrics', '.hero-visual'];
-    if (!reduced) {
-      heroTargets.forEach(sel => document.querySelectorAll(sel).forEach(el => { el.style.opacity = '0'; }));
-      setTimeout(() => {
-        anime.timeline({ easing: 'easeOutExpo' })
-          .add({ targets: '.hero-eyebrow',  opacity: [0, 1], translateY: [10, 0], duration: 500 })
-          .add({ targets: '#hero-heading',  opacity: [0, 1], translateY: [40, 0], duration: 750 }, '-=200')
-          .add({ targets: '.hero-subtitle', opacity: [0, 1], translateY: [20, 0], duration: 600 }, '-=450')
-          .add({ targets: '.hero-ctas',     opacity: [0, 1], translateY: [14, 0], duration: 500 }, '-=350')
-          .add({ targets: '.hero-metrics',  opacity: [0, 1], translateY: [10, 0], duration: 400 }, '-=250')
-          .add({ targets: '.hero-visual',   opacity: [0, 1], translateX: [40, 0], duration: 800 }, '-=700');
-      }, 60);
-    }
-
-    // ── 3. Metric counters (trigger when metrics row is in view) ──
-    const metricsEl = document.querySelector('.hero-metrics');
-    if (metricsEl) {
-      let metricsDone = false;
-      const mObs = new IntersectionObserver(entries => {
-        if (!entries[0].isIntersecting || metricsDone) return;
-        metricsDone = true;
-        mObs.disconnect();
-        if (reduced) return;
-        const counters = [
-          { id: 'metric-skills',    to: 20, suffix: '+' },
-          { id: 'metric-providers', to: 11, suffix: '+' }
-        ];
-        counters.forEach(({ id, to, suffix }) => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          anime({
-            targets: { val: 0 }, val: to, round: 1,
-            duration: 1100, easing: 'easeOutExpo',
-            update(a) { el.textContent = Math.round(a.animations[0].currentValue) + suffix; }
-          });
-        });
-      }, { threshold: 0.5 });
-      mObs.observe(metricsEl);
-    }
-
-    // ── 4. Scroll-reveal stagger for section grids ──────────
-    if (!reduced) {
-      const revealGroups = [
-        { sel: '#how-it-works .space-y-10 > div', gap: 130 },
-        { sel: '#features .grid > div',           gap: 55  },
-        { sel: '#security .grid > div',           gap: 55  },
-        { sel: '#pricing .grid > div',            gap: 100 },
-      ];
-
-      revealGroups.forEach(({ sel, gap }) => {
-        const els = document.querySelectorAll(sel);
-        if (!els.length) return;
-        els.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; });
-        let fired = false;
-        const obs = new IntersectionObserver(entries => {
-          if (fired || !entries[0].isIntersecting) return;
-          fired = true;
-          obs.disconnect();
-          anime({
-            targets: els,
-            opacity: [0, 1],
-            translateY: [24, 0],
-            delay: anime.stagger(gap),
-            duration: 620,
-            easing: 'easeOutExpo'
-          });
-        }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
-        obs.observe(els[0]);
-      });
-
-      // Featured privacy card standalone reveal
-      const featCard = document.querySelector('#features .bg-primary.text-on-primary');
-      if (featCard) {
-        featCard.style.opacity = '0';
-        featCard.style.transform = 'translateY(20px)';
-        const fcObs = new IntersectionObserver(entries => {
-          if (!entries[0].isIntersecting) return;
-          fcObs.disconnect();
-          anime({ targets: featCard, opacity: [0, 1], translateY: [20, 0], duration: 700, easing: 'easeOutExpo' });
-        }, { threshold: 0.15 });
-        fcObs.observe(featCard);
-      }
-    }
-
-    // ── 5. Feature icon hover jiggle ────────────────────────
-    if (!reduced) {
-      document.querySelectorAll('#features .grid > div').forEach(card => {
-        const icon = card.querySelector('.material-symbols-outlined');
-        if (!icon) return;
-        let jiggling = false;
-        card.addEventListener('mouseenter', () => {
-          if (jiggling) return;
-          jiggling = true;
-          anime({
-            targets: icon,
-            rotate: [0, -10, 10, -5, 5, 0],
-            duration: 480,
-            easing: 'easeInOutSine',
-            complete: () => { jiggling = false; }
-          });
-        });
-      });
-    }
-
-    // ── 6. Pricing cards stagger from slightly different Y ──
-    if (!reduced) {
-      const pricingCards = document.querySelectorAll('#pricing .grid > div');
-      if (pricingCards.length) {
-        pricingCards.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(30px)'; });
-        let pFired = false;
-        const pObs = new IntersectionObserver(entries => {
-          if (pFired || !entries[0].isIntersecting) return;
-          pFired = true;
-          pObs.disconnect();
-          anime({
-            targets: pricingCards,
-            opacity: [0, 1],
-            translateY: [30, 0],
-            delay: anime.stagger(110, { start: 100 }),
-            duration: 650,
-            easing: 'easeOutExpo'
-          });
-        }, { threshold: 0.12 });
-        pObs.observe(pricingCards[0]);
-      }
-    }
-
-    // ── 7. Nav link underline slide-in on hover ─────────────
-    if (!reduced) {
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('mouseenter', () => {
-          anime({ targets: link, paddingBottom: ['2px', '6px'], duration: 200, easing: 'easeOutQuad' });
-        });
-        link.addEventListener('mouseleave', () => {
-          anime({ targets: link, paddingBottom: ['6px', '4px'], duration: 200, easing: 'easeOutQuad' });
-        });
-      });
-    }
-
-    // ── 8. Hero forest parallax on scroll ───────────────────
-    const parallaxBg = document.getElementById('parallax-bg');
-    if (parallaxBg && !reduced) {
-      let rafPending = false;
-      window.addEventListener('scroll', () => {
-        if (rafPending) return;
-        rafPending = true;
-        requestAnimationFrame(() => {
-          parallaxBg.style.transform = `translateY(${window.scrollY * 0.28}px)`;
-          rafPending = false;
-        });
-      }, { passive: true });
-    }
-
-    // ── 9. Nav: scroll shadow ────
-    const mainNav = document.querySelector('nav');
-    if (mainNav) {
-      window.addEventListener('scroll', () => {
-        mainNav.style.boxShadow = window.scrollY > 10 ? '0 1px 12px rgba(0,0,0,0.07)' : '';
-      }, { passive: true });
-    }
-
-  })();
-  </script>
-
+    <div style="margin-top:36px">
+      <a class="link-cta" href="/security.html">Full security details &rsaquo;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Task examples ── -->
+<section class="light reveal" id="social-proof">
+  <div class="wrap">
+    <p class="eyebrow">Example runs.</p>
+    <h2 class="headline">What Biome should look like in use.</h2>
+
+    <div class="run-list">
+      <article>
+        <span>Research</span>
+        <p>Compare three tools, cite sources, save a decision memo.</p>
+      </article>
+      <article>
+        <span>Browser</span>
+        <p>Open a web app, read the latest state, prepare the next action.</p>
+      </article>
+      <article>
+        <span>Code</span>
+        <p>Inspect the project, patch a file, run the narrowest useful check.</p>
+      </article>
+    </div>
+
+    <div class="logos">
+      <div>Writers</div><div>Developers</div><div>Designers</div><div>Researchers</div><div>Students</div><div>Founders</div>
+      <div>Marketers</div><div>Lawyers</div><div>Analysts</div><div>Teachers</div><div>PMs</div><div>Everyone</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ── Support / FAQ ── -->
+<section class="light reveal" id="support" aria-labelledby="support-heading">
+  <div class="wrap">
+    <div class="faq-grid">
+      <div class="faq-intro">
+        <h2 id="support-heading">Simple<br>Support.</h2>
+        <p>Get help with setup, model keys, browser control, and local-agent health.</p>
+        <a class="link-cta" href="mailto:team@biomeai.uk">team@biomeai.uk &rsaquo;</a>
+        <div style="margin-top:24px;padding:20px;background:var(--bg-alt);border-radius:16px;border-left:3px solid var(--sage-2)">
+          <p style="font-size:14px;color:var(--ink-2);margin:0;line-height:1.6"><strong style="color:var(--ink)">Average response: 2 hours.</strong> We're a small team that actually reads every message. No bots, no ticket queues.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>Do I need an API key to use Biome?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>Yes — Biome runs on your machine and calls AI APIs directly using your own keys. You can bring keys for Google Gemini (free tier available), Anthropic Claude, OpenAI, xAI Grok, Mistral, or Perplexity. Keys are stored locally, never sent to our servers. Gemini has a generous free tier, so you can get started at zero cost.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>What does the free plan include?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>The free download gives you the full Biome app — chat, workflows, skills, all AI models (bring your own key), file attachments, and community support. Pro unlocks Browser Control through the local browser relay and lightweight Chrome extension, AI Chat Piggyback, Zero-Knowledge privacy mode, and priority support.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>Is my data private?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>Almost everything stays on your machine. Conversations, memory, and settings are stored locally by the desktop app — never on our servers. API calls go directly from your device to whichever AI provider you choose. We only keep account, billing, and consent records needed to run the service.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>What is Browser Control and do I need Chrome?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>Browser Control is a Pro feature that lets your agent open URLs, click elements, fill forms, and read page content in Chrome through Biome's local browser relay and lightweight Chrome extension. It's not required for basic web search — that works without Chrome. Browser Control unlocks deeper automation like reading paywalled content, filling forms, and interacting with web apps.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>What macOS version do I need?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>Biome requires macOS 13 Ventura or later. It runs natively on both Apple Silicon (M-series) and Intel Macs. A Windows version is in active development.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-trigger" onclick="toggleFaq(this)">
+            <h3>Can I cancel my Pro subscription anytime?</h3>
+            <svg class="faq-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="faq-body"><p>Yes. Cancel anytime from your billing portal with no questions asked. You keep Pro access until the end of your current billing period, then revert to the free tier automatically.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Blog ── -->
+<section class="gray reveal" id="blog">
+  <div class="wrap">
+    <p class="eyebrow">From the blog.</p>
+    <h2 class="headline">What&#x2019;s new<br>in Biome.</h2>
+
+    <div class="posts">
+
+      <article class="post">
+        <div class="date">May 12, 2026 &middot; Release Notes</div>
+        <h3>Biome 1.4 &#x2014; Persistent Memory Arrives</h3>
+        <p>Your agent now remembers context across sessions &#x2014; no more repeating yourself. Here&#x2019;s how it works.</p>
+        <a href="/blog/biome-1-4-persistent-memory.html" class="post-toggle" style="text-decoration:none">Read article <span class="arr">&#x203A;</span></a>
+      </article>
+
+      <article class="post">
+        <div class="date">April 28, 2026 &middot; Engineering</div>
+        <h3>Building a Persona System That Actually Feels Personal</h3>
+        <p>Most AI assistants are generic by design. Biome&#x2019;s persona layer gives your agent a specific voice, rhythm, and set of habits &#x2014; here&#x2019;s how we built it.</p>
+        <a href="/blog/persona-system.html" class="post-toggle" style="text-decoration:none">Read article <span class="arr">&#x203A;</span></a>
+      </article>
+
+      <article class="post">
+        <div class="date">April 2, 2026 &middot; Deep Dive</div>
+        <h3>Why Browser-Native Beats Plugins Every Time</h3>
+        <p>Heavy browser plugins are sandboxed, rate-limited, and constantly breaking. Biome&#x2019;s local browser relay takes a lighter path &#x2014; and the difference matters.</p>
+        <a href="/blog/browser-native-vs-plugins.html" class="post-toggle" style="text-decoration:none">Read article <span class="arr">&#x203A;</span></a>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="margin-bottom:12px">
+    <a href="mailto:team@biomeai.uk">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/cookies.html">Cookies</a>
+    <a href="/security.html">Security</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  Copyright &copy; 2025&ndash;2026 Biome. All rights reserved.
+</footer>
+
+<script src="site.js?v=20260521-ui2" defer></script>
+
+
+<!-- ── Cookie Consent ── -->
+<script src="cookie-consent.js" defer></script>
 </body>
 </html>

@@ -6,15 +6,32 @@
     <description>Biome update feed</description>
     <language>en</language>
 
-    <!-- ================================================================
-         v1.4.1 entry — fill in after signing the DMG:
-           1. Generate signature: sign_update Biome-1.4.1.dmg
-           2. Get file size: stat -f%z Biome-1.4.1.dmg
-           3. Upload DMG to GitHub release v1.4.1
-           4. Uncomment and fill in sparkle:edSignature below
-         The DMG itself is already published at the URL below; only Sparkle
-         auto-update is gated on this signature. New users who download
-         from the website are unaffected.
+    <item>
+      <title>Version 1.4.2</title>
+      <link>https://biomeai.uk</link>
+      <sparkle:version>6</sparkle:version>
+      <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
+      <description><![CDATA[
+        <h3>What's new in 1.4.2</h3>
+        <ul>
+          <li>Simpler, non-technical setup and settings language throughout the app.</li>
+          <li>Messaging apps now use a clearer QR-first connection flow where supported.</li>
+          <li>Advanced support-only settings are tucked away so users do not need files, terminal commands, or code-oriented controls.</li>
+          <li>Health, schedules, helpers, model selection, and local-action prompts now use plain Biome language.</li>
+        </ul>
+      ]]></description>
+      <pubDate>Sat, 16 May 2026 18:55:00 +0000</pubDate>
+      <enclosure
+        url="https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.2/Biome-1.4.2.dmg"
+        sparkle:version="6"
+        sparkle:shortVersionString="1.4.2"
+        sparkle:edSignature="QvqFjlkShvyWMO25Oa4U4R8wQT2LOPR0nzCQSvJOBG7230Pkhi6sWBaJwSDBlHLbDMON1Avy43p8S46lqcg6Bw=="
+        length="95939918"
+        type="application/octet-stream"
+      />
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+    </item>
+
     <item>
       <title>Version 1.4.1</title>
       <link>https://biomeai.uk</link>
@@ -33,13 +50,12 @@
         url="https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.1/Biome-1.4.1.dmg"
         sparkle:version="5"
         sparkle:shortVersionString="1.4.1"
-        sparkle:edSignature="FILL_IN_SIGNATURE_HERE"
+        sparkle:edSignature="zOqfmanC0krUjxaYy3OEzW8sABHeOsP61UTKtgaRj+IsfBlfa4RGbYKXmbYhruTzFuZsP0aM4d3n+y2uTDadDA=="
         length="96011160"
         type="application/octet-stream"
       />
       <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
     </item>
-    ================================================================ -->
 
     <item>
       <title>Version 1.2.0</title>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Biome 1.4 — Persistent Memory Arrives | Biome Blog</title>
+<meta name="description" content="Your AI agent now remembers context across sessions — preferences, project names, recurring habits. Here's how Biome 1.4's memory layer works and why we built selective recall instead of total recall." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://biomeai.uk/blog/biome-1-4-persistent-memory.html" />
+<meta property="og:title" content="Biome 1.4 — Persistent Memory Arrives" />
+<meta property="og:description" content="Your AI agent now remembers context across sessions — no more repeating yourself. Here's how it works." />
+<meta property="og:image" content="https://biomeai.uk/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Biome 1.4 — Persistent Memory Arrives" />
+<meta name="twitter:description" content="Your AI agent now remembers context across sessions — no more repeating yourself." />
+<meta name="twitter:image" content="https://biomeai.uk/og-image.png" />
+<link rel="canonical" href="https://biomeai.uk/blog/biome-1-4-persistent-memory.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Biome 1.4 — Persistent Memory Arrives",
+  "description": "Your AI agent now remembers context across sessions — preferences, project names, recurring habits.",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-05-12",
+  "author": {"@type": "Organization", "name": "Biome", "url": "https://biomeai.uk"},
+  "publisher": {"@type": "Organization", "name": "Biome", "url": "https://biomeai.uk"},
+  "url": "https://biomeai.uk/blog/biome-1-4-persistent-memory.html",
+  "mainEntityOfPage": "https://biomeai.uk/blog/biome-1-4-persistent-memory.html"
+}
+</script>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0c2c16" />
+<style>
+:root {
+  --bg: #ffffff; --bg-alt: #f5f5f7; --bg-dark: #0c2c16;
+  --ink: #1a1c1a; --ink-2: #424842; --ink-3: #727971;
+  --line: #c2c8bf; --sage: #46664b; --sage-2: #accfaf;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1.47; -webkit-font-smoothing: antialiased; letter-spacing: -0.022em; }
+a { color: var(--sage); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.nav { max-width: 1024px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+.nav .brand { font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.nav ul { display: flex; gap: 30px; list-style: none; padding: 0; margin: 0; }
+.nav ul a { color: var(--ink); opacity: 0.85; font-size: 12px; text-decoration: none; transition: opacity .15s; }
+.nav ul a:hover, .nav ul a.active { opacity: 1; color: var(--sage); }
+.nav .right { display: flex; gap: 18px; align-items: center; }
+.btn-sm { display: inline-flex; align-items: center; background: var(--bg-dark); color: white; padding: 8px 18px; border-radius: 980px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background .15s; }
+.btn-sm:hover { background: #1a4228; text-decoration: none; }
+@media (max-width: 680px) { .nav ul { display: none; } }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 64px 22px 96px; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-3); margin-bottom: 40px; }
+.back:hover { color: var(--sage); text-decoration: none; }
+.tag { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin: 0 0 16px; }
+.meta { font-size: 14px; color: var(--ink-3); margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.body p { font-size: 18px; line-height: 1.72; color: var(--ink-2); margin: 0 0 24px; }
+.body p:first-child { font-size: 20px; color: var(--ink); font-weight: 400; }
+.body strong { color: var(--ink); font-weight: 600; }
+.body h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); margin: 48px 0 16px; }
+.cta-box { background: var(--bg-dark); border-radius: 22px; padding: 40px; text-align: center; margin-top: 64px; }
+.cta-box p { color: rgba(172,207,175,0.8); font-size: 16px; margin: 0 0 20px; }
+.cta-box a { display: inline-flex; align-items: center; background: var(--sage-2); color: var(--bg-dark); padding: 13px 28px; border-radius: 980px; font-size: 15px; font-weight: 600; text-decoration: none; transition: background .15s; }
+.cta-box a:hover { background: #c7ecca; text-decoration: none; }
+
+footer { background: var(--bg-alt); color: var(--ink-2); padding: 28px 22px; font-size: 12px; text-align: center; border-top: 1px solid var(--line); }
+footer a { color: var(--ink-2); margin: 0 10px; }
+footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="brand">Biome</a>
+    <ul>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#download">Download</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+    </ul>
+    <div class="right">
+      <a href="/#download" class="btn-sm">Get Biome</a>
+    </div>
+  </nav>
+</div>
+
+<main class="article-wrap">
+  <a href="/blog/" class="back">← All posts</a>
+  <p class="tag">Release Notes</p>
+  <h1>Biome 1.4 — Persistent Memory Arrives</h1>
+  <p class="meta">May 12, 2026 &middot; 4 min read</p>
+
+  <div class="body">
+    <p>Your agent now remembers context across sessions — no more repeating yourself. Before 1.4, every session with Biome started cold. The agent had no idea that you prefer bullet-pointed summaries, that your Linear workspace is called "Seed", or that you never want calendar invites sent before 9 am. You had to re-teach it each time. That changes today.</p>
+
+    <h2>Selective recall, not total recall</h2>
+    <p>We deliberately did not build a system that stores everything. A memory layer that remembers every message becomes noise. Instead, Biome tags facts worth keeping — preferences, recurring tasks, relationships between contacts, project names — and discards conversational filler automatically.</p>
+    <p>The result is a memory store that stays small and accurate, rather than growing into an unmanageable log you'd need to prune yourself.</p>
+
+    <h2>Memory decay</h2>
+    <p>Facts have a half-life. A preference from eight months ago that you've never reinforced fades and eventually drops. This keeps the memory layer accurate as your habits change, without you having to manually prune it.</p>
+    <p>Think of it less like a database and more like the way a good colleague internalises your working style over time — picking up the consistent signals, letting the one-off requests fade.</p>
+
+    <h2>User-controlled forgetting</h2>
+    <p>Open <strong>Settings → Memory</strong> at any time to inspect exactly what Biome knows, edit individual facts, or wipe the entire store. Your agent's memory is your data. Full stop.</p>
+    <p>We built the inspection view before we built the memory layer itself. If you can't see what the agent knows, you can't trust it — and trust is the whole product.</p>
+
+    <h2>What's included in 1.4</h2>
+    <p>Persistent memory is live in 1.4 for all plans. Pro users get cross-device sync so memory follows you between machines — your agent knows your preferences whether you're on your MacBook at home or your Mac mini at the office.</p>
+
+    <div class="cta-box">
+      <p>Persistent memory is available now on all plans — free and Pro.</p>
+      <a href="/#download">Download Biome 1.4 →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div style="margin-bottom:12px">
+    <a href="mailto:team@biomeai.uk">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  Copyright &copy; 2025&ndash;2026 Biome. All rights reserved.
+</footer>
+
+</body>
+</html>

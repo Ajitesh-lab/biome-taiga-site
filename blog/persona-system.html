@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Building a Persona System That Actually Feels Personal | Biome Blog</title>
+<meta name="description" content="Most AI assistants are generic by design. Biome's persona layer gives your agent a specific voice, rhythm, and set of habits. Here's how we built it — traits, not prompts, and why that distinction matters." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://biomeai.uk/blog/persona-system.html" />
+<meta property="og:title" content="Building a Persona System That Actually Feels Personal" />
+<meta property="og:description" content="Biome's persona layer gives your agent a specific voice, rhythm, and habits. Here's how we built it." />
+<meta property="og:image" content="https://biomeai.uk/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Building a Persona System That Actually Feels Personal" />
+<meta name="twitter:description" content="Biome's persona layer gives your AI agent a specific voice, rhythm, and habits. Here's how we built it." />
+<meta name="twitter:image" content="https://biomeai.uk/og-image.png" />
+<link rel="canonical" href="https://biomeai.uk/blog/persona-system.html" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Building a Persona System That Actually Feels Personal",
+  "description": "Most AI assistants are generic by design. Biome's persona layer gives your agent a specific voice, rhythm, and set of habits.",
+  "datePublished": "2026-04-28",
+  "dateModified": "2026-04-28",
+  "author": {"@type": "Organization", "name": "Biome", "url": "https://biomeai.uk"},
+  "publisher": {"@type": "Organization", "name": "Biome", "url": "https://biomeai.uk"},
+  "url": "https://biomeai.uk/blog/persona-system.html",
+  "mainEntityOfPage": "https://biomeai.uk/blog/persona-system.html"
+}
+</script>
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0c2c16" />
+<style>
+:root {
+  --bg: #ffffff; --bg-alt: #f5f5f7; --bg-dark: #0c2c16;
+  --ink: #1a1c1a; --ink-2: #424842; --ink-3: #727971;
+  --line: #c2c8bf; --sage: #46664b; --sage-2: #accfaf;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1.47; -webkit-font-smoothing: antialiased; letter-spacing: -0.022em; }
+a { color: var(--sage); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.nav { max-width: 1024px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+.nav .brand { font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.nav ul { display: flex; gap: 30px; list-style: none; padding: 0; margin: 0; }
+.nav ul a { color: var(--ink); opacity: 0.85; font-size: 12px; text-decoration: none; transition: opacity .15s; }
+.nav ul a:hover, .nav ul a.active { opacity: 1; color: var(--sage); }
+.nav .right { display: flex; gap: 18px; align-items: center; }
+.btn-sm { display: inline-flex; align-items: center; background: var(--bg-dark); color: white; padding: 8px 18px; border-radius: 980px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background .15s; }
+.btn-sm:hover { background: #1a4228; text-decoration: none; }
+@media (max-width: 680px) { .nav ul { display: none; } }
+
+.article-wrap { max-width: 680px; margin: 0 auto; padding: 64px 22px 96px; }
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--ink-3); margin-bottom: 40px; }
+.back:hover { color: var(--sage); text-decoration: none; }
+.tag { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin: 0 0 16px; }
+.meta { font-size: 14px; color: var(--ink-3); margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--line); }
+.body p { font-size: 18px; line-height: 1.72; color: var(--ink-2); margin: 0 0 24px; }
+.body p:first-child { font-size: 20px; color: var(--ink); font-weight: 400; }
+.body strong { color: var(--ink); font-weight: 600; }
+.body h2 { font-size: 24px; font-weight: 700; letter-spacing: -0.03em; color: var(--ink); margin: 48px 0 16px; }
+.cta-box { background: var(--bg-dark); border-radius: 22px; padding: 40px; text-align: center; margin-top: 64px; }
+.cta-box p { color: rgba(172,207,175,0.8); font-size: 16px; margin: 0 0 20px; }
+.cta-box a { display: inline-flex; align-items: center; background: var(--sage-2); color: var(--bg-dark); padding: 13px 28px; border-radius: 980px; font-size: 15px; font-weight: 600; text-decoration: none; transition: background .15s; }
+.cta-box a:hover { background: #c7ecca; text-decoration: none; }
+
+footer { background: var(--bg-alt); color: var(--ink-2); padding: 28px 22px; font-size: 12px; text-align: center; border-top: 1px solid var(--line); }
+footer a { color: var(--ink-2); margin: 0 10px; }
+footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="brand">Biome</a>
+    <ul>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#download">Download</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+    </ul>
+    <div class="right">
+      <a href="/#download" class="btn-sm">Get Biome</a>
+    </div>
+  </nav>
+</div>
+
+<main class="article-wrap">
+  <a href="/blog/" class="back">← All posts</a>
+  <p class="tag">Engineering</p>
+  <h1>Building a Persona System That Actually Feels Personal</h1>
+  <p class="meta">April 28, 2026 &middot; 5 min read</p>
+
+  <div class="body">
+    <p>Most AI assistants are generic by design. They're tuned to be maximally inoffensive and broadly useful — the cost of which is that they feel like no one. Biome's persona layer gives your agent a specific voice, rhythm, and set of habits. Here's how we built it.</p>
+
+    <h2>The problem with defaults</h2>
+    <p>A default AI assistant never pushes back, never says "you usually prefer this another way", never adapts its tone to your mood. It just answers. This isn't a model failure — it's a deliberate product choice optimised for the broadest possible audience. The result is that it's useful to everyone and memorable to no one.</p>
+    <p>Biome is built around the opposite idea: your agent should feel like it was made for you specifically, not for the median user.</p>
+
+    <h2>Traits, not prompts</h2>
+    <p>Rather than letting users write system prompts — which most people either skip entirely or overkill with 800 words of instructions — we built a <strong>trait editor</strong>. You pick from a set of communication dimensions: directness, formality, verbosity, proactivity, and tone. The persona engine translates these into a consistent instruction layer the agent carries across every task.</p>
+    <p>The advantage over free-form prompting is consistency. A trait setting is a signal the system can reinforce reliably. A free-form prompt gets interpreted differently depending on context length, task type, and which part of the conversation the model is paying attention to.</p>
+
+    <h2>Consistent voice under pressure</h2>
+    <p>The hard part isn't the happy path. It's making sure the persona holds when the agent is mid-task, context is long, and the model is tempted to drop character in favour of raw helpfulness.</p>
+    <p>We solved this by reinforcing trait signals at multiple layers of the prompt rather than only at the top. A single system message at the start of a long context gets diluted. Traits that echo through the structure stay active.</p>
+
+    <h2>The habit loop</h2>
+    <p>Persona and memory interact. When Biome observes that you always ask to "keep it brief" at the end of a summary, it learns that verbosity is low and starts applying it without being asked. The system trains itself toward your preferences over time.</p>
+    <p>This is different from simply updating a trait setting. The habit loop catches preferences you express implicitly in conversation — the ones you'd never think to configure manually but that matter every day.</p>
+    <p>The trait editor shipped in 1.3 and has been updated in 1.4 with five new dimensions based on beta user feedback.</p>
+
+    <div class="cta-box">
+      <p>Set up your agent's persona in under two minutes — free to download.</p>
+      <a href="/#download">Download Biome →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div style="margin-bottom:12px">
+    <a href="mailto:team@biomeai.uk">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  Copyright &copy; 2025&ndash;2026 Biome. All rights reserved.
+</footer>
+
+</body>
+</html>

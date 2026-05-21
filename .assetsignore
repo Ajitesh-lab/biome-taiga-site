@@ -7,6 +7,12 @@ node_modules/**
 .netlify
 .netlify/**
 .DS_Store
+.assetsignore
+.gitignore
+.claude
+.claude/**
 wrangler.jsonc
 package.json
 package-lock.json
+tailwind.config.js
+tailwind-input.css

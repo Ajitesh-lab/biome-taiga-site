@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Blog — Biome | AI Agent News, Engineering & Release Notes</title>
+<meta name="description" content="Release notes, engineering deep dives, and product updates from the team building Biome — the personal AI agent for macOS." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://biomeai.uk/blog/" />
+<meta property="og:title" content="Blog — Biome" />
+<meta property="og:description" content="Release notes, engineering deep dives, and product updates from the Biome team." />
+<meta property="og:image" content="https://biomeai.uk/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Blog — Biome" />
+<meta name="twitter:description" content="Release notes, engineering deep dives, and product updates from the Biome team." />
+<meta name="twitter:image" content="https://biomeai.uk/og-image.png" />
+<link rel="canonical" href="https://biomeai.uk/blog/" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0c2c16" />
+<style>
+:root {
+  --bg: #ffffff; --bg-alt: #f5f5f7; --bg-dark: #0c2c16;
+  --ink: #1a1c1a; --ink-2: #424842; --ink-3: #727971;
+  --line: #c2c8bf; --sage: #46664b; --sage-2: #accfaf;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: var(--sans); background: var(--bg); color: var(--ink); font-size: 17px; line-height: 1.47; -webkit-font-smoothing: antialiased; letter-spacing: -0.022em; }
+a { color: var(--sage); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.nav-wrap { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid rgba(0,0,0,0.06); }
+.nav { max-width: 1024px; margin: 0 auto; padding: 0 22px; height: 48px; display: flex; align-items: center; justify-content: space-between; font-size: 14px; }
+.nav .brand { font-weight: 500; font-size: 15px; letter-spacing: -0.01em; color: var(--ink); text-decoration: none; }
+.nav ul { display: flex; gap: 30px; list-style: none; padding: 0; margin: 0; }
+.nav ul a { color: var(--ink); opacity: 0.85; font-size: 12px; text-decoration: none; transition: opacity .15s; }
+.nav ul a:hover, .nav ul a.active { opacity: 1; color: var(--sage); }
+.nav .right { display: flex; gap: 18px; align-items: center; font-size: 12px; }
+.btn-sm { display: inline-flex; align-items: center; background: var(--bg-dark); color: white; padding: 8px 18px; border-radius: 980px; font-size: 13px; font-weight: 500; text-decoration: none; transition: background .15s; }
+.btn-sm:hover { background: #1a4228; text-decoration: none; }
+@media (max-width: 680px) { .nav ul { display: none; } }
+
+.hero { padding: 80px 22px 56px; text-align: center; }
+.hero .eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage); margin-bottom: 14px; }
+.hero h1 { font-size: clamp(36px,5vw,60px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin: 0 0 16px; }
+.hero p { font-size: 19px; color: var(--ink-2); max-width: 36ch; margin: 0 auto; line-height: 1.45; }
+
+.posts-wrap { max-width: 980px; margin: 0 auto; padding: 0 22px 96px; }
+.posts-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 48px; }
+@media (max-width: 800px) { .posts-grid { grid-template-columns: 1fr; } }
+
+.post-card { background: var(--bg-alt); border-radius: 22px; padding: 36px; transition: transform .25s ease, box-shadow .25s ease; display: flex; flex-direction: column; }
+.post-card:hover { transform: translateY(-3px); box-shadow: 0 16px 40px -12px rgba(0,0,0,0.12); }
+.post-card .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--sage); margin-bottom: 12px; }
+.post-card h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; margin: 0 0 10px; color: var(--ink); }
+.post-card p { font-size: 15px; color: var(--ink-2); line-height: 1.6; margin: 0 0 24px; flex: 1; }
+.post-card .meta { font-size: 13px; color: var(--ink-3); margin-bottom: 18px; }
+.read-link { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: var(--bg-dark); text-decoration: none; }
+.read-link:hover { text-decoration: underline; }
+
+footer { background: var(--bg-alt); color: var(--ink-2); padding: 28px 22px; font-size: 12px; text-align: center; border-top: 1px solid var(--line); }
+footer a { color: var(--ink-2); margin: 0 10px; }
+footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<div class="nav-wrap">
+  <nav class="nav" aria-label="Main navigation">
+    <a href="/" class="brand">Biome</a>
+    <ul>
+      <li><a href="/#features">Features</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+      <li><a href="/#download">Download</a></li>
+      <li><a href="/blog/" class="active">Blog</a></li>
+    </ul>
+    <div class="right">
+      <a href="/#download" class="btn-sm">Get Biome</a>
+    </div>
+  </nav>
+</div>
+
+<header class="hero">
+  <p class="eyebrow">From the blog</p>
+  <h1>What's new in Biome.</h1>
+  <p>Release notes, engineering deep dives, and product updates from our team.</p>
+</header>
+
+<main class="posts-wrap">
+  <div class="posts-grid">
+
+    <article class="post-card">
+      <p class="meta">May 12, 2026</p>
+      <p class="tag">Release Notes</p>
+      <h2>Biome 1.4 — Persistent Memory Arrives</h2>
+      <p>Your agent now remembers context across sessions — no more repeating yourself. Here's how it works and why we built it the way we did.</p>
+      <a href="/blog/biome-1-4-persistent-memory.html" class="read-link">Read article →</a>
+    </article>
+
+    <article class="post-card">
+      <p class="meta">April 28, 2026</p>
+      <p class="tag">Engineering</p>
+      <h2>Building a Persona System That Actually Feels Personal</h2>
+      <p>Most AI assistants are generic by design. Biome's persona layer gives your agent a specific voice, rhythm, and habits — here's how we built it.</p>
+      <a href="/blog/persona-system.html" class="read-link">Read article →</a>
+    </article>
+
+    <article class="post-card">
+      <p class="meta">April 2, 2026</p>
+      <p class="tag">Deep Dive</p>
+      <h2>Why Browser-Native Beats Plugins Every Time</h2>
+      <p>Heavy browser plugins are sandboxed, rate-limited, and constantly breaking. Biome's local browser relay takes a lighter path — and the difference matters.</p>
+      <a href="/blog/browser-native-vs-plugins.html" class="read-link">Read article →</a>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  <div style="margin-bottom:12px">
+    <a href="mailto:team@biomeai.uk">Contact</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/security.html">Security</a>
+    <a href="/blog/">Blog</a>
+  </div>
+  Copyright &copy; 2025&ndash;2026 Biome. All rights reserved.
+</footer>
+
+</body>
+</html>
