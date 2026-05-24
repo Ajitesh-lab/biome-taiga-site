@@ -7,6 +7,31 @@
     <language>en</language>
 
     <item>
+      <title>Version 1.5.0</title>
+      <link>https://biomeai.uk</link>
+      <sparkle:version>7</sparkle:version>
+      <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+      <description><![CDATA[
+        <h3>What's new in 1.5.0</h3>
+        <ul>
+          <li>Circle search and push-to-talk dictation now run inside the main Biome app, with no separate companion app or login item.</li>
+          <li>Circle search waits until you finish drawing before bringing Biome forward, supports Escape to cancel, and uses a Biome-themed cursor glow.</li>
+          <li>Dictation auto-paste is more practical: it keeps the transcript on the clipboard, restores focus to the original app, and avoids repeated Accessibility prompts.</li>
+        </ul>
+      ]]></description>
+      <pubDate>Sat, 23 May 2026 17:10:00 +0000</pubDate>
+      <enclosure
+        url="https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.5.0/Biome-1.5.0.dmg"
+        sparkle:version="7"
+        sparkle:shortVersionString="1.5.0"
+        sparkle:edSignature="N0r6bJ+UFakiXIezuqmMdjQ+JlpZ0Uab8RV8Fgpzg5LDwDjPu/njOioZW1lbtY7iQxoUE5K3gAyjV8Mkxl5RDA=="
+        length="96405136"
+        type="application/octet-stream"
+      />
+      <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+    </item>
+
+    <item>
       <title>Version 1.4.2</title>
       <link>https://biomeai.uk</link>
       <sparkle:version>6</sparkle:version>

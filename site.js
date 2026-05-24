@@ -94,7 +94,7 @@ const modalConfigs = {
   personal:       { label: 'Personal Plan — Free Forever', title: 'Start for Free', desc: 'Create your account and deploy your first AI agent in under 60 seconds. No credit card required.' },
   pro:            { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Managed model proxy, extended memory, and priority support. Cancel anytime.' },
   signin:         { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
-  download_macos: { label: 'Download for macOS — v1.4.2', title: 'Create an Account First', desc: 'Your download starts immediately after signup. Takes 30 seconds, no credit card needed.' },
+  download_macos: { label: 'Download for macOS — v1.5.0', title: 'Create an Account First', desc: 'Your download starts immediately after signup. Takes 30 seconds, no credit card needed.' },
 };
 let pendingDownload = null;
 let postAuthAction = null;
@@ -268,7 +268,7 @@ async function startProCheckout() {
 }
 
 // ── Download ───────────────────────────────────────────────────────────────
-const DOWNLOAD_URLS = { macOS: 'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.4.2/Biome-1.4.2.dmg' };
+const DOWNLOAD_URLS = { macOS: 'https://github.com/Ajitesh-lab/biome-taiga-site/releases/download/v1.5.0/Biome-1.5.0.dmg' };
 
 async function triggerDownload(platform) {
   const url = DOWNLOAD_URLS[platform];
@@ -277,7 +277,7 @@ async function triggerDownload(platform) {
   const a = document.createElement('a');
   a.href = url; a.download = url.split('/').pop();
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
-  showToast(`Biome v1.4.2 for ${platform} — download starting.`);
+  showToast(`Biome v1.5.0 for ${platform} — download starting.`);
 }
 async function handleDownload(platform) {
   if (getUser()) { await triggerDownload(platform); }
