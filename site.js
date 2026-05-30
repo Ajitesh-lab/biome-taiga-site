@@ -101,6 +101,7 @@ let pendingDownload = null;
 let postAuthAction = null;
 let _modalActiveTab = 'create';
 let _pendingRegEmail = '';
+let _signupSource = null;
 
 function openModal(plan, preservePostAuth = false) {
   if (plan === 'pro') {
@@ -109,6 +110,7 @@ function openModal(plan, preservePostAuth = false) {
   } else if (!preservePostAuth) {
     postAuthAction = null;
   }
+  _signupSource = plan === 'founders' ? 'founding_users' : null;
   const isProFlow = plan === 'pro' || postAuthAction === 'pro_checkout';
   const cfg = modalConfigs[plan] || modalConfigs.personal;
   document.getElementById('modal-plan-label').textContent = cfg.label;
@@ -208,7 +210,7 @@ async function handleRegister(e) {
   const err = document.getElementById('modal-error');
   cta.disabled = true; cta.textContent = 'Sending code…'; err.classList.add('hidden');
   try {
-    const res  = await fetchBackend('/auth/register', { method: 'POST', body: JSON.stringify({ username, email, password }) });
+    const res  = await fetchBackend('/auth/register', { method: 'POST', body: JSON.stringify({ username, email, password, signup_source: _signupSource }) });
     const data = await res.json().catch(() => ({}));
     if (!data.ok) throw new Error(data.error || 'Failed to send code');
     _pendingRegEmail = email;
@@ -283,7 +285,7 @@ async function resendOTP() {
   const email    = _pendingRegEmail || document.getElementById('modal-email-input')?.value.trim();
   const password = document.getElementById('modal-password-input')?.value || '';
   try {
-    const res  = await fetchBackend('/auth/register', { method: 'POST', body: JSON.stringify({ username, email, password }) });
+    const res  = await fetchBackend('/auth/register', { method: 'POST', body: JSON.stringify({ username, email, password, signup_source: _signupSource }) });
     const data = await res.json().catch(() => ({}));
     showToast(data.ok ? 'New code sent — check your inbox.' : 'Could not resend. Try again in a moment.');
   } catch { showToast('Could not resend. Check your connection.'); }
