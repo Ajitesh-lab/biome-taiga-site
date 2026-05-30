@@ -95,6 +95,7 @@ const modalConfigs = {
   pro:            { label: 'Professional Plan — $29/mo', title: 'Upgrade to Pro', desc: 'Managed model proxy, extended memory, and priority support. Cancel anytime.' },
   signin:         { label: 'Welcome Back', title: 'Sign In to Biome', desc: 'Sign in to your account.' },
   download_macos: { label: 'Download for macOS — v1.5.0', title: 'Create an Account First', desc: 'Your download starts immediately after signup. Takes 30 seconds, no credit card needed.' },
+  founders:       { label: 'Founding Users', title: 'Join Early Interest', desc: 'Create an account to join the Founding Users list for early private-preview access, launch credits, and priority feature access.' },
 };
 let pendingDownload = null;
 let postAuthAction = null;
@@ -163,6 +164,39 @@ function backToStep1() {
 }
 document.getElementById('modal-overlay').addEventListener('click', e => { if (e.target === document.getElementById('modal-overlay')) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ── Founding Users banner ─────────────────────────────────────────────────
+const FOUNDERS_BANNER_DISMISSED_KEY = 'biome_founders_banner_dismissed';
+function syncFoundersBannerControls() {
+  const banner = document.getElementById('founders-banner');
+  const toggle = banner?.querySelector('.founders-banner-toggle');
+  if (!banner || !toggle) return;
+  toggle.setAttribute('aria-expanded', String(banner.dataset.expanded === 'true'));
+}
+function toggleFoundersBanner() {
+  const banner = document.getElementById('founders-banner');
+  if (!banner) return;
+  banner.dataset.expanded = banner.dataset.expanded === 'true' ? 'false' : 'true';
+  syncFoundersBannerControls();
+}
+function dismissFoundersBanner() {
+  const banner = document.getElementById('founders-banner');
+  if (!banner) return;
+  localStorage.setItem(FOUNDERS_BANNER_DISMISSED_KEY, '1');
+  banner.classList.add('is-hidden');
+}
+function openFoundersSignup() {
+  openModal('founders');
+}
+function initFoundersBanner() {
+  const banner = document.getElementById('founders-banner');
+  if (!banner) return;
+  if (localStorage.getItem(FOUNDERS_BANNER_DISMISSED_KEY) === '1') {
+    banner.classList.add('is-hidden');
+  }
+  syncFoundersBannerControls();
+}
+initFoundersBanner();
 
 // ── Auth: Register (send OTP) ──────────────────────────────────────────────
 async function handleRegister(e) {

@@ -80,7 +80,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content="#0c2c16" />
-<link rel="stylesheet" href="site.css?v=20260521-ui2">
+<link rel="stylesheet" href="site.css?v=20260530-founders">
 </head>
 <body>
 
@@ -162,6 +162,30 @@
 
 <!-- ── Nav ── -->
 <div class="nav-wrap">
+  <div class="founders-banner" id="founders-banner" data-expanded="false">
+    <div class="founders-banner-inner">
+      <button class="founders-banner-toggle" type="button" onclick="toggleFoundersBanner()" aria-expanded="false" aria-controls="founders-banner-details">
+        <span class="founders-kicker">Private preview</span>
+        <span class="founders-title">Founding Users get early access, launch credits, and priority features.</span>
+        <svg class="founders-chevron" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="founders-cta" type="button" onclick="openFoundersSignup()">Join early interest</button>
+      <button class="founders-dismiss" type="button" onclick="dismissFoundersBanner()" aria-label="Dismiss Founding Users banner">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="founders-banner-details" id="founders-banner-details">
+      <div class="founders-detail-grid">
+        <span>Early access before public launch</span>
+        <span>Free launch credits</span>
+        <span>Help shape the product</span>
+      </div>
+    </div>
+  </div>
   <nav class="nav" aria-label="Main navigation">
     <a class="brand" href="/">Biome</a>
     <ul>
@@ -626,7 +650,7 @@
   Copyright &copy; 2025&ndash;2026 Biome. All rights reserved.
 </footer>
 
-<script src="site.js?v=20260521-ui2" defer></script>
+<script src="site.js?v=20260530-founders" defer></script>
 
 
 <!-- ── Cookie Consent ── -->
